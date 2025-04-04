@@ -1,16 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
 
-const WebSocketComponent = ({ onMessage }: { onMessage: (message: any) => void }) => {
+type CoinProps = {
+  coin: string;
+  onMessage: (message: any) => void;
+}
+
+interface WebSocketComponentProps {
+  coin: string;
+  onMessage: (message: any) => void;
+}
+
+const WebSocketComponent = ({onMessage, coin }: CoinProps) => {
   const socketRef = useRef<WebSocket | null>(null);
   const [status, setStatus] = useState<string>('Connecting...');
 
   useEffect(() => {
     // Initialize WebSocket connection
-
-
     if (!socketRef.current) {
-    
-    socketRef.current = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@kline_1s');  }
+      socketRef.current = new WebSocket(`wss://stream.binance.com:9443/ws/${coin}usdt@kline_1s`);
+    }
 
     socketRef.current.onopen = () => {
       setStatus('Connected');
@@ -32,11 +40,8 @@ const WebSocketComponent = ({ onMessage }: { onMessage: (message: any) => void }
       console.log('WebSocket connection closed');
     };
 
-    // Cleanup on component unmount
-    return () => {
-
-    };
-  }, [onMessage]);
+    // Cleanup on component unmount;
+  }, [coin, onMessage]); // Dependencies to ensure WebSocket reconnects when 'coin' changes
 
   return <div>Status: {status}</div>;
 };

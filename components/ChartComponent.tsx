@@ -2,11 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
 import WebSocketComponent from './Websocket';
+import React from 'react';
 
 // Register chart.js components
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
 
-const ChartComponent = () => {
+interface ChartComponentProps {
+  coin: string;
+}
+
+const ChartComponent = ({coin}: ChartComponentProps) => {
   const chartRef = useRef<any>(null);  // Ref for Chart.js
   const [chartData, setChartData] = useState<any>({
     labels: [],
@@ -32,7 +37,7 @@ const ChartComponent = () => {
       const newPriceData = [...prevData.datasets[0].data, newData.price];
 
       // Keep the chart data size within a limit (e.g., last 100 entries)
-      if (newLabels.length > 100) {
+      if (newLabels.length > 1000) {
         newLabels.shift();
         newPriceData.shift();
       }
@@ -48,13 +53,18 @@ const ChartComponent = () => {
       };
     });
   };
+  console.log('coin '+coin)
 
   return (
+<>
+
     <div>
-      <h2>Live BTC/USDT Chart</h2>
+      <h2>Live {coin.toUpperCase()}/USDT Chart</h2>
       <Line ref={chartRef} data={chartData} />
-      <WebSocketComponent onMessage={handleWebSocketMessage} />
+      <WebSocketComponent onMessage={handleWebSocketMessage}  coin={coin}  />
     </div>
+
+    </>
   );
 };
 

@@ -1,42 +1,36 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.center-div {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100%;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+h1 {
+  margin: 0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* App.css */
+.textField {
+  background-color: #333; /* Dark background */
+  color: #fff; /* White text */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.textField label {
+  color: #fff; /* White label text */
 }
 
-.card {
-  padding: 2em;
+.textField .MuiOutlinedInput-notchedOutline {
+  border-color: #fff; /* White border */
 }
 
-.read-the-docs {
-  color: #888;
+.textField:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #ff5722; /* Orange border on hover */
+}
+
+.textField.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #ff5722; /* Orange border when focused */
+}
+
+.textField input {
+  color: #fff; /* Ensure input text is white */
 }

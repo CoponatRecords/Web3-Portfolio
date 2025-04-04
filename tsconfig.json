@@ -1,7 +1,16 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "src/**/*",
+    "node_modules/@mui/icons-material/**/*"
+, "components/useLocalStorageComponents.tsx"  ],
+  "exclude": [
+    "node_modules"
   ]
 }
