@@ -18,6 +18,7 @@ const loadFromLocalStorage = (): CoinItem[] => {
     }
     return [];
   } catch (error) {
+    console.log(`error ${error}`)
     return [];
   }
 };
@@ -41,10 +42,15 @@ const coinListSlice = createSlice({
   reducers: {
     addCoin: (state, action: PayloadAction<string>) => {
       const coin = action.payload.toLowerCase();
-      const id = Date.now(); // Unique ID
       const coinExists = state.coins.some((item) => item.coin === coin);
 
-      coinExists ? console.log(`${coin} is already in`) : state.coins.push({ id, coin });
+      if (!coinExists) {
+        const id = Date.now();
+        state.coins.push({ id, coin });
+        saveToLocalStorage(state.coins);
+      } else {
+        console.info(`${coin} already exists in the list.`);
+      }
 
       saveToLocalStorage(state.coins); // Save updated state to localStorage
       console.log('Coins added:', JSON.parse(JSON.stringify(state.coins))); // Log the updated coin list
