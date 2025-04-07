@@ -73,9 +73,7 @@ const ChartComponent = ({ coin }: ChartComponentProps) => {
       };
     });
   };
-
-  console.log('coin ' + coin);
-
+  
   return (
     <div>
       <h2>Live {coin.toUpperCase()}/USDT Chart</h2>
