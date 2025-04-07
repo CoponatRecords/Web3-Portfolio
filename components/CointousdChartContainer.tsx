@@ -10,12 +10,12 @@ import {
   Typography,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import ChartComponent from '../components/ChartComponent';
+import ChartComponent from './ChartComponent';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCoin, removeCoin } from '../redux/slices/coinListReducer';
 import { RootState } from '../redux/store';
 
-export function CointousdChartContainer() {
+function CointousdChartContainer() {
   const dispatch = useDispatch();
   const coinList = useSelector((state: RootState) => state.coinList.coins); // le retrigger est automatique
   const [newCoin, setNewCoin] = useState<string>('');
@@ -28,11 +28,7 @@ export function CointousdChartContainer() {
   const handleAddCoin = () => {
     if (newCoin.trim() !== '') {
       const coin = newCoin.toLowerCase();
-      const newCoinComponent = {
-        id: Date.now(),
-        componentName: 'ChartComponent',
-        coin,
-      };
+
       dispatch(addCoin(coin)); // add the component with coin symbol
       setNewCoin('');
     }
@@ -104,3 +100,5 @@ export function CointousdChartContainer() {
     </>
   );
 }
+
+export default CointousdChartContainer;

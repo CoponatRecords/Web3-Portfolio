@@ -1,8 +1,7 @@
 import './App.css'; // Import the CSS file
-import {CointousdChartContainer} from '../components/CointousdChartContainer';
 import {store} from '../redux/store';
 import { Provider } from 'react-redux';
-
+import CointousdChartContainer from '../components/CointousdChartContainer'
 const App = () => {
 
   return (
