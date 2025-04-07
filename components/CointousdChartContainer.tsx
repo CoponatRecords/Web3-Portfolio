@@ -1,0 +1,106 @@
+import React, { useState, useEffect } from 'react';
+import {
+  Container,
+  Grid,
+  TextField,
+  Button,
+  Card,
+  CardContent,
+  IconButton,
+  Typography,
+} from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import ChartComponent from '../components/ChartComponent';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCoin, removeCoin } from '../redux/slices/coinListReducer';
+import { RootState } from '../redux/store';
+
+export function CointousdChartContainer() {
+  const dispatch = useDispatch();
+  const coinList = useSelector((state: RootState) => state.coinList.coins); // le retrigger est automatique
+  const [newCoin, setNewCoin] = useState<string>('');
+
+  // Log coinList every time it changes
+  useEffect(() => {
+    console.log('Updated coinList:', JSON.parse(JSON.stringify(coinList)));
+  }, [coinList]);
+
+  const handleAddCoin = () => {
+    if (newCoin.trim() !== '') {
+      const coin = newCoin.toLowerCase();
+      const newCoinComponent = {
+        id: Date.now(),
+        componentName: 'ChartComponent',
+        coin,
+      };
+      dispatch(addCoin(coin)); // add the component with coin symbol
+      setNewCoin('');
+    }
+  };
+
+  const handleRemove = (idToRemove: number) => {
+    dispatch(removeCoin(idToRemove)); // Remove coin from the list
+  };
+
+  const componentsMap: Record<string, React.FC<{ coin: string }>> = {
+    ChartComponent: ChartComponent, // Mapping the ChartComponent
+  };
+
+  return (
+    <>
+      <Container maxWidth="lg" sx={{ mt: 8 }}>
+        <Grid container spacing={4}>
+          <Grid>
+            <TextField
+              label="Enter Coin Symbol"
+              variant="outlined"
+              value={newCoin}
+              onChange={(e) => setNewCoin(e.target.value)}
+              fullWidth
+            />
+            <Button variant="contained" sx={{ mt: 2 }} onClick={handleAddCoin} fullWidth>
+              Add Coin
+            </Button>
+          </Grid>
+        </Grid>
+      </Container>
+
+      {/* Optionally, render the coinList directly on screen */}
+      <Container maxWidth="lg" sx={{ mt: 8 }}>
+        {coinList.map((coinItem) => (
+          <Typography key={coinItem.id}>
+            {coinItem.coin.toUpperCase()}
+          </Typography>
+        ))}
+      </Container>
+
+      <Container maxWidth="lg" sx={{ mt: 8 }}>
+        <Grid container spacing={2}>
+          {coinList.map(({ id, coin }) => {
+            const Component = componentsMap['ChartComponent']; // Dynamically use the correct component
+            return (
+              <Grid size={12} key={id}>
+                <Card elevation={6} sx={{ borderRadius: 4, p: 2, position: 'relative' }}>
+                  <IconButton
+                    onClick={() => handleRemove(id)} // Simplified to a single dispatch call
+                    sx={{
+                      position: 'absolute',
+                      top: 8,
+                      right: 8,
+                      color: '#FF7F7F',
+                    }}
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                  <CardContent>
+                    {Component && <Component coin={coin} />}
+                  </CardContent>
+                </Card>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Container>
+    </>
+  );
+}

@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Step 1: Define the state shape
-interface PriceState {
-  binancePrice: number | null;
-  bitgetPrice: number | null;
+type PriceState = {
+  binancePrice: number | null,
+  bitgetPrice: number | null
 }
 
 // Step 2: Define the initial state
 const initialState: PriceState = {
   binancePrice: null,
-  bitgetPrice: null,
+  bitgetPrice: null, 
 };
 
 // Step 3: Create the slice

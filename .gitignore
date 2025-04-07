@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+
+
+S3_BUCKET = ZEDPIOJAZDIOPJZFMZAFNAZFMNAZFJM
+
+dotenv
+
+
+function(binance){
+console.log(binance)
+}

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 interface ComponentType {
   id: number;
   coin: string;
-  componentName: string; // Store the name of the component
+componentName: string; // Store the name of the component
 
 }
 
