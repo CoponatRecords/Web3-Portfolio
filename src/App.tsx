@@ -12,7 +12,12 @@ import {
 
   const handleClick = () => {
     console.log("Element clicked!");
+
     // créer la logique ici pour envoyer le wei
+
+    // loger une valeur dans le store.  elle change quand on clique le bouton, 
+    // utiliser une autre fonctiion pour envoyer le wei
+
   };
 
 const App = () => {
