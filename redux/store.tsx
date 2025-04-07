@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import priceReducer from './slices/priceSlice';
 import coinListReducer from './slices/coinListReducer';
 
 // Step 1: Configure the store
 export const store = configureStore({
   reducer: {
-    price: priceReducer,
     coinList:coinListReducer
   },
 });
