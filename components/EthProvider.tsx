@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ethers } from "ethers";
+//import { ethers } from "ethers";
 import { MetaMaskInpageProvider } from "@metamask/providers";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 declare global {
   interface Window {
@@ -10,42 +12,36 @@ declare global {
   }
 }
 
-function Testing({Walletaddress}) {
-  const [balance, setBalance] = useState<string | null>(null);
+function SendingEthereum() {
+  // Correctly initializing useState
+  //const [balance] = useState<string | null>(null);
+
+  const amount = useSelector((state: RootState) => state.coindSend.amount); // Automatically retriggers
+  const sender = useSelector((state: RootState) => state.coindSend.sender); // Automatically retriggers
+  const receiver = useSelector((state: RootState) => state.coindSend.receiver); // Automatically retriggers
 
   useEffect(() => {
     const fetchBalance = async () => {
-      let provider;
-
       if (window.ethereum == null) {
-        // Si MetaMask n'est pas installé
-        provider = ethers.getDefaultProvider();
         console.log("MetaMask non détecté, fournisseur par défaut utilisé");
-
-        // en pratique ca veut dire quoi ? 
-
-
+        // If MetaMask is not installed, you might want to use a default provider
       } else {
-        // Si MetaMask est présent
-        provider = new ethers.BrowserProvider(window.ethereum);
-        const balanceBigInt = await provider.getBalance(Walletaddress);
-        const formatted = ethers.formatEther(balanceBigInt);
-        setBalance(formatted);
+        // If MetaMask is present
+        if (sender && receiver && amount !== 0) {
+          console.log("ethprovider", amount, sender, receiver);
+          
+          // Add your logic to interact with Ethereum here:
+          // Example:
+          // const provider = new ethers.BrowserProvider(window.ethereum);
+          // const balanceBigInt = await provider.getBalance(sender);
+          // const formatted = ethers.formatEther(balanceBigInt);
+          // setBalance(formatted);
+        }
       }
     };
 
     fetchBalance();
-  }, []);
-
-  return (
-    <div>
-      {balance ? (
-        <p>Solde : {balance} SepoliaETH</p>
-      ) : (
-        <p>Chargement du solde...</p>
-      )}
-    </div>
-  );
+  }); // Add dependencies to rerun useEffect when these change
 }
 
-export default Testing;
+export default SendingEthereum;
