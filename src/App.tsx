@@ -5,7 +5,7 @@ import CointousdChartContainer from '../components/CointousdChartContainer';
 import React, { useState } from 'react';
 import { TextField, Button, Box } from '@mui/material';
 import { sendCoin } from '../redux/slices/coinSendReducer';
-
+import SendingEthereum from '../components/EthProvider'
 const App = () => {
   const dispatch = useDispatch();
   const [receiverAddress, setReceiverAddress] = useState('');
@@ -20,6 +20,8 @@ const App = () => {
       receiver: receiverAddress,
       sender: senderAddress,
     }));
+    SendingEthereum();
+
   };
 
   return (

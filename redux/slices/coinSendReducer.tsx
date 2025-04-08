@@ -1,10 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import SendingEthereum from '../../components/EthProvider';
-interface CounterState {
-  amount: number;
-  sender: string;
-  receiver: string;
-}
 
 
 const sendCoinSlice = createSlice({
@@ -18,7 +12,6 @@ const sendCoinSlice = createSlice({
 
       console.log("sending a coin");
       console.log( 'reducer: ', state.amount, state.sender, state.receiver);
-      SendingEthereum()
 
     },
   },
