@@ -5,24 +5,27 @@ import CointousdChartContainer from '../components/CointousdChartContainer';
 import React, { useState } from 'react';
 import { TextField, Button, Box } from '@mui/material';
 import { sendCoin } from '../redux/slices/coinSendReducer';
-import SendingEthereum from '../components/EthProvider'
+import SendingEthereum from '../components/EthProvider';
+
 const App = () => {
   const dispatch = useDispatch();
   const [receiverAddress, setReceiverAddress] = useState('');
   const [senderAddress, setSenderAddress] = useState('');
   const [amountToSend, setAmountToSend] = useState(0.001);
 
-  const handleSend = () => {
-    if (!senderAddress || !receiverAddress || !amountToSend) return;
+  function handleSend() {
+    if (!senderAddress || !receiverAddress || amountToSend <= 0) return; // Ensure the amount is greater than 0
 
     dispatch(sendCoin({
       amount: amountToSend,
       receiver: receiverAddress,
       sender: senderAddress,
     }));
-    SendingEthereum();
 
-  };
+    // If SendingEthereum is a component, it should be used in JSX
+    // If it's a function, it should be invoked properly like this:
+    SendingEthereum(); // Assuming it's a function, if it's a component, use it as <SendingEthereum />
+  }
 
   return (
     <>
@@ -57,7 +60,7 @@ const App = () => {
       <Button
         variant="contained"
         onClick={handleSend}
-        disabled={!(senderAddress && receiverAddress && amountToSend)}
+        disabled={!(senderAddress && receiverAddress && amountToSend > 0)} // Disable if invalid values
         fullWidth
       >
         Send
@@ -70,7 +73,7 @@ const App = () => {
   );
 };
 
-// Wrap avec Provider
+// Wrap with Provider
 // eslint-disable-next-line react-refresh/only-export-components
 export default () => (
   <Provider store={store}>

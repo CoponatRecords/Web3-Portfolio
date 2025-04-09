@@ -6,7 +6,7 @@ import coinSendReducer from './slices/coinSendReducer';
 export const store = configureStore({
   reducer: {
     coinList:coinListReducer, 
-    coindSend:coinSendReducer
+    coindSend:coinSendReducer,
   },
 });
 
