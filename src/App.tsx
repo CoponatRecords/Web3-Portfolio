@@ -1,31 +1,21 @@
 import './App.css'; // Import the CSS file
 import { store } from '../redux/store';
-import { Provider, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
 import CointousdChartContainer from '../components/CointousdChartContainer';
 import React, { useState } from 'react';
 import { TextField, Button, Box } from '@mui/material';
-import { sendCoin } from '../redux/slices/coinSendReducer';
 import SendingEthereum from '../components/EthProvider';
 
 const App = () => {
-  const dispatch = useDispatch();
-  const [receiverAddress, setReceiverAddress] = useState('');
-  const [senderAddress, setSenderAddress] = useState('');
+
+  const [receiverAddress, setReceiverAddress] = useState('0x8ad46EBF14ACa31EaBC399edbA0F4188cFf6bf04');
+  const [senderAddress, setSenderAddress] = useState('0x92FcD9d0424E3D3F3bB5a503a59A507F9A4607ee');
   const [amountToSend, setAmountToSend] = useState(0.001);
 
-  function handleSend() {
-    if (!senderAddress || !receiverAddress || amountToSend <= 0) return; // Ensure the amount is greater than 0
-
-    dispatch(sendCoin({
-      amount: amountToSend,
-      receiver: receiverAddress,
-      sender: senderAddress,
-    }));
-
-    // If SendingEthereum is a component, it should be used in JSX
-    // If it's a function, it should be invoked properly like this:
-    SendingEthereum(); // Assuming it's a function, if it's a component, use it as <SendingEthereum />
-  }
+  // Handle the sending of coins
+  const handleSend = (amountToSend,senderAddress, receiverAddress ) => {
+    SendingEthereum(amountToSend, senderAddress, receiverAddress); 
+  };
 
   return (
     <>
@@ -59,7 +49,7 @@ const App = () => {
 
       <Button
         variant="contained"
-        onClick={handleSend}
+        onClick={() =>handleSend(amountToSend, senderAddress, receiverAddress)} // Pass the function reference, not invoke it immediately
         disabled={!(senderAddress && receiverAddress && amountToSend > 0)} // Disable if invalid values
         fullWidth
       >

@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/uselocalstoragecomponents.ts","./src/vite-env.d.ts","./components/uselocalstoragecomponents.tsx"],"errors":true,"version":"5.7.3"}
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./components/chartcomponent.tsx","./components/cointousdchartcontainer.tsx","./components/ethprovider.tsx","./components/websocket.tsx","./components/coingeckoprice.tsx"],"version":"5.7.3"}

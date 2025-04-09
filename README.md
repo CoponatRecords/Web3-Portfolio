@@ -12,10 +12,11 @@ Envoyer des coins d'un wallet à l'autre avec metamask
 
 Apprendre git 
 
-https://www.alchemy.com/faucets/ethereum-sepolia
+    https://www.alchemy.com/faucets/ethereum-sepolia
 
 usdc testnet ? 
 dotenv
+
 
 Créer une branch : git branch nom/de-la-branche
 Passer sur une branch : git switch nom/de-la-branche
