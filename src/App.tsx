@@ -1,22 +1,23 @@
-import './App.css'; // Import the CSS file
-import { store } from '../redux/store';
-import { Provider } from 'react-redux';
-import CointousdChartContainer from '../components/CointousdChartContainer';
-import React, { useState } from 'react';
-import { TextField, Button, Box } from '@mui/material';
-import SendingEthereum from '../components/EthProvider';
+import "./App.css"; // Import the CSS file
+import { store } from "../redux/store";
+import { Provider } from "react-redux";
+import CointousdChartContainer from "../components/CointousdChartContainer";
+import React, { useState } from "react";
+import { TextField, Button, Box } from "@mui/material";
+import SendingEthereum from "../components/EthProvider";
 
 const App = () => {
-
-  const [receiverAddress, setReceiverAddress] = useState('0x8ad46EBF14ACa31EaBC399edbA0F4188cFf6bf04');
-  const [senderAddress, setSenderAddress] = useState('0x92FcD9d0424E3D3F3bB5a503a59A507F9A4607ee');
-  const [amountToSend, setAmountToSend] = useState(0.001);
+  const [receiverAddress, setReceiverAddress] = useState(
+    "0x92FcD9d0424E3D3F3bB5a503a59A507F9A4607ee"
+  );
+  const [amountToSend, setAmountToSend] = useState(0.0001);
 
   // Handle the sending of coins
-  const handleSend = (amountToSend,senderAddress, receiverAddress ) => {
-    SendingEthereum(amountToSend, senderAddress, receiverAddress); 
+  const handleSend = (amountToSend, receiverAddress) => {
+    console.log(amountToSend, receiverAddress);
+    SendingEthereum(amountToSend, receiverAddress);
   };
-
+  
   return (
     <>
       <TextField
@@ -38,19 +39,10 @@ const App = () => {
         sx={{ mb: 2 }}
       />
 
-      <TextField
-        label="Sender address"
-        variant="outlined"
-        value={senderAddress}
-        onChange={(e) => setSenderAddress(e.target.value)}
-        fullWidth
-        sx={{ mb: 2 }}
-      />
-
       <Button
         variant="contained"
-        onClick={() =>handleSend(amountToSend, senderAddress, receiverAddress)} // Pass the function reference, not invoke it immediately
-        disabled={!(senderAddress && receiverAddress && amountToSend > 0)} // Disable if invalid values
+        onClick={() => handleSend(amountToSend, receiverAddress)} // Pass the function reference, not invoke it immediately
+        disabled={!( receiverAddress && amountToSend > 0)} // Disable if invalid values
         fullWidth
       >
         Send

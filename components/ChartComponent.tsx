@@ -1,10 +1,27 @@
-import React, { useRef, useState } from 'react';
-import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
-import WebSocketComponent from './Websocket';
+import React, { useRef, useState } from "react";
+import { Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import WebSocketComponent from "./Websocket";
 
 // Register chart.js components
-ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 // Define types for the chart data
 interface ChartData {
@@ -31,15 +48,15 @@ interface ChartComponentProps {
 
 const ChartComponent = ({ coin }: ChartComponentProps) => {
   // Type the ref as ChartJS instance for a line chart specifically
-  const chartRef = useRef<ChartJS<'line', number[], string>>(null); // ChartJS ref for line chart
+  const chartRef = useRef<ChartJS<"line", number[], string>>(null); // ChartJS ref for line chart
 
   const [chartData, setChartData] = useState<ChartData>({
     labels: [],
     datasets: [
       {
-        label: 'Price',
+        label: "Price",
         data: [],
-        borderColor: 'rgb(75, 192, 192)',
+        borderColor: "rgb(75, 192, 192)",
         fill: false,
       },
     ],
@@ -48,8 +65,8 @@ const ChartComponent = ({ coin }: ChartComponentProps) => {
   const handleWebSocketMessage = (message: WebSocketMessage) => {
     const kline = message.k;
     const newData = {
-      time: new Date(kline.t).toLocaleTimeString(),  // Time formatted from timestamp
-      price: parseFloat(kline.c),  // Closing price
+      time: new Date(kline.t).toLocaleTimeString(), // Time formatted from timestamp
+      price: parseFloat(kline.c), // Closing price
     };
 
     setChartData((prevData) => {
@@ -73,7 +90,7 @@ const ChartComponent = ({ coin }: ChartComponentProps) => {
       };
     });
   };
-  
+
   return (
     <div>
       <h2>Live {coin.toUpperCase()}/USDT Chart</h2>

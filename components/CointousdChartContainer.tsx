@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Grid,
@@ -8,29 +8,29 @@ import {
   CardContent,
   IconButton,
   Typography,
-} from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
-import ChartComponent from './ChartComponent';
-import { useDispatch, useSelector } from 'react-redux';
-import { addCoin, removeCoin } from '../redux/slices/coinListReducer';
-import { RootState } from '../redux/store';
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import ChartComponent from "./ChartComponent";
+import { useDispatch, useSelector } from "react-redux";
+import { addCoin, removeCoin } from "../redux/slices/coinListReducer";
+import { RootState } from "../redux/store";
 
 function CointousdChartContainer() {
   const dispatch = useDispatch();
   const coinList = useSelector((state: RootState) => state.coinList.coins); // le retrigger est automatique
-  const [newCoin, setNewCoin] = useState<string>('');
+  const [newCoin, setNewCoin] = useState<string>("");
 
   // Log coinList every time it changes
   useEffect(() => {
-    console.log('Updated coinList:', JSON.parse(JSON.stringify(coinList)));
+    console.log("Updated coinList:", JSON.parse(JSON.stringify(coinList)));
   }, [coinList]);
 
   const handleAddCoin = () => {
-    if (newCoin.trim() !== '') {
+    if (newCoin.trim() !== "") {
       const coin = newCoin.toLowerCase();
 
       dispatch(addCoin(coin)); // add the component with coin symbol
-      setNewCoin('');
+      setNewCoin("");
     }
   };
 
@@ -54,7 +54,12 @@ function CointousdChartContainer() {
               onChange={(e) => setNewCoin(e.target.value)}
               fullWidth
             />
-            <Button variant="contained" sx={{ mt: 2 }} onClick={handleAddCoin} fullWidth>
+            <Button
+              variant="contained"
+              sx={{ mt: 2 }}
+              onClick={handleAddCoin}
+              fullWidth
+            >
               Add Coin
             </Button>
           </Grid>
@@ -73,17 +78,20 @@ function CointousdChartContainer() {
       <Container maxWidth="lg" sx={{ mt: 8 }}>
         <Grid container spacing={2}>
           {coinList.map(({ id, coin }) => {
-            const Component = componentsMap['ChartComponent']; // Dynamically use the correct component
+            const Component = componentsMap["ChartComponent"]; // Dynamically use the correct component
             return (
               <Grid size={12} key={id}>
-                <Card elevation={6} sx={{ borderRadius: 4, p: 2, position: 'relative' }}>
+                <Card
+                  elevation={6}
+                  sx={{ borderRadius: 4, p: 2, position: "relative" }}
+                >
                   <IconButton
                     onClick={() => handleRemove(id)} // Simplified to a single dispatch call
                     sx={{
-                      position: 'absolute',
+                      position: "absolute",
                       top: 8,
                       right: 8,
-                      color: '#FF7F7F',
+                      color: "#FF7F7F",
                     }}
                   >
                     <CloseIcon />

@@ -1,12 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
-import coinListReducer from './slices/coinListReducer';
-import coinSendReducer from './slices/coinSendReducer';
+import { configureStore } from "@reduxjs/toolkit";
+import coinListReducer from "./slices/coinListReducer";
+import coinSendReducer from "./slices/coinSendReducer";
 
 // Step 1: Configure the store
 export const store = configureStore({
   reducer: {
-    coinList:coinListReducer, 
-    coindSend:coinSendReducer,
+    coinList: coinListReducer,
+    coindSend: coinSendReducer,
   },
 });
 

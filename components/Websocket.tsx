@@ -2,13 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 
 type CoinProps = {
   coin: string;
-  onMessage: (message: any) => void;
+  onMessage: (message: unknown) => void;
 }
 
-interface WebSocketComponentProps {
-  coin: string;
-  onMessage: (message: any) => void;
-}
 
 const WebSocketComponent = ({onMessage, coin }: CoinProps) => {
   const socketRef = useRef<WebSocket | null>(null);
