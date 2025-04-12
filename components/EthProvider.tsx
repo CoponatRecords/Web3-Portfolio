@@ -34,7 +34,7 @@ async function fetchBalance(amount: number, receiver: string) {
       };
 
       const txResponse = await signer.sendTransaction(transaction);
-      
+
       console.log("transaction : ", txResponse);
       console.log("Price : ", formatEther(txResponse.gasPrice));
     }

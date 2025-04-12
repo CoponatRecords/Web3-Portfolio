@@ -8,6 +8,7 @@ import {
   CardContent,
   IconButton,
   Typography,
+  Box,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ChartComponent from "./ChartComponent";
@@ -44,67 +45,90 @@ function CointousdChartContainer() {
 
   return (
     <>
-      <Container maxWidth="lg" sx={{ mt: 8 }}>
-        <Grid container spacing={4}>
-          <Grid>
-            <TextField
-              label="Enter Coin Symbol"
-              variant="outlined"
-              value={newCoin}
-              onChange={(e) => setNewCoin(e.target.value)}
-              fullWidth
-            />
-            <Button
-              variant="contained"
-              sx={{ mt: 2 }}
-              onClick={handleAddCoin}
-              fullWidth
-            >
-              Add Coin
-            </Button>
+      <Box
+        sx={{
+          alignContent: "center",
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+          mt: 1,
+          p: 4,
+          borderRadius: 4,
+          boxShadow: 3,
+          backgroundColor: "background.paper",
+
+        }}
+      >
+        <Typography variant="h5" sx={{ mb: 2 }}>
+          Graph a Coin
+        </Typography>{" "}
+        <Container>
+          <Grid container>
+              <TextField
+                label="Enter Coin Symbol"
+                variant="outlined"
+                value={newCoin}
+                onChange={(e) => setNewCoin(e.target.value)}
+                fullWidth
+              />
+              <Button
+                variant="contained"
+                sx={{ mt: 2 }}
+                onClick={handleAddCoin}
+                fullWidth
+              >
+                Add Coin
+              </Button>
+              <Box
+            sx={{
+              mt: 1,
+              display: "flex",
+              flexDirection: "row",
+              gap: 2, // spacing between items
+              flexWrap: "wrap", // optional: wrap to next line if needed
+            }}
+          >
+            {coinList.map((coinItem) => (
+              <Typography key={coinItem.id}>
+                {coinItem.coin.toUpperCase()}
+              </Typography>
+            ))}
+          </Box>
+            
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
 
-      {/* Optionally, render the coinList directly on screen */}
-      <Container maxWidth="lg" sx={{ mt: 8 }}>
-        {coinList.map((coinItem) => (
-          <Typography key={coinItem.id}>
-            {coinItem.coin.toUpperCase()}
-          </Typography>
-        ))}
-      </Container>
-
-      <Container maxWidth="lg" sx={{ mt: 8 }}>
-        <Grid container spacing={2}>
-          {coinList.map(({ id, coin }) => {
-            const Component = componentsMap["ChartComponent"]; // Dynamically use the correct component
-            return (
-              <Grid size={12} key={id}>
-                <Card
-                  elevation={6}
-                  sx={{ borderRadius: 4, p: 2, position: "relative" }}
-                >
-                  <IconButton
-                    onClick={() => handleRemove(id)} // Simplified to a single dispatch call
-                    sx={{
-                      position: "absolute",
-                      top: 8,
-                      right: 8,
-                      color: "#FF7F7F",
-                    }}
+        <Container maxWidth="lg" sx={{ mt: 8 }}>
+          <Grid container spacing={2}>
+            {coinList.map(({ id, coin }) => {
+              const Component = componentsMap["ChartComponent"]; // Dynamically use the correct component
+              return (
+                <Grid size={12} key={id}>
+                  <Card
+                    elevation={6}
+                    sx={{ borderRadius: 4, p: 2, position: "relative" }}
                   >
-                    <CloseIcon />
-                  </IconButton>
-                  <CardContent>
-                    {Component && <Component coin={coin} />}
-                  </CardContent>
-                </Card>
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Container>
+                    <IconButton
+                      onClick={() => handleRemove(id)} // Simplified to a single dispatch call
+                      sx={{
+                        position: "absolute",
+                        top: 8,
+                        right: 8,
+                        color: "#FF7F7F",
+                      }}
+                    >
+                      <CloseIcon />
+                    </IconButton>
+                    <CardContent>
+                      {Component && <Component coin={coin} />}
+                    </CardContent>
+                  </Card>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Container>
+      </Box>
     </>
   );
 }

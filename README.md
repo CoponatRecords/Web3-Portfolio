@@ -11,7 +11,6 @@ terminal créer commit push
 Envoyer des coins d'un wallet à l'autre avec metamask
 
 Apprendre git
-
     https://www.alchemy.com/faucets/ethereum-sepolia
 
 usdc testnet ?
@@ -36,11 +35,12 @@ git stash pop
 
 ether.js
 wagmi -builtontopofethers -> regarder wagmi
-rainbowkit ->
 
-hardhat pour écrire un smartcontract
+🌈 RainbowKit : pour connecter un wallet en 2 clics
+🔌 Wagmi : la couche logique Web3 côté React
+🛠 Hardhat	: Écrire, tester et déployer des smart contracts
 
-2 type de querry : readonly ou write
+
 
 rpc alchemy
 
@@ -66,4 +66,6 @@ rust -> backend
 
 Portfoliot
 
-React :
+backend NestJS
+bignumber.js 
+

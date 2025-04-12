@@ -9,10 +9,6 @@ const sendCoinSlice = createSlice({
       state.amount = action.payload.amount;
       state.sender = action.payload.sender;
       state.receiver = action.payload.receiver;
-
-      console.log("sending a coin");
-      console.log( 'reducer: ', state.amount, state.sender, state.receiver);
-
     },
   },
 });
