@@ -66,7 +66,6 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
       // Ensure the user is connected and has an address
       if (!address) throw new Error("No wallet connected");
 
-      console.log("Reading balance on", address, "contract is", mycontract);
 
       const balance = await readContract(config, {
         address: '0xDa317C1d3E835dD5F1BE459006471aCAA1289068',
@@ -74,7 +73,7 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
         functionName: "balanceOf",
         args: ['0x8ad46EBF14ACa31EaBC399edbA0F4188cFf6bf04'], // Get the balance of the connected account
       });
-      
+      // console.log("Reading balance on", address, "contract is", mycontract);
       console.log("Balance:", balance);
 
       // Convert the amount to smallest units (6 decimals for USDC)

@@ -39,7 +39,7 @@ const WebSocketComponent = ({onMessage, coin }: CoinProps) => {
     // Cleanup on component unmount;
   }, [coin, onMessage]); // Dependencies to ensure WebSocket reconnects when 'coin' changes
 
-  return <div>Status: {status}</div>;
+  return <div>Websocket Status: {status}</div>;
 };
 
 export default WebSocketComponent;

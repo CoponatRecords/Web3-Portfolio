@@ -99,7 +99,7 @@ const App = () => {
                   }}
                 >
                   <Typography variant="h5" sx={{ mb: 2 }}>
-                    Send ETH
+                    Send USDC on Testnet
                   </Typography>
 
                   <ConnectButton />
@@ -132,8 +132,7 @@ const App = () => {
             </Box>
 
             <Container maxWidth="sm">
-
-                <CointousdChartContainer   />
+              <CointousdChartContainer />
             </Container>
           </ThemeProvider>
         </RainbowKitProvider>

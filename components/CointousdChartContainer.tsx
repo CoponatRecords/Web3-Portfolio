@@ -22,9 +22,9 @@ function CointousdChartContainer() {
   const [newCoin, setNewCoin] = useState<string>("");
 
   // Log coinList every time it changes
-  useEffect(() => {
-    console.log("Updated coinList:", JSON.parse(JSON.stringify(coinList)));
-  }, [coinList]);
+  // useEffect(() => {
+  //   console.log("Updated coinList:", JSON.parse(JSON.stringify(coinList)));
+  // }, [coinList]);
 
   const handleAddCoin = () => {
     if (newCoin.trim() !== "") {
