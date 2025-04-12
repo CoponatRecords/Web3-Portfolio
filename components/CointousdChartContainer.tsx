@@ -51,17 +51,10 @@ function CointousdChartContainer() {
           display: "flex",
           flexDirection: "column",
           gap: 2,
-          mt: 1,
-          p: 4,
           borderRadius: 4,
-          boxShadow: 3,
-          backgroundColor: "background.paper",
 
         }}
       >
-        <Typography variant="h5" sx={{ mb: 2 }}>
-          Graph a Coin
-        </Typography>{" "}
         <Container>
           <Grid container>
               <TextField

@@ -16,6 +16,10 @@ import {
   Popover,
   IconButton,
   Backdrop,
+  Card,
+  CardHeader,
+  CardContent,
+  Collapse,
 } from "@mui/material";
 
 import "@rainbow-me/rainbowkit/styles.css";
@@ -51,7 +55,7 @@ const InfoSection = () => {
               "linear-gradient(to right, #FFB6C1, #FFD700, #98FB98, #87CEFA, #DDA0DD, #FFB6C1, #FF69B4)",
             WebkitBackgroundClip: "text",
             color: "transparent",
-            fontWeight: "bold", // Make it bold for contrast
+            fontWeight: "bold",
           }}
         >
           RainbowKit
@@ -66,7 +70,6 @@ const InfoSection = () => {
     </div>
   );
 };
-
 
 const queryClient = new QueryClient();
 
@@ -94,10 +97,10 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "'Roboto', sans-serif",
-    h5: {
-      fontSize: "1.5rem",
+    h6: {
+      fontSize: "1.25rem",
       "@media (max-width:600px)": {
-        fontSize: "1.25rem",
+        fontSize: "1.125rem",
       },
     },
     body1: {
@@ -119,13 +122,19 @@ const App = () => {
   );
   const [amountToSend, setAmountToSend] = useState(0.000001);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [expandedTool, setExpandedTool] = useState<"send" | "graph" | null>(null);
 
   const handleIconClick = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleToolClick = (tool: "send" | "graph") => {
+    setExpandedTool(expandedTool === tool ? null : tool);
   };
 
   const open = Boolean(anchorEl);
@@ -141,137 +150,207 @@ const App = () => {
               sx={{
                 minHeight: "100vh",
                 display: "flex",
-                flexDirection: "column",
+                justifyContent: "center",
                 alignItems: "center",
                 bgcolor: "background.default",
-                p: { xs: 1, sm: 2 }, // Responsive padding
+                p: { xs: 1, sm: 2 },
               }}
             >
               <Container
                 maxWidth="sm"
                 sx={{
                   width: "100%",
-                  maxWidth: { xs: "100%", sm: 600 }, // Full width on mobile
+                  maxWidth: { xs: "100%", sm: 600 },
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: { xs: 1.5, sm: 2 },
                 }}
               >
-                <Box
+                {/* Send USDC Card */}
+                <Card
                   sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: { xs: 1.5, sm: 2 }, // Smaller gap on mobile
-                    p: { xs: 2, sm: 4 }, // Less padding on mobile
                     backgroundColor: "background.paper",
                     borderRadius: 4,
-                    boxShadow: 3,
+                    boxShadow: expandedTool === "send" ? 6 : 3,
+                    transform: expandedTool === "send" ? "scale(1.02)" : "scale(1)",
+                    transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                    zIndex: expandedTool === "send" ? 2 : 1,
+                    cursor: "pointer",
+                    width: { xs: "100%", sm: "400px" },
+                    ...(expandedTool !== "send" && {
+                      "&:hover": {
+                        transform: "scale(1.05)", // Slightly bigger on hover when collapsed
+                      },
+                    }),
+                  }}
+                  onClick={() => handleToolClick("send")}
+                >
+                  <CardHeader
+                    title={
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          fontSize: { xs: "1.125rem", sm: "1.25rem" },
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "text.primary",
+                          width: "100%",
+                        }}
+                      >
+                        <IconButton
+                          onClick={handleIconClick}
+                          sx={{
+                            color: "primary.main",
+                            "&:hover": {
+                              color: "secondary.main",
+                            },
+                          }}
+                        >
+                          <InfoIcon sx={{ fontSize: { xs: 18, sm: 20 } }} />
+                        </IconButton>
+                        Send USDC
+                      </Typography>
+                    }
+                    sx={{
+                      p: { xs: 1.5, sm: 2 },
+                      textAlign: "center",
+                    }}
+                  />
+                  <Collapse in={expandedTool === "send"}>
+                    <CardContent
+                      sx={{
+                        p: { xs: 2, sm: 3 },
+                        pt: 1,
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: { xs: 1.5, sm: 2 },
+                        }}
+                      >
+                        <ConnectButton />
+                        <TextField
+                          label="Amount to send"
+                          variant="outlined"
+                          value={amountToSend}
+                          type="number"
+                          onChange={(e) => setAmountToSend(parseFloat(e.target.value))}
+                          fullWidth
+                          sx={{
+                            "& .MuiInputBase-input": {
+                              fontSize: { xs: "0.875rem", sm: "1rem" },
+                            },
+                          }}
+                        />
+                        <TextField
+                          label="Receiver address"
+                          variant="outlined"
+                          value={receiverAddress}
+                          onChange={(e) => setReceiverAddress(e.target.value)}
+                          fullWidth
+                          sx={{
+                            "& .MuiInputBase-input": {
+                              fontSize: { xs: "0.875rem", sm: "1rem" },
+                            },
+                          }}
+                        />
+                        <SendTransaction to={receiverAddress} myvalue={amountToSend} />
+                      </Box>
+                    </CardContent>
+                  </Collapse>
+                </Card>
+
+                {/* Graph a Coin Card */}
+                <Card
+                  sx={{
+                    backgroundColor: "background.paper",
+                    borderRadius: 4,
+                    boxShadow: expandedTool === "graph" ? 6 : 3,
+                    transform: expandedTool === "graph" ? "scale(1.02)" : "scale(1)",
+                    transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                    zIndex: expandedTool === "graph" ? 2 : 1,
+                    cursor: "pointer",
+                    width: { xs: "100%", sm: "400px" },
+                    ...(expandedTool !== "graph" && {
+                      "&:hover": {
+                        transform: "scale(1.05)", // Slightly bigger on hover when collapsed
+                      },
+                    }),
+                  }}
+                  onClick={() => handleToolClick("graph")}
+                >
+                  <CardHeader
+                    title={
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          fontSize: { xs: "1.125rem", sm: "1.25rem" },
+                          color: "text.primary",
+                          textAlign: "center",
+                          width: "100%",
+                        }}
+                      >
+                        Graph a Coin
+                      </Typography>
+                    }
+                    sx={{
+                      p: { xs: 1.5, sm: 2 },
+                      textAlign: "center",
+                    }}
+                  />
+                  <Collapse in={expandedTool === "graph"}>
+                    <CardContent
+                      sx={{
+                        p: { xs: 2, sm: 3 },
+                        pt: 1,
+                      }}
+                    >
+                      <CointousdChartContainer />
+                    </CardContent>
+                  </Collapse>
+                </Card>
+
+                {/* Popover for Info */}
+                <Popover
+                  id={id}
+                  open={open}
+                  anchorEl={anchorEl}
+                  onClose={handleClose}
+                  anchorReference="anchorPosition"
+                  anchorPosition={{
+                    top: window.innerHeight / 2,
+                    left: window.innerWidth / 2,
+                  }}
+                  transformOrigin={{
+                    vertical: "center",
+                    horizontal: "center",
+                  }}
+                  PaperProps={{
+                    sx: {
+                      maxWidth: { xs: "90vw", sm: "400px" },
+                      width: "100%",
+                    },
                   }}
                 >
                   <Typography
-                    variant="h5"
                     sx={{
-                      mb: 2,
-                      display: "flex",
-                      alignItems: "center",
-                      flexWrap: "wrap", // Prevent overflow
+                      p: { xs: 1.5, sm: 2 },
+                      textAlign: "center",
                     }}
+                    component="div"
                   >
-                    <IconButton
-                      onClick={handleIconClick}
-                      sx={{
-                        position: "relative",
-                        right: { xs: 8, sm: 10 }, // Adjust spacing
-                        color: "primary.main",
-                        transition: "transform 0.2s ease, color 0.2s ease",
-                        "&:hover": {
-                          color: "secondary.main",
-                          transform: { xs: "scale(1.2)", sm: "scale(1.5)" }, // Smaller scale on mobile
-                        },
-                      }}
-                    >
-                      <InfoIcon sx={{ fontSize: { xs: 20, sm: 24 } }} /> {/* Smaller icon on mobile */}
-                    </IconButton>
-                    Send USDC on Testnet
+                    <InfoSection />
                   </Typography>
+                </Popover>
 
-                  <Popover
-                    id={id}
-                    open={open}
-                    anchorEl={anchorEl}
-                    onClose={handleClose}
-                    anchorReference="anchorPosition"
-                    anchorPosition={{
-                      top: window.innerHeight / 2,
-                      left: window.innerWidth / 2,
-                    }}
-                    transformOrigin={{
-                      vertical: "center",
-                      horizontal: "center",
-                    }}
-                    PaperProps={{
-                      sx: {
-                        maxWidth: { xs: "90vw", sm: "400px" }, // Responsive width
-                        width: "100%",
-                      },
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        p: { xs: 1.5, sm: 2 }, // Less padding on mobile
-                        textAlign: "center",
-                      }}
-                      component="div"
-                    >
-                      <InfoSection/>
-                    </Typography>
-                  </Popover>
-
-                  <Backdrop
-                    sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                    open={open}
-                    onClick={handleClose}
-                  />
-
-                  <ConnectButton />
-
-                  <TextField
-                    label="Amount to send"
-                    variant="outlined"
-                    value={amountToSend}
-                    type="number"
-                    onChange={(e) => setAmountToSend(parseFloat(e.target.value))}
-                    fullWidth
-                    sx={{
-                      "& .MuiInputBase-input": {
-                        fontSize: { xs: "0.875rem", sm: "1rem" }, // Smaller input text on mobile
-                    }}}
-                    
-                  />
-
-                  <TextField
-                    label="Receiver address"
-                    variant="outlined"
-                    value={receiverAddress}
-                    onChange={(e) => setReceiverAddress(e.target.value)}
-                    fullWidth
-                    sx={{
-                      "& .MuiInputBase-input": {
-                        fontSize: { xs: "0.875rem", sm: "1rem" },
-                      },
-                    }}
-                  />
-
-                  <SendTransaction to={receiverAddress} myvalue={amountToSend} />
-                </Box>
-              </Container>
-
-              <Container
-                maxWidth="sm"
-                sx={{
-                  width: "100%",
-                  maxWidth: { xs: "100%", sm: 600 },
-                  mt: { xs: 2, sm: 4 }, // Responsive margin-top
-                }}
-              >
-                <CointousdChartContainer />
+                <Backdrop
+                  sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                  open={open}
+                  onClick={handleClose}
+                />
               </Container>
             </Box>
           </ThemeProvider>
