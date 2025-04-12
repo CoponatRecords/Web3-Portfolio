@@ -1,24 +1,24 @@
 import { useState } from "react";
 import { writeContract, simulateContract, readContract } from "@wagmi/core";
-import { parseUnits } from "viem"; // Use parseUnits instead of parseEther
-import { http, createConfig } from "wagmi";
-import { mainnet, sepolia } from "wagmi/chains";
-import { useAccount } from "wagmi";
-import { createClient } from 'viem'
-import { injected } from 'wagmi/connectors'
-import {Button, CircularProgress} from '@mui/material'
-// Configuration for Wagmi
+import { parseUnits } from "viem";
+import { http, createConfig, useAccount } from "wagmi";
+import { sepolia } from "wagmi/chains";
+import { createClient } from "viem";
+import { injected } from "wagmi/connectors";
+import { Button, CircularProgress } from "@mui/material";
+
+// Wagmi config
 const config = createConfig({
-  chains: [mainnet, sepolia],
-  syncConnectedChain: true, 
+  chains: [sepolia],
+  syncConnectedChain: true,
   ssr: true,
   connectors: [injected()],
   client({ chain }) {
-    return createClient({ chain, transport: http() })
+    return createClient({ chain, transport: http() });
   },
-})
+});
 
-// USDC contract ABI (standard ERC-20)
+// ERC20 ABI
 const abi = [
   {
     type: "function",
@@ -39,8 +39,8 @@ const abi = [
   },
 ];
 
-// Replace with the actual USDC contract address on the Sepolia network
-const mycontract = '0xDa317C1d3E835dD5F1BE459006471aCAA1289068';
+// Proxy contract address 
+const mycontract = "0xDa317C1d3E835dD5F1BE459006471aCAA1289068"; // <— the proxy
 
 interface SendTransactionProps {
   to: string;
@@ -48,41 +48,40 @@ interface SendTransactionProps {
 }
 
 export function SendTransaction({ to, myvalue }: SendTransactionProps) {
-  const { address } = useAccount(); // Get the connected account address
+  const { address, isConnected } = useAccount(); // ✅ now inside the component
+
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<null | Error>(null);
 
   const handleClick = async () => {
-    console.log("handleClick");
     setIsLoading(true);
 
-
     try {
-      setIsLoading(true);
       setError(null);
       setIsSuccess(false);
 
-      // Ensure the user is connected and has an address
-      if (!address) throw new Error("No wallet connected");
+      // ✅ Check connection
+      if (!isConnected || !address) {
+        throw new Error("Wallet not connected");
+      }
 
-
+      // Check balance
       const balance = await readContract(config, {
-        address: '0xDa317C1d3E835dD5F1BE459006471aCAA1289068',
+        address: mycontract,
         abi,
         functionName: "balanceOf",
-        args: ['0x8ad46EBF14ACa31EaBC399edbA0F4188cFf6bf04'], // Get the balance of the connected account
+        args: [address],
       });
-      // console.log("Reading balance on", address, "contract is", mycontract);
-      console.log("Balance:", balance);
 
-      // Convert the amount to smallest units (6 decimals for USDC)
-      const amountInSmallestUnits = parseUnits(myvalue.toString(), 6); // USDC has 6 decimals (1 USDC = 10^6 smallest units)
+      console.log("Balance:", balance.toString(), " at wallet ",address);
 
-      // Simulate the transaction to check if it will succeed
-      console.log("Simulating transfer...");
+      // Convert amount to smallest units
+      const amountInSmallestUnits = parseUnits(myvalue.toString(), 6);
+
+      // Simulate
       const simulationResult = await simulateContract(config, {
-        account: address, // Use the connected account
+        account: address,
         address: mycontract,
         abi,
         functionName: "transfer",
@@ -91,22 +90,22 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
 
       console.log("Simulation result:", simulationResult);
 
-      // Proceed with the actual transaction after simulation
-      const hash = await writeContract(config, {
-        chain: sepolia, // Use the Sepolia chain
-        account: address, // Pass the account directly
+      // Write
+      const txHash = await writeContract(config, {
+        chain: sepolia,
+        account: address,
         address: mycontract,
         abi,
         functionName: "transfer",
-        args: [to, amountInSmallestUnits] as const, // Make sure the args are typed correctly
+        args: [to, amountInSmallestUnits],
       });
 
-      console.log("Transaction hash:", hash);
+      console.log("Transaction sent:", txHash);
       setIsSuccess(true);
 
     } catch (err) {
-      console.error("Error fetching balance or sending transaction:", err);
-      setError(err as Error); // Capture error and display it in UI
+      console.error("Transaction error:", err);
+      setError(err as Error);
     } finally {
       setIsLoading(false);
     }
@@ -114,17 +113,17 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
 
   return (
     <div>
-                    <Button
-                variant="contained"
-                sx={{ mt: 2}}
-                fullWidth
-               onClick={handleClick} disabled={isLoading}
+      <Button
+        variant="contained"
+        sx={{ mt: 2 }}
+        fullWidth
+        onClick={handleClick}
+        disabled={isLoading}
       >
-        {isLoading ?  <CircularProgress />
-: "Send"}
+        {isLoading ? <CircularProgress size={24} /> : "Send"}
       </Button>
       {isSuccess && <div>Transaction Sent Successfully!</div>}
       {error && <div style={{ color: "red" }}>Error: {error.message}</div>}
     </div>
   );
-};
+}
