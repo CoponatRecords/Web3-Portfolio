@@ -134,7 +134,15 @@ const App = () => {
   };
 
   const handleToolClick = (tool: "send" | "graph") => {
-    setExpandedTool(expandedTool === tool ? null : tool);
+    if (tool === "send") {
+      // For Send USDC: Expand if not already expanded, do nothing if expanded
+      if (expandedTool !== "send") {
+        setExpandedTool("send");
+      }
+    } else {
+      // For Graph a Coin: Toggle as before
+      setExpandedTool(expandedTool === "graph" ? null : "graph");
+    }
   };
 
   const open = Boolean(anchorEl);
@@ -179,7 +187,7 @@ const App = () => {
                     width: { xs: "100%", sm: "400px" },
                     ...(expandedTool !== "send" && {
                       "&:hover": {
-                        transform: "scale(1.05)", // Slightly bigger on hover when collapsed
+                        transform: "scale(1.05)",
                       },
                     }),
                   }}
@@ -276,7 +284,7 @@ const App = () => {
                     width: { xs: "100%", sm: "400px" },
                     ...(expandedTool !== "graph" && {
                       "&:hover": {
-                        transform: "scale(1.05)", // Slightly bigger on hover when collapsed
+                        transform: "scale(1.05)",
                       },
                     }),
                   }}
