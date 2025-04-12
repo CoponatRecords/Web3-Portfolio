@@ -132,6 +132,7 @@ const App = () => {
             </Box>
 
             <Container maxWidth="sm">
+
                 <CointousdChartContainer   />
             </Container>
           </ThemeProvider>

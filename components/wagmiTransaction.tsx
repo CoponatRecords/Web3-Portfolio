@@ -6,7 +6,7 @@ import { mainnet, sepolia } from "wagmi/chains";
 import { useAccount } from "wagmi";
 import { createClient } from 'viem'
 import { injected } from 'wagmi/connectors'
-import {Button} from '@mui/material'
+import {Button, CircularProgress} from '@mui/material'
 // Configuration for Wagmi
 const config = createConfig({
   chains: [mainnet, sepolia],
@@ -55,6 +55,8 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
 
   const handleClick = async () => {
     console.log("handleClick");
+    setIsLoading(true);
+
 
     try {
       setIsLoading(true);
@@ -119,7 +121,8 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
                 fullWidth
                onClick={handleClick} disabled={isLoading}
       >
-        {isLoading ? "Sending..." : "Send"}
+        {isLoading ?  <CircularProgress />
+: "Send"}
       </Button>
       {isSuccess && <div>Transaction Sent Successfully!</div>}
       {error && <div style={{ color: "red" }}>Error: {error.message}</div>}
