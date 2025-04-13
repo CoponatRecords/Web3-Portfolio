@@ -1,22 +1,10 @@
 import { useState } from "react";
 import { writeContract, simulateContract, readContract } from "@wagmi/core";
 import { parseUnits } from "viem";
-import { http, createConfig, useAccount } from "wagmi";
+import { useAccount } from "wagmi";
 import { sepolia } from "wagmi/chains";
-import { createClient } from "viem";
-import { injected } from "wagmi/connectors";
 import { Button, CircularProgress } from "@mui/material";
-
-// Wagmi config
-const config = createConfig({
-  chains: [sepolia],
-  syncConnectedChain: true,
-  ssr: true,
-  connectors: [injected()],
-  client({ chain }) {
-    return createClient({ chain, transport: http() });
-  },
-});
+import { config } from "../wagmiConfig";
 
 // ERC20 ABI
 const abi = [
