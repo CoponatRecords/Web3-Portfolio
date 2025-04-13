@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Box,
   Container,
@@ -34,19 +34,43 @@ const App = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [expandedTool, setExpandedTool] = useState<"send" | "graph" | null>(null);
 
+  // Ref to detect clicks outside of Popover
+  const popoverRef = useRef<HTMLDivElement>(null);
+
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const handleToolClick = (tool: "send" | "graph") => {
-    if (tool === "send") {
-      if (expandedTool !== "send") {
-        setExpandedTool("send");
+  enum Tool {
+    SEND = "send",
+    GRAPH = "graph",
+  }
+    const handleToolClick = (tool: Tool) => {
+    if (tool === Tool.SEND) {
+      if (expandedTool !== Tool.SEND) {
+        setExpandedTool(Tool.SEND);
       }
-    } else {
-      setExpandedTool(expandedTool === "graph" ? null : "graph");
+    } else if (tool === Tool.GRAPH) {
+      if (expandedTool !== Tool.GRAPH) {
+        setExpandedTool(Tool.GRAPH);
+      }
     }
   };
+
+  // Detect click outside of Popover to close it
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
+        handleClose();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
@@ -111,7 +135,7 @@ const App = () => {
                           transform: expandedTool !== "graph" ? "scale(1.05)" : "scale(1.02)",
                         },
                       }}
-                      onClick={() => handleToolClick("graph")}
+                      onClick={() => handleToolClick(Tool.GRAPH)}
                     >
                       <CardHeader
                         title={
@@ -147,6 +171,7 @@ const App = () => {
                   </motion.div>
 
                   <Popover
+                    ref={popoverRef} // Attach the ref here
                     id={id}
                     open={open}
                     anchorEl={anchorEl}

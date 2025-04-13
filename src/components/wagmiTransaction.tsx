@@ -40,7 +40,7 @@ const abi = [
 ];
 
 // Proxy contract address 
-const mycontract = "0xDa317C1d3E835dD5F1BE459006471aCAA1289068"; // <— the proxy
+const mycontract = "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238"; // <— the proxy
 
 interface SendTransactionProps {
   to: string;
