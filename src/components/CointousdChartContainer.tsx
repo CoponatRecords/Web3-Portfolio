@@ -18,7 +18,8 @@ import { RootState } from "../redux/store";
 
 function CointousdChartContainer() {
   const dispatch = useDispatch();
-  const coinList = useSelector((state: RootState) => state.coinList.coins); // le retrigger est automatique
+  console.log("Rendering CointousdChartContainer"); // Debug log
+  const coinList = useSelector((state: RootState) => state.coinList.coins); // Line 20
   const [newCoin, setNewCoin] = useState<string>("");
 
   // Log coinList every time it changes
@@ -52,42 +53,40 @@ function CointousdChartContainer() {
           flexDirection: "column",
           gap: 2,
           borderRadius: 4,
-
         }}
       >
         <Container>
           <Grid container>
-              <TextField
-                label="Enter Coin Symbol"
-                variant="outlined"
-                value={newCoin}
-                onChange={(e) => setNewCoin(e.target.value)}
-                fullWidth
-              />
-              <Button
-                variant="contained"
-                sx={{ mt: 2 }}
-                onClick={handleAddCoin}
-                fullWidth
-              >
-                Add Coin
-              </Button>
-              <Box
-            sx={{
-              mt: 1,
-              display: "flex",
-              flexDirection: "row",
-              gap: 2, // spacing between items
-              flexWrap: "wrap", // optional: wrap to next line if needed
-            }}
-          >
-            {coinList.map((coinItem) => (
-              <Typography key={coinItem.id}>
-                {coinItem.coin.toUpperCase()}
-              </Typography>
-            ))}
-          </Box>
-            
+            <TextField
+              label="Enter Coin Symbol"
+              variant="outlined"
+              value={newCoin}
+              onChange={(e) => setNewCoin(e.target.value)}
+              fullWidth
+            />
+            <Button
+              variant="contained"
+              sx={{ mt: 2 }}
+              onClick={handleAddCoin}
+              fullWidth
+            >
+              Add Coin
+            </Button>
+            <Box
+              sx={{
+                mt: 1,
+                display: "flex",
+                flexDirection: "row",
+                gap: 2, // spacing between items
+                flexWrap: "wrap", // optional: wrap to next line if needed
+              }}
+            >
+              {coinList.map((coinItem) => (
+                <Typography key={coinItem.id}>
+                  {coinItem.coin.toUpperCase()}
+                </Typography>
+              ))}
+            </Box>
           </Grid>
         </Container>
 
