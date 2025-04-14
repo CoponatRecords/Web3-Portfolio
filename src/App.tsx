@@ -11,6 +11,7 @@ import {
   Collapse,
   Typography,
 } from "@mui/material";
+
 import { ThemeProvider } from "@mui/material/styles";
 import { WagmiProvider } from "wagmi";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
@@ -27,6 +28,8 @@ import CointousdChartContainer from "./components/CointousdChartContainer";
 import "@rainbow-me/rainbowkit/styles.css";
 import "./App.css";
 import { store } from "./redux/store";
+import { SnackbarProvider } from "notistack";
+import ReadATransaction from "./components/ReadATransaction";
 
 const queryClient = new QueryClient();
 
@@ -76,6 +79,7 @@ const App = () => {
   const id = open ? "simple-popover" : undefined;
 
   return (
+    <SnackbarProvider>
     <Provider store={store}>
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
@@ -109,6 +113,19 @@ const App = () => {
                     layout
                   >
                     <SendUSDC
+                      expandedTool={expandedTool}
+                      handleToolClick={handleToolClick}
+                      setAnchorEl={setAnchorEl}
+                    />
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    layout
+                  >
+                    <ReadATransaction
                       expandedTool={expandedTool}
                       handleToolClick={handleToolClick}
                       setAnchorEl={setAnchorEl}
@@ -224,7 +241,7 @@ const App = () => {
           </RainbowKitProvider>
         </QueryClientProvider>
       </WagmiProvider>
-    </Provider>
+    </Provider></SnackbarProvider>
   );
 };
 

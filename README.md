@@ -69,3 +69,19 @@ Portfoliot
 backend NestJS
 bignumber.js 
 
+faire un  token swap sur tesnet
+
+de usdc vers 
+
+
+ajouetr https://notistack.com/ pour display transaction sucess ou error 
+display le contenu du swap depuis le hash 
+
+https://0x.org/docs/1.0/0x-swap-api/guides/working-in-the-testnet
+
+Faire un header pour la connection de wallet 
+ref: https://matcha.xyz/tokens/ethereum/eth
+
+switch to la bonne blocchain si le wallet est pas connecté à sepolia 
+
+info quand je mets la souris dessus ce sort et quand je l'eneleve ca s'enlève

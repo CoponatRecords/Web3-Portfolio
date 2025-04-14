@@ -64,8 +64,7 @@ const SendUSDC = ({ expandedTool, handleToolClick, setAnchorEl }: SendUSDCProps)
             >
               <InfoIcon sx={{ fontSize: { xs: 18, sm: 20 } }} />
             </IconButton>
-            Send USDC
-          </Typography>
+Read a Block          </Typography>
         }
         sx={{
           p: { xs: 1.5, sm: 2 },

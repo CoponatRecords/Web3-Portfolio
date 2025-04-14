@@ -5,6 +5,7 @@ import { useAccount } from "wagmi";
 import { sepolia } from "wagmi/chains";
 import { Button, CircularProgress } from "@mui/material";
 import { config } from "../wagmiConfig";
+import { TransactionFail, TransactionSucces } from "./TransactionResponse";
 
 // ERC20 ABI
 const abi = [
@@ -27,8 +28,8 @@ const abi = [
   },
 ];
 
-// Proxy contract address 
-const mycontract = "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238"; // <— the proxy
+// Proxy contract address
+const mycontract = "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238";
 
 interface SendTransactionProps {
   to: string;
@@ -36,7 +37,7 @@ interface SendTransactionProps {
 }
 
 export function SendTransaction({ to, myvalue }: SendTransactionProps) {
-  const { address, isConnected } = useAccount(); // ✅ now inside the component
+  const { address, isConnected } = useAccount();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -44,17 +45,14 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
 
   const handleClick = async () => {
     setIsLoading(true);
+    setError(null);
+    setIsSuccess(false);
 
     try {
-      setError(null);
-      setIsSuccess(false);
-
-      // ✅ Check connection
       if (!isConnected || !address) {
-        throw new Error("Wallet not connected");
+        throw new Error("Connect your wallet!");
       }
 
-      // Check balance
       const balance = await readContract(config, {
         address: mycontract,
         abi,
@@ -62,12 +60,10 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
         args: [address],
       });
 
-      console.log("Balance:", balance.toString(), " at wallet ",address);
+      console.log("Balance:", balance.toString(), "at wallet", address);
 
-      // Convert amount to smallest units
       const amountInSmallestUnits = parseUnits(myvalue.toString(), 6);
 
-      // Simulate
       const simulationResult = await simulateContract(config, {
         account: address,
         address: mycontract,
@@ -78,7 +74,6 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
 
       console.log("Simulation result:", simulationResult);
 
-      // Write
       const txHash = await writeContract(config, {
         chain: sepolia,
         account: address,
@@ -90,7 +85,6 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
 
       console.log("Transaction sent:", txHash);
       setIsSuccess(true);
-
     } catch (err) {
       console.error("Transaction error:", err);
       setError(err as Error);
@@ -110,8 +104,10 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
       >
         {isLoading ? <CircularProgress size={24} /> : "Send"}
       </Button>
-      {isSuccess && <div>Transaction Sent Successfully!</div>}
-      {error && <div style={{ color: "red" }}>Error: {error.message}</div>}
+      {isSuccess && <TransactionSucces body="Transaction Success!" />}
+      {error && isConnected && <TransactionFail body={"Transaction Failed!"} />}
+      {error && !isConnected && <TransactionFail body={"Connect your wallet"} />}
+
     </div>
   );
 }
