@@ -73,11 +73,12 @@ faire un  token swap sur tesnet
 
 de usdc vers 
 
-
+done
 ajouetr https://notistack.com/ pour display transaction sucess ou error 
 display le contenu du swap depuis le hash 
 
 https://0x.org/docs/1.0/0x-swap-api/guides/working-in-the-testnet
+
 
 Faire un header pour la connection de wallet 
 ref: https://matcha.xyz/tokens/ethereum/eth

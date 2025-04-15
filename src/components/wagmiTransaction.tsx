@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { writeContract, simulateContract, readContract } from "@wagmi/core";
 import { parseUnits } from "viem";
 import { useAccount } from "wagmi";
@@ -6,6 +5,10 @@ import { sepolia } from "wagmi/chains";
 import { Button, CircularProgress } from "@mui/material";
 import { config } from "../wagmiConfig";
 import { TransactionFail, TransactionSucces } from "./TransactionResponse";
+import { useDispatch, useSelector } from "react-redux";
+import {  setHash } from "../redux/slices/hashReducer";
+import { useState } from "react";
+import { RootState } from "../redux/store";
 
 // ERC20 ABI
 const abi = [
@@ -36,9 +39,12 @@ interface SendTransactionProps {
   myvalue: number;
 }
 
-export function SendTransaction({ to, myvalue }: SendTransactionProps) {
-  const { address, isConnected } = useAccount();
 
+export function SendTransaction({ to, myvalue }: SendTransactionProps) {
+  const dispatch = useDispatch();
+  let txHash = useSelector((state: RootState) => state.hash.myhash); // Line 20
+
+  const { address, isConnected } = useAccount();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<null | Error>(null);
@@ -72,9 +78,10 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
         args: [to, amountInSmallestUnits],
       });
 
+
       console.log("Simulation result:", simulationResult);
 
-      const txHash = await writeContract(config, {
+      txHash = await writeContract(config, {
         chain: sepolia,
         account: address,
         address: mycontract,
@@ -82,8 +89,9 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
         functionName: "transfer",
         args: [to, amountInSmallestUnits],
       });
-
+      
       console.log("Transaction sent:", txHash);
+      dispatch(setHash(`${txHash}`));
       setIsSuccess(true);
     } catch (err) {
       console.error("Transaction error:", err);
@@ -106,8 +114,9 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
       </Button>
       {isSuccess && <TransactionSucces body="Transaction Success!" />}
       {error && isConnected && <TransactionFail body={"Transaction Failed!"} />}
-      {error && !isConnected && <TransactionFail body={"Connect your wallet"} />}
-
+      {error && !isConnected && (
+        <TransactionFail body={"Connect your wallet"} />
+      )}
     </div>
   );
 }
