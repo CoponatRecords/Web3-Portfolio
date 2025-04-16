@@ -11,10 +11,11 @@ import {
   Typography,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getTransaction, getTransactionReceipt, GetTransactionReturnType } from "@wagmi/core";
 import { config } from "../wagmiConfig";
 import { parseAbi, decodeEventLog } from "viem";
+import { setHash } from "../redux/slices/hashReducer"; // Import your Redux action (adjust path as needed)
 
 // Define the shape of the Redux store for type safety
 interface RootState {
@@ -69,6 +70,7 @@ const ReadATransaction = ({
 }: ReadATransactionProps) => {
   // Retrieve the transaction hash from Redux store
   const hash = useSelector((state: RootState) => state.hash.myhash);
+  const dispatch = useDispatch(); // Initialize Redux dispatch
 
   // State to control visibility of transaction details
   const [showDiv, setShowDiv] = useState(false);
@@ -171,6 +173,12 @@ const ReadATransaction = ({
     }
   };
 
+  // Handle changes to the transaction hash input
+  const handleHashChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newHash = event.target.value as `0x${string}` | "";
+    dispatch(setHash(newHash || null)); // Dispatch action to update hash in Redux store
+  };
+
   return (
     // Card component for the transaction reader UI
     <Card
@@ -241,15 +249,13 @@ const ReadATransaction = ({
               gap: { xs: 1.5, sm: 2 },
             }}
           >
-            {/* Display the transaction hash in a read-only text field */}
+            {/* Display the transaction hash in an editable text field */}
             <TextField
               label="Transaction Hash"
               variant="outlined"
               value={hash || ""}
+              onChange={handleHashChange}
               fullWidth
-              InputProps={{
-                readOnly: true,
-              }}
               sx={{
                 "& .MuiInputBase-input": {
                   fontSize: { xs: "0.875rem", sm: "1rem" },
