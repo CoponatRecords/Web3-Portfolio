@@ -30,6 +30,7 @@ import "./App.css";
 import { store } from "./redux/store";
 import { SnackbarProvider } from "notistack";
 import ReadATransaction from "./components/ReadATransaction";
+import ButtonAppBar from "./components/AppBar";
 
 const queryClient = new QueryClient();
 
@@ -86,6 +87,8 @@ const App = () => {
           <RainbowKitProvider>
             <ThemeProvider theme={theme}>
               <CssBaseline />
+
+              <ButtonAppBar/>
               <Box
                 sx={{
                   minHeight: "100vh",
@@ -106,6 +109,7 @@ const App = () => {
                     gap: { xs: 1.5, sm: 2 },
                   }}
                 >
+                  
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

@@ -86,7 +86,6 @@ const SendUSDC = ({ expandedTool, handleToolClick, setAnchorEl }: SendUSDCProps)
               gap: { xs: 1.5, sm: 2 },
             }}
           >
-            <ConnectButton />
             <TextField
               label="Amount to send"
               variant="outlined"
