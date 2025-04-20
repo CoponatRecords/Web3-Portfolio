@@ -36,7 +36,9 @@ const queryClient = new QueryClient();
 
 const App = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [expandedTool, setExpandedTool] = useState<"send" | "graph" | null>(null);
+  const [expandedTool, setExpandedTool] = useState<
+    "send" |"read" | "graph" | "swap" | null
+  >(null);
 
   // Ref to detect clicks outside of Popover
   const popoverRef = useRef<HTMLDivElement>(null);
@@ -48,23 +50,42 @@ const App = () => {
   enum Tool {
     SEND = "send",
     GRAPH = "graph",
+    SWAP = "swap",
+    READ = "read",
   }
-    const handleToolClick = (tool: Tool) => {
-    if (tool === Tool.SEND) {
-      if (expandedTool !== Tool.SEND) {
-        setExpandedTool(Tool.SEND);
-      }
-    } else if (tool === Tool.GRAPH) {
-      if (expandedTool !== Tool.GRAPH) {
-        setExpandedTool(Tool.GRAPH);
-      }
+  const handleToolClick = (tool: Tool) => {
+    switch (tool) {
+      case Tool.SEND:
+        if (expandedTool !== Tool.SEND) {
+          setExpandedTool(Tool.SEND);
+        }
+        break;
+
+      case Tool.GRAPH:
+        if (expandedTool !== Tool.GRAPH) {
+          setExpandedTool(Tool.GRAPH);
+        }
+        break;
+      case Tool.SWAP:
+        if (expandedTool !== Tool.SWAP) {
+          setExpandedTool(Tool.SWAP);
+        }
+        break;
+        case Tool.READ:
+          if (expandedTool !== Tool.READ) {
+            setExpandedTool(Tool.READ);
+          }
+          break;
     }
   };
 
   // Detect click outside of Popover to close it
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
+      if (
+        popoverRef.current &&
+        !popoverRef.current.contains(event.target as Node)
+      ) {
         handleClose();
       }
     };
@@ -81,171 +102,238 @@ const App = () => {
 
   return (
     <SnackbarProvider>
-    <Provider store={store}>
-      <WagmiProvider config={config}>
-        <QueryClientProvider client={queryClient}>
-          <RainbowKitProvider>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
+      <Provider store={store}>
+        <WagmiProvider config={config}>
+          <QueryClientProvider client={queryClient}>
+            <RainbowKitProvider>
+              <ThemeProvider theme={theme}>
+                <CssBaseline />
 
-              <ButtonAppBar/>
-              <Box
-                sx={{
-                  minHeight: "100vh",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  bgcolor: "background.default",
-                  p: { xs: 1, sm: 2 },
-                }}
-              >
-                <Container
-                  maxWidth="sm"
+                <ButtonAppBar />
+                <Box
                   sx={{
-                    width: "100%",
-                    maxWidth: { xs: "100%", sm: 600 },
+                    minHeight: "100vh",
                     display: "flex",
-                    flexDirection: "column",
-                    gap: { xs: 1.5, sm: 2 },
+                    justifyContent: "center",
+                    alignItems: "center",
+                    bgcolor: "background.default",
+                    p: { xs: 1, sm: 2 },
                   }}
                 >
-                  
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4 }}
-                    layout
-                  >
-                    <SendUSDC
-                      expandedTool={expandedTool}
-                      handleToolClick={handleToolClick}
-                      setAnchorEl={setAnchorEl}
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4 }}
-                    layout
-                  >
-                    <ReadATransaction
-                      expandedTool={expandedTool}
-                      handleToolClick={handleToolClick}
-                      setAnchorEl={setAnchorEl}
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.1 }}
-                    layout
-                  >
-                    <Card
-                      sx={{
-                        backgroundColor: "background.paper",
-                        borderRadius: 4,
-                        boxShadow: expandedTool === "graph" ? 6 : 3,
-                        transform: expandedTool === "graph" ? "scale(1.02)" : "scale(1)",
-                        transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                        zIndex: expandedTool === "graph" ? 2 : 1,
-                        cursor: "pointer",
-                        width: { xs: "100%", sm: "400px" },
-                        "&:hover": {
-                          transform: expandedTool !== "graph" ? "scale(1.05)" : "scale(1.02)",
-                        },
-                      }}
-                      onClick={() => handleToolClick(Tool.GRAPH)}
-                    >
-                      <CardHeader
-                        title={
-                          <Typography
-                            variant="h6"
-                            sx={{
-                              fontSize: { xs: "1.125rem", sm: "1.25rem" },
-                              color: "text.primary",
-                              textAlign: "center",
-                              width: "100%",
-                            }}
-                          >
-                            Graph a Coin
-                          </Typography>
-                        }
-                        sx={{
-                          p: { xs: 1.5, sm: 2 },
-                          textAlign: "center",
-                        }}
-                      />
-                      <Collapse in={expandedTool === "graph"}>
-                        <motion.div
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <CardContent sx={{ p: { xs: 2, sm: 3 }, pt: 1 }}>
-                            <CointousdChartContainer />
-                          </CardContent>
-                        </motion.div>
-                      </Collapse>
-                    </Card>
-                  </motion.div>
-
-                  <Popover
-                    ref={popoverRef} // Attach the ref here
-                    id={id}
-                    open={open}
-                    anchorEl={anchorEl}
-                    onClose={handleClose}
-                    anchorReference="anchorPosition"
-                    anchorPosition={{
-                      top: window.innerHeight / 2,
-                      left: window.innerWidth / 2,
-                    }}
-                    transformOrigin={{
-                      vertical: "center",
-                      horizontal: "center",
-                    }}
-                    PaperProps={{
-                      sx: {
-                        maxWidth: { xs: "90vw", sm: "400px" },
-                        width: "100%",
-                      },
+                  <Container
+                    maxWidth="sm"
+                    sx={{
+                      width: "100%",
+                      maxWidth: { xs: "100%", sm: 600 },
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: { xs: 1.5, sm: 2 },
                     }}
                   >
                     <motion.div
-                      initial={{ scale: 0.9, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.9, opacity: 0 }}
-                      transition={{ duration: 0.25 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4 }}
+                      layout
                     >
-                      <Typography
-                        sx={{ p: { xs: 1.5, sm: 2 }, textAlign: "center" }}
-                        component="div"
-                      >
-                        <InfoSection />
-                      </Typography>
+                      <SendUSDC
+                        expandedTool={expandedTool}
+                        handleToolClick={handleToolClick}
+                        setAnchorEl={setAnchorEl}
+                      />
                     </motion.div>
-                  </Popover>
 
-                  <Backdrop
-                    sx={{
-                      color: "#fff",
-                      zIndex: (theme) => theme.zIndex.drawer + 1,
-                      backdropFilter: "blur(3px)",
-                      backgroundColor: "rgba(0, 0, 0, 0.5)",
-                      transition: "opacity 0.3s ease-in-out",
-                    }}
-                    open={open}
-                    onClick={handleClose}
-                  />
-                </Container>
-              </Box>
-            </ThemeProvider>
-          </RainbowKitProvider>
-        </QueryClientProvider>
-      </WagmiProvider>
-    </Provider></SnackbarProvider>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4 }}
+                      layout
+                    >
+                      <ReadATransaction
+                        expandedTool={expandedTool}
+                        handleToolClick={handleToolClick}
+                        setAnchorEl={setAnchorEl}
+                      />
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.1 }}
+                      layout
+                    >
+                      <Card
+                        sx={{
+                          backgroundColor: "background.paper",
+                          borderRadius: 4,
+                          boxShadow: expandedTool === "graph" ? 6 : 3,
+                          transform:
+                            expandedTool === "graph"
+                              ? "scale(1.02)"
+                              : "scale(1)",
+                          transition:
+                            "transform 0.2s ease, box-shadow 0.2s ease",
+                          zIndex: expandedTool === "graph" ? 2 : 1,
+                          cursor: "pointer",
+                          width: { xs: "100%", sm: "400px" },
+                          "&:hover": {
+                            transform:
+                              expandedTool !== "graph"
+                                ? "scale(1.05)"
+                                : "scale(1.02)",
+                          },
+                        }}
+                        onClick={() => handleToolClick(Tool.GRAPH)}
+                      >
+                        <CardHeader
+                          title={
+                            <Typography
+                              variant="h6"
+                              sx={{
+                                fontSize: { xs: "1.125rem", sm: "1.25rem" },
+                                color: "text.primary",
+                                textAlign: "center",
+                                width: "100%",
+                              }}
+                            >
+                              Graph a Coin
+                            </Typography>
+                          }
+                          sx={{
+                            p: { xs: 1.5, sm: 2 },
+                            textAlign: "center",
+                          }}
+                        />
+                        <Collapse in={expandedTool === "graph"}>
+                          <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <CardContent sx={{ p: { xs: 2, sm: 3 }, pt: 1 }}>
+                              <CointousdChartContainer />
+                            </CardContent>
+                          </motion.div>
+                        </Collapse>
+                      </Card>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.1 }}
+                      layout
+                    >
+                      <Card
+                        sx={{
+                          backgroundColor: "background.paper",
+                          borderRadius: 4,
+                          boxShadow: expandedTool === "graph" ? 6 : 3,
+                          transform:
+                            expandedTool === "graph"
+                              ? "scale(1.02)"
+                              : "scale(1)",
+                          transition:
+                            "transform 0.2s ease, box-shadow 0.2s ease",
+                          zIndex: expandedTool === "graph" ? 2 : 1,
+                          cursor: "pointer",
+                          width: { xs: "100%", sm: "400px" },
+                          "&:hover": {
+                            transform:
+                              expandedTool !== "graph"
+                                ? "scale(1.05)"
+                                : "scale(1.02)",
+                          },
+                        }}
+                        onClick={() => handleToolClick(Tool.GRAPH)}
+                      >
+                        <CardHeader
+                          title={
+                            <Typography
+                              variant="h6"
+                              sx={{
+                                fontSize: { xs: "1.125rem", sm: "1.25rem" },
+                                color: "text.primary",
+                                textAlign: "center",
+                                width: "100%",
+                              }}
+                            >
+                              Graph a Coin
+                            </Typography>
+                          }
+                          sx={{
+                            p: { xs: 1.5, sm: 2 },
+                            textAlign: "center",
+                          }}
+                        />
+                        <Collapse in={expandedTool === "swap"}>
+                          <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <CardContent sx={{ p: { xs: 2, sm: 3 }, pt: 1 }}>
+                              <CointousdChartContainer />
+                            </CardContent>
+                          </motion.div>
+                        </Collapse>
+                      </Card>
+                    </motion.div>
+                    <Popover
+                      ref={popoverRef} // Attach the ref here
+                      id={id}
+                      open={open}
+                      anchorEl={anchorEl}
+                      onClose={handleClose}
+                      anchorReference="anchorPosition"
+                      anchorPosition={{
+                        top: window.innerHeight / 2,
+                        left: window.innerWidth / 2,
+                      }}
+                      transformOrigin={{
+                        vertical: "center",
+                        horizontal: "center",
+                      }}
+                      PaperProps={{
+                        sx: {
+                          maxWidth: { xs: "90vw", sm: "400px" },
+                          width: "100%",
+                        },
+                      }}
+                    >
+                      <motion.div
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.9, opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                      >
+                        <Typography
+                          sx={{ p: { xs: 1.5, sm: 2 }, textAlign: "center" }}
+                          component="div"
+                        >
+                          <InfoSection item={popoverRef} />
+                        </Typography>
+                      </motion.div>
+                    </Popover>
+
+                    <Backdrop
+                      sx={{
+                        color: "#fff",
+                        zIndex: (theme) => theme.zIndex.drawer + 1,
+                        backdropFilter: "blur(3px)",
+                        backgroundColor: "rgba(0, 0, 0, 0.5)",
+                        transition: "opacity 0.3s ease-in-out",
+                      }}
+                      open={open}
+                      onClick={handleClose}
+                    />
+                  </Container>
+                </Box>
+              </ThemeProvider>
+            </RainbowKitProvider>
+          </QueryClientProvider>
+        </WagmiProvider>
+      </Provider>
+    </SnackbarProvider>
   );
 };
 

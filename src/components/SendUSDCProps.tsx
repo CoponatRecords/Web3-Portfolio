@@ -1,12 +1,11 @@
 import { Box, Card, CardContent, CardHeader, Collapse, IconButton, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import InfoIcon from "@mui/icons-material/Info";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { SendTransaction } from "./wagmiTransaction";
 
 interface SendUSDCProps {
-  expandedTool: "send" | "graph" | null;
-  handleToolClick: (tool: "send" | "graph") => void;
+  expandedTool: "send" |"read"| "graph" |"swap" | null;
+  handleToolClick: (tool: "send" | "read"|"graph"| "swap") => void;
   setAnchorEl: (el: HTMLElement | null) => void;
 }
 

@@ -26,8 +26,8 @@ interface RootState {
 
 // Props for the ReadATransaction component
 interface ReadATransactionProps {
-  expandedTool: "send" |"read" |  "graph" |"swap" |  null; // Controls which tool is expanded in the UI
-  handleToolClick: (tool: "send" |"read" | "graph"| "swap") => void; // Callback to toggle tool expansion
+  expandedTool: "send" | "graph" | null; // Controls which tool is expanded in the UI
+  handleToolClick: (tool: "send" | "graph") => void; // Callback to toggle tool expansion
   setAnchorEl: (el: HTMLElement | null) => void; // Sets anchor element for info icon
 }
 
@@ -63,7 +63,7 @@ function ReadTransaction({ myhash }: ReadTransactionProps) {
 }
 
 // Main component to read and display transaction details
-const ReadATransaction = ({
+const TokenSwap = ({
   expandedTool,
   handleToolClick,
   setAnchorEl,
@@ -185,20 +185,20 @@ const ReadATransaction = ({
       sx={{
         backgroundColor: "background.paper",
         borderRadius: 4,
-        boxShadow: expandedTool === "read" ? 6 : 3, // Elevate when expanded
-        transform: expandedTool === "read" ? "scale(1.02)" : "scale(1)", // Slight zoom effect
+        boxShadow: expandedTool === "send" ? 6 : 3, // Elevate when expanded
+        transform: expandedTool === "send" ? "scale(1.02)" : "scale(1)", // Slight zoom effect
         transition: "transform 0.2s ease, box-shadow 0.2s ease",
-        zIndex: expandedTool === "read" ? 2 : 1, // Bring to front when expanded
+        zIndex: expandedTool === "send" ? 2 : 1, // Bring to front when expanded
         cursor: "pointer",
         width: { xs: "100%", sm: "400px" }, // Responsive width
         maxWidth: "100%",
-        ...(expandedTool !== "read" && {
+        ...(expandedTool !== "send" && {
           "&:hover": {
             transform: "scale(1.05)", // Hover effect when not expanded
           },
         }),
       }}
-      onClick={() => handleToolClick("read")} // Toggle expansion on click
+      onClick={() => handleToolClick("send")} // Toggle expansion on click
     >
       <CardHeader
         title={
@@ -226,7 +226,7 @@ const ReadATransaction = ({
             >
               <InfoIcon sx={{ fontSize: { xs: 18, sm: 20 } }} />
             </IconButton>
-            Read a Transaction
+            Token Swap
           </Typography>
         }
         sx={{
@@ -235,7 +235,7 @@ const ReadATransaction = ({
         }}
       />
       {/* Collapsible section for transaction details */}
-      <Collapse in={expandedTool === "read"}>
+      <Collapse in={expandedTool === "send"}>
         <CardContent
           sx={{
             p: { xs: 2, sm: 3 },
@@ -332,4 +332,4 @@ const ReadATransaction = ({
   );
 };
 
-export default ReadATransaction;
+export default TokenSwap;
