@@ -1,204 +1,151 @@
-import React, { useState, useEffect } from "react";
+"use client";
+
+import { useState, useEffect } from "react";
 import {
-  Box,
   Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Collapse,
-  IconButton,
+  Stack,
   TextField,
   Typography,
+  Card,
+  CardHeader,
+  Collapse,
+  CardContent,
 } from "@mui/material";
-import InfoIcon from "@mui/icons-material/Info";
-import { useSelector, useDispatch } from "react-redux";
-import { getTransaction, getTransactionReceipt, GetTransactionReturnType } from "@wagmi/core";
-import { config } from "../wagmiConfig";
-import { parseAbi, decodeEventLog } from "viem";
-import { setHash } from "../redux/slices/hashReducer"; // Import your Redux action (adjust path as needed)
+import axios from "axios";
+import { useAccount, usePublicClient } from "wagmi";
+import { erc20Abi, parseUnits } from "viem";
+import { useWriteContract } from "wagmi";
+import { motion } from "framer-motion";
 
-// Define the shape of the Redux store for type safety
-interface RootState {
-  hash: {
-    myhash: `0x${string}` | null; // Transaction hash stored in Redux
-  };
+const ERC20_ABI = erc20Abi;
+
+interface TokenSwapProps {
+  expandedTool: "send" | "read" | "graph" | "swap" | null; // Controls which tool is expanded in the UI
+  handleToolClick: (tool: "send" | "read" | "graph" | "swap") => void; // Callback to toggle tool expansion
 }
 
-// Props for the ReadATransaction component
-interface ReadATransactionProps {
-  expandedTool: "send" | "graph" | null; // Controls which tool is expanded in the UI
-  handleToolClick: (tool: "send" | "graph") => void; // Callback to toggle tool expansion
-  setAnchorEl: (el: HTMLElement | null) => void; // Sets anchor element for info icon
-}
-
-// Props for the ReadTransaction sub-component
-interface ReadTransactionProps {
-  myhash: `0x${string}` | null; // Transaction hash passed to the component
-}
-
-// Structure for token transfer data extracted from transaction logs
-interface TokenTransfer {
-  tokenAddress: string; // Address of the token contract
-  from: string; // Sender address of the token transfer
-  to: string; // Recipient address of the token transfer
-  value: string; // Human-readable token amount (e.g., "100.00")
-}
-
-// Type for transaction data fetched from the blockchain
-type TransactionData = GetTransactionReturnType;
-
-// Sub-component to display a message if no transaction hash is available
-function ReadTransaction({ myhash }: ReadTransactionProps) {
-  return (
-    <Box>
-      {!myhash ? (
-        <Typography variant="body2" color="text.secondary">
-          No transaction hash available
-        </Typography>
-      ) : (
-        <></>
-      )}
-    </Box>
-  );
-}
-
-// Main component to read and display transaction details
-const TokenSwap = ({
+const TokenSwap: React.FC<TokenSwapProps> = ({
   expandedTool,
   handleToolClick,
-  setAnchorEl,
-}: ReadATransactionProps) => {
-  // Retrieve the transaction hash from Redux store
-  const hash = useSelector((state: RootState) => state.hash.myhash);
-  const dispatch = useDispatch(); // Initialize Redux dispatch
+}) => {
+  const { address } = useAccount();
+  const publicClient = usePublicClient();
 
-  // State to control visibility of transaction details
-  const [showDiv, setShowDiv] = useState(false);
-  // State to store transaction data (e.g., from, to, value in wei)
-  const [transactionData, setTransactionData] =
-    useState<TransactionData | null>(null);
-  // State to store token transfer details (e.g., token amount)
-  const [tokenTransfer, setTokenTransfer] = useState<TokenTransfer | null>(null);
-  // State to handle errors during transaction fetching
-  const [error, setError] = useState<string | null>(null);
+  const [sellToken, setSellToken] = useState("USDC");
+  const [buyToken, setBuyToken] = useState("DAI");
+  const [sellAmount, setSellAmount] = useState("10");
 
-  // Log the hash for debugging whenever it changes
-  useEffect(() => {
-    console.log("Redux hash:", hash);
-  }, [hash]);
+  const [status, setStatus] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Handle click on the info icon to show additional details
-  const handleIconClick = (event: React.MouseEvent<HTMLElement>) => {
-    event.stopPropagation(); // Prevent card click from triggering
-    setAnchorEl(event.currentTarget); // Set anchor for info popup
-  };
+  const { writeContractAsync } = useWriteContract();
 
-  // Define the ABI for the ERC-20 Transfer event to parse logs
-  const transferEventAbi = parseAbi([
-    "event Transfer(address indexed from, address indexed to, uint256 value)",
-  ]);
+  const handleApproveAndSwap = async () => {
+    console.log("handleApproveAndSwap function is called");
 
-  // Function to fetch and parse token transfer details from transaction logs
-  const fetchTokenTransfer = async (hash: `0x${string}`) => {
+    setIsLoading(true);
+    setStatus("Fetching swap quote...");
+
+    // Correcting the API key access
+    const apiKey = import.meta.env.VITE_ZERO_X_API_KEY;
+
+    if (!apiKey) {
+      setStatus("API key is missing.");
+      console.error("API key is missing.");
+    } else {
+      console.log("API Key:", apiKey); // Logs the API key if it exists
+    }
+    console.log("let s go");
+
     try {
-      // Fetch the transaction receipt containing event logs
-      const receipt = await getTransactionReceipt(config, { hash });
-      console.log("Transaction receipt:", receipt);
+      const decimalsMap: { [symbol: string]: number } = {
+        USDC: 6,
+        DAI: 18,
+      };
 
-      // Iterate through logs to find ERC-20 Transfer events
-      for (const log of receipt.logs) {
-        try {
-          // Decode the log as a Transfer event using the ABI
-          const decodedLog = decodeEventLog({
-            abi: transferEventAbi,
-            data: log.data, // Non-indexed event data (e.g., value)
-            topics: log.topics, // Indexed event data (e.g., from, to)
-          }) as { eventName: string; args: { from: string; to: string; value: bigint } };
+      const decimals = decimalsMap[sellToken] || 18;
+      const amountInUnits = parseUnits(sellAmount, decimals);
 
-          // Check if the log is a Transfer event
-          if (decodedLog.eventName === "Transfer") {
-            const { from, to, value } = decodedLog.args;
-            // Assuming 6 decimals for tokens like USDT; ideally, fetch dynamically
-            const decimals = 6;
-            // Convert raw value (in wei-like units) to human-readable format
-            const formattedValue = (Number(value) / 10 ** decimals).toFixed(6);
-            return {
-              tokenAddress: log.address, // Token contract address
-              from, // Sender address
-              to, // Recipient address
-              value: formattedValue, // Formatted token amount
-            };
-          }
-        } catch (e) {
-          // Skip logs that don't match the Transfer event
-          console.warn("Skipping non-Transfer log:", e);
-          continue;
-        }
+      const quote = await axios.get("https://api.0x.org/swap/v1/quote", {
+        params: {
+          sellToken,
+          buyToken,
+          sellAmount: amountInUnits.toString(),
+          takerAddress: address,
+        },
+        headers: {
+          "0x-api-key": apiKey,
+        },
+      });
+
+      const { allowanceTarget, to, data, value, gas, sellTokenAddress } =
+        quote.data;
+
+      const allowance = await publicClient.readContract({
+        address: sellTokenAddress,
+        abi: ERC20_ABI,
+        functionName: "allowance",
+        args: [address!, allowanceTarget],
+      });
+
+      if (BigInt(allowance) < amountInUnits) {
+        setStatus("Approving token...");
+
+        await writeContractAsync({
+          address: sellTokenAddress,
+          abi: ERC20_ABI,
+          functionName: "approve",
+          args: [allowanceTarget, amountInUnits],
+          account: address!,
+          chain: undefined,
+        });
       }
-      return null; // No Transfer event found in the transaction
-    } catch (err) {
-      console.error("Error fetching receipt:", err);
-      throw err; // Rethrow to handle in the caller
+
+      setStatus("Sending swap transaction...");
+
+      const tx = await window.ethereum.request({
+        method: "eth_sendTransaction",
+        params: [
+          {
+            from: address,
+            to,
+            data,
+            value: value || "0x0",
+            gas: gas?.toString(16),
+          },
+        ],
+      });
+
+      setStatus(`Transaction sent! Hash: ${tx}`);
+    } catch (error) {
+      console.error(error);
+      setStatus("Error during swap.");
     }
+
+    setIsLoading(false);
   };
 
-  // Function to fetch transaction details when the Search button is clicked
-  const triggerTodoAction = async () => {
-    console.log("Todo action triggered with hash:", hash);
-
-    // Check if a valid hash is available
-    if (!hash) {
-      console.log("No hash available for processing");
-      setError("No transaction hash provided");
-      setShowDiv(true);
-      return;
-    }
-
-    try {
-      setError(null); // Clear any previous errors
-      // Fetch basic transaction details (e.g., from, to, value in wei)
-      const transaction = await getTransaction(config, { hash });
-      console.log("Fetched transaction:", transaction);
-
-      setTransactionData(transaction); // Store transaction data
-
-      // Fetch and parse token transfer details
-      const tokenData = await fetchTokenTransfer(hash);
-      setTokenTransfer(tokenData); // Store token transfer data
-      setShowDiv(true); // Show the transaction details UI
-    } catch (err) {
-      console.error("Error fetching transaction:", err);
-      setError("Failed to fetch transaction details");
-      setShowDiv(true); // Show error message in UI
-    }
-  };
-
-  // Handle changes to the transaction hash input
-  const handleHashChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newHash = event.target.value as `0x${string}` | "";
-    dispatch(setHash(newHash || null)); // Dispatch action to update hash in Redux store
-  };
+  // Debugging effect to log the isLoading state
+  useEffect(() => {
+    console.log("isLoading:", isLoading);
+  }, [isLoading]);
 
   return (
-    // Card component for the transaction reader UI
     <Card
       sx={{
         backgroundColor: "background.paper",
         borderRadius: 4,
-        boxShadow: expandedTool === "send" ? 6 : 3, // Elevate when expanded
-        transform: expandedTool === "send" ? "scale(1.02)" : "scale(1)", // Slight zoom effect
+        boxShadow: expandedTool === "swap" ? 6 : 3,
+        transform: expandedTool === "swap" ? "scale(1.02)" : "scale(1)",
         transition: "transform 0.2s ease, box-shadow 0.2s ease",
-        zIndex: expandedTool === "send" ? 2 : 1, // Bring to front when expanded
+        zIndex: expandedTool === "swap" ? 2 : 1,
         cursor: "pointer",
-        width: { xs: "100%", sm: "400px" }, // Responsive width
-        maxWidth: "100%",
-        ...(expandedTool !== "send" && {
-          "&:hover": {
-            transform: "scale(1.05)", // Hover effect when not expanded
-          },
-        }),
+        width: { xs: "100%", sm: "400px" },
+        "&:hover": {
+          transform: expandedTool !== "swap" ? "scale(1.05)" : "scale(1.02)",
+        },
       }}
-      onClick={() => handleToolClick("send")} // Toggle expansion on click
+      onClick={() => handleToolClick("swap")}
     >
       <CardHeader
         title={
@@ -206,26 +153,11 @@ const TokenSwap = ({
             variant="h6"
             sx={{
               fontSize: { xs: "1.125rem", sm: "1.25rem" },
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
               color: "text.primary",
+              textAlign: "center",
               width: "100%",
             }}
           >
-            {/* Info icon to trigger additional details */}
-            <IconButton
-              onClick={handleIconClick}
-              sx={{
-                color: "primary.main",
-                "&:hover": {
-                  color: "secondary.main",
-                },
-              }}
-              aria-label="Transaction info"
-            >
-              <InfoIcon sx={{ fontSize: { xs: 18, sm: 20 } }} />
-            </IconButton>
             Token Swap
           </Typography>
         }
@@ -234,99 +166,46 @@ const TokenSwap = ({
           textAlign: "center",
         }}
       />
-      {/* Collapsible section for transaction details */}
-      <Collapse in={expandedTool === "send"}>
-        <CardContent
-          sx={{
-            p: { xs: 2, sm: 3 },
-            pt: 1,
-          }}
+      <Collapse in={expandedTool === "swap"}>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: { xs: 1.5, sm: 2 },
-            }}
-          >
-            {/* Display the transaction hash in an editable text field */}
-            <TextField
-              label="Transaction Hash"
-              variant="outlined"
-              value={hash || ""}
-              onChange={handleHashChange}
-              fullWidth
-              sx={{
-                "& .MuiInputBase-input": {
-                  fontSize: { xs: "0.875rem", sm: "1rem" },
-                },
-              }}
-            />
-            <ReadTransaction myhash={hash} />
-            {/* Button to trigger transaction fetching */}
-            <Button
-              variant="contained"
-              sx={{ mt: 2 }}
-              fullWidth
-              onClick={triggerTodoAction}
-            >
-              Search by Hash
-            </Button>
-            {/* Display transaction details or error message */}
-            {showDiv && (
-              <Box sx={{ mt: 2 }}>
-                {error ? (
-                  <Typography variant="body2" color="error">
-                    {error}
-                  </Typography>
-                ) : transactionData ? (
-                  <Box>
-                    <Typography variant="body2" color="text.primary">
-                      From: {transactionData.from}
-                    </Typography>
-                    <Typography variant="body2" color="text.primary">
-                      To: {transactionData.to || "N/A"}
-                    </Typography>
-                    <Typography variant="body2" color="text.primary">
-                      Native Value: {transactionData.value.toString()} wei
-                    </Typography>
-                    {tokenTransfer ? (
-                      <>
-                        <Typography variant="body2" color="text.primary">
-                          Token Contract: {tokenTransfer.tokenAddress}
-                        </Typography>
-                        <Typography variant="body2" color="text.primary">
-                          Token Amount: {tokenTransfer.value} tokens
-                        </Typography>
-                        <Typography variant="body2" color="text.primary">
-                          Token From: {tokenTransfer.from}
-                        </Typography>
-                        <Typography variant="body2" color="text.primary">
-                          Token To: {tokenTransfer.to}
-                        </Typography>
-                      </>
-                    ) : (
-                      <Typography variant="body2" color="text.secondary">
-                        No token transfer found in this transaction
-                      </Typography>
-                    )}
-                    <Typography variant="body2" color="text.primary">
-                      Block Number:{" "}
-                      {transactionData.blockNumber?.toString() || "N/A"}
-                    </Typography>
-                    <Typography variant="body2" color="text.primary">
-                      Chain ID: {transactionData.chainId?.toString() || "N/A"}
-                    </Typography>
-                  </Box>
-                ) : (
-                  <Typography variant="body2" color="text.secondary">
-                    Loading transaction details...
-                  </Typography>
-                )}
-              </Box>
-            )}
-          </Box>
-        </CardContent>
+          <CardContent sx={{ p: { xs: 2, sm: 3 }, pt: 1 }}>
+            <Stack spacing={2}>
+              <TextField
+                label="Sell Token Symbol"
+                value={sellToken}
+                onChange={(e) => setSellToken(e.target.value.toUpperCase())}
+              />
+              <TextField
+                label="Buy Token Symbol"
+                value={buyToken}
+                onChange={(e) => setBuyToken(e.target.value.toUpperCase())}
+              />
+              <TextField
+                label="Sell Amount"
+                value={sellAmount}
+                onChange={(e) => setSellAmount(e.target.value)}
+              />
+              <Button
+                onClick={() => {
+                  console.log("Button clicked!");
+                  handleApproveAndSwap();
+                }}
+                disabled={isLoading}
+                variant="contained"
+              >
+                {isLoading ? "Processing... " : "Swap via 0x "}
+              </Button>
+
+              <Typography variant="body2" sx={{ mt: 1 }}>
+                {status}
+              </Typography>
+            </Stack>
+          </CardContent>
+        </motion.div>
       </Collapse>
     </Card>
   );

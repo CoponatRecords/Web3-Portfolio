@@ -9,7 +9,7 @@ type BodyProps = {
 export const TransactionSucces = ({ body }: BodyProps) => {
   useEffect(() => {
     enqueueSnackbar(body, {
-      autoHideDuration: 7000,
+      autoHideDuration: 3000,
       variant: "info",
       preventDuplicate: true,
       anchorOrigin: {
@@ -34,7 +34,7 @@ export const TransactionSucces = ({ body }: BodyProps) => {
 export const TransactionFail = ({ body }: BodyProps) => {
   useEffect(() => {
     enqueueSnackbar(body, {
-      autoHideDuration: 7000,
+      autoHideDuration: 3000,
       variant: "warning",
       preventDuplicate: true,
       anchorOrigin: {

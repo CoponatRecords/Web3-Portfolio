@@ -5,10 +5,6 @@ import {
   CssBaseline,
   Popover,
   Backdrop,
-  Card,
-  CardHeader,
-  CardContent,
-  Collapse,
   Typography,
 } from "@mui/material";
 
@@ -23,14 +19,14 @@ import theme from "./theme";
 import { config } from "./wagmiConfig";
 import SendUSDC from "./components/SendUSDCProps";
 import InfoSection from "./components/InfoSection";
-import CointousdChartContainer from "./components/CointousdChartContainer";
-
 import "@rainbow-me/rainbowkit/styles.css";
 import "./App.css";
 import { store } from "./redux/store";
 import { SnackbarProvider } from "notistack";
 import ReadATransaction from "./components/ReadATransaction";
 import ButtonAppBar from "./components/AppBar";
+import TokenSwap from "./components/TokenSwap";
+import { GraphACoin } from "./components/GraphACoin";
 
 const queryClient = new QueryClient();
 
@@ -162,60 +158,10 @@ const App = () => {
                       transition={{ duration: 0.4, delay: 0.1 }}
                       layout
                     >
-                      <Card
-                        sx={{
-                          backgroundColor: "background.paper",
-                          borderRadius: 4,
-                          boxShadow: expandedTool === "graph" ? 6 : 3,
-                          transform:
-                            expandedTool === "graph"
-                              ? "scale(1.02)"
-                              : "scale(1)",
-                          transition:
-                            "transform 0.2s ease, box-shadow 0.2s ease",
-                          zIndex: expandedTool === "graph" ? 2 : 1,
-                          cursor: "pointer",
-                          width: { xs: "100%", sm: "400px" },
-                          "&:hover": {
-                            transform:
-                              expandedTool !== "graph"
-                                ? "scale(1.05)"
-                                : "scale(1.02)",
-                          },
-                        }}
-                        onClick={() => handleToolClick(Tool.GRAPH)}
-                      >
-                        <CardHeader
-                          title={
-                            <Typography
-                              variant="h6"
-                              sx={{
-                                fontSize: { xs: "1.125rem", sm: "1.25rem" },
-                                color: "text.primary",
-                                textAlign: "center",
-                                width: "100%",
-                              }}
-                            >
-                              Graph a Coin
-                            </Typography>
-                          }
-                          sx={{
-                            p: { xs: 1.5, sm: 2 },
-                            textAlign: "center",
-                          }}
-                        />
-                        <Collapse in={expandedTool === "graph"}>
-                          <motion.div
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <CardContent sx={{ p: { xs: 2, sm: 3 }, pt: 1 }}>
-                              <CointousdChartContainer />
-                            </CardContent>
-                          </motion.div>
-                        </Collapse>
-                      </Card>
+                      <GraphACoin 
+                          expandedTool={expandedTool}
+                          handleToolClick={handleToolClick}
+                      />
                     </motion.div>
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
@@ -223,60 +169,11 @@ const App = () => {
                       transition={{ duration: 0.4, delay: 0.1 }}
                       layout
                     >
-                      <Card
-                        sx={{
-                          backgroundColor: "background.paper",
-                          borderRadius: 4,
-                          boxShadow: expandedTool === "graph" ? 6 : 3,
-                          transform:
-                            expandedTool === "graph"
-                              ? "scale(1.02)"
-                              : "scale(1)",
-                          transition:
-                            "transform 0.2s ease, box-shadow 0.2s ease",
-                          zIndex: expandedTool === "graph" ? 2 : 1,
-                          cursor: "pointer",
-                          width: { xs: "100%", sm: "400px" },
-                          "&:hover": {
-                            transform:
-                              expandedTool !== "graph"
-                                ? "scale(1.05)"
-                                : "scale(1.02)",
-                          },
-                        }}
-                        onClick={() => handleToolClick(Tool.GRAPH)}
-                      >
-                        <CardHeader
-                          title={
-                            <Typography
-                              variant="h6"
-                              sx={{
-                                fontSize: { xs: "1.125rem", sm: "1.25rem" },
-                                color: "text.primary",
-                                textAlign: "center",
-                                width: "100%",
-                              }}
-                            >
-                              Graph a Coin
-                            </Typography>
-                          }
-                          sx={{
-                            p: { xs: 1.5, sm: 2 },
-                            textAlign: "center",
-                          }}
-                        />
-                        <Collapse in={expandedTool === "swap"}>
-                          <motion.div
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <CardContent sx={{ p: { xs: 2, sm: 3 }, pt: 1 }}>
-                              <CointousdChartContainer />
-                            </CardContent>
-                          </motion.div>
-                        </Collapse>
-                      </Card>
+                                            <TokenSwap 
+                          expandedTool={expandedTool}
+                          handleToolClick={handleToolClick}
+
+                      />
                     </motion.div>
                     <Popover
                       ref={popoverRef} // Attach the ref here
