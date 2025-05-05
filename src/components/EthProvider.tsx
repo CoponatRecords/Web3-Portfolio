@@ -1,10 +1,11 @@
-import { MetaMaskInpageProvider } from "@metamask/providers";
+// import { MetaMaskInpageProvider } from "@metamask/providers";
 import { ethers, formatEther, getAddress, isAddress } from "ethers";
 
 // Declare global window interface
 declare global {
   interface Window {
-    ethereum?: MetaMaskInpageProvider;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ethereum?: any;
   }
 }
 
@@ -46,4 +47,3 @@ function SendingEthereum(amount: number, receiver: string) {
 }
 
 export default SendingEthereum;
-

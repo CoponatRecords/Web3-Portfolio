@@ -18,7 +18,6 @@ import { RootState } from "../redux/store";
 
 function CointousdChartContainer() {
   const dispatch = useDispatch();
-  console.log("Rendering CointousdChartContainer"); // Debug log
   const coinList = useSelector((state: RootState) => state.coinList.coins); // Line 20
   const [newCoin, setNewCoin] = useState<string>("");
 
