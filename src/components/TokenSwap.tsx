@@ -1,9 +1,5 @@
-"use client"; // Ensures the component is rendered on the client side in Next.js
-
-// faire ca avec wagmi sans viem
-
-// Imports
-import { useState } from "react";
+"use client";
+import { useState, useEffect } from "react";
 import {
   Button,
   Stack,
@@ -13,55 +9,172 @@ import {
   CardHeader,
   Collapse,
   CardContent,
-} from "@mui/material"; // UI components from Material UI
-import { useAccount, useWriteContract } from "wagmi"; // Wagmi hooks for Ethereum wallet/account data
-import { erc20Abi, parseUnits, createPublicClient, http } from "viem"; // ERC20 ABI and utility to convert amounts to token units
-import { motion } from "framer-motion"; // Animation library
-import { useGetSwapQuoteQuery } from "../redux/slices/swapSlice"; // Custom Redux hook to fetch swap quotes from 0x
-import { isAddress } from "ethers"; // Address validation function
-import { arbitrum } from "wagmi/chains"; // Import Arbitrum chain data
+} from "@mui/material";
+import { motion } from "framer-motion";
+import {
+  useAccount,
+  useWriteContract,
+  useReadContract,
+  // useSendTransaction,
+  useSignTypedData,
+} from "wagmi";
+import { simulateContract } from "@wagmi/core";
 
-// ERC20 ABI constant
-const ERC20_ABI = erc20Abi;
+import { parseUnits, isAddress } from "ethers";
+import { arbitrum } from "wagmi/chains";
+import { concat, numberToHex } from "viem";
+import { useGetSwapQuoteQuery } from "../redux/slices/swapSlice";
+import { wagmiconfig } from "../wagmiConfig";
 
-// Component Props interface
+const ERC20_ABI = [
+  {
+    constant: true,
+    inputs: [
+      { name: "_owner", type: "address" },
+      { name: "_spender", type: "address" },
+    ],
+    name: "allowance",
+    outputs: [{ name: "", type: "uint256" }],
+    payable: false,
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [
+      { name: "_spender", type: "address" },
+      { name: "_value", type: "uint256" },
+    ],
+    name: "approve",
+    outputs: [{ name: "", type: "bool" }],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: true,
+    inputs: [],
+    name: "decimals",
+    outputs: [{ name: "", type: "uint8" }],
+    payable: false,
+    stateMutability: "view",
+    type: "function",
+  },
+];
+
+// const ETHERSCANABI = [
+//   [
+//     {
+//       inputs: [{ internalType: "bytes20", name: "gitCommit", type: "bytes20" }],
+//       stateMutability: "nonpayable",
+//       type: "constructor",
+//     },
+//     { inputs: [], name: "InvalidOffset", type: "error" },
+//     { inputs: [], name: "InvalidTarget", type: "error" },
+//     {
+//       anonymous: false,
+//       inputs: [
+//         { indexed: true, internalType: "bytes20", name: "", type: "bytes20" },
+//       ],
+//       name: "GitCommit",
+//       type: "event",
+//     },
+//     { stateMutability: "nonpayable", type: "fallback" },
+//     {
+//       inputs: [{ internalType: "address", name: "", type: "address" }],
+//       name: "balanceOf",
+//       outputs: [],
+//       stateMutability: "pure",
+//       type: "function",
+//     },
+//     {
+//       inputs: [
+//         {
+//           components: [
+//             {
+//               internalType: "address payable",
+//               name: "recipient",
+//               type: "address",
+//             },
+//             {
+//               internalType: "contract IERC20",
+//               name: "buyToken",
+//               type: "address",
+//             },
+//             { internalType: "uint256", name: "minAmountOut", type: "uint256" },
+//           ],
+//           internalType: "struct ISettlerBase.AllowedSlippage",
+//           name: "slippage",
+//           type: "tuple",
+//         },
+//         { internalType: "bytes[]", name: "actions", type: "bytes[]" },
+//         { internalType: "bytes32", name: "", type: "bytes32" },
+//       ],
+//       name: "execute",
+//       outputs: [{ internalType: "bool", name: "", type: "bool" }],
+//       stateMutability: "payable",
+//       type: "function",
+//     },
+//     {
+//       inputs: [],
+//       name: "rebateClaimer",
+//       outputs: [{ internalType: "address", name: "", type: "address" }],
+//       stateMutability: "view",
+//       type: "function",
+//     },
+//     { stateMutability: "payable", type: "receive" },
+//   ],
+// ];
 interface TokenSwapProps {
   expandedTool: "send" | "read" | "graph" | "swap" | null;
   handleToolClick: (tool: "send" | "read" | "graph" | "swap") => void;
 }
 
-// Main TokenSwap component
 const TokenSwap: React.FC<TokenSwapProps> = ({
   expandedTool,
   handleToolClick,
 }) => {
-  const { address } = useAccount(); // Get user's connected wallet address
-  const publicClient = createPublicClient({
-    chain: arbitrum, // Ensure you're using the Arbitrum chain
-    transport: http("https://arb1.arbitrum.io/rpc"), // Arbitrum RPC URL
-  }); // Client to read from blockchain
+  const { address } = useAccount();
+  const { writeContract } = useWriteContract();
+  // const { sendTransaction } = useSendTransaction();
+  const { signTypedDataAsync } = useSignTypedData();
+
   const [sellToken, setSellToken] = useState(
-    "0x068DEf65B9dbAFf02b4ee54572a9Fa7dFb188EA3"
-  ); // Token user wants to sell
+    "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9"
+  ); // USDT
   const [buyToken, setBuyToken] = useState(
     "0xaf88d065e77c8cC2239327C5EDb3A432268e5831"
-  ); // Token user wants to buy
-  const [sellAmount, setSellAmount] = useState("0.001"); // Amount to sell
-  const [status, setStatus] = useState(""); // UI status message
+  ); // USDC
+  const [sellAmount, setSellAmount] = useState("0.0001");
+  const [status, setStatus] = useState("");
+  const [decimals, setDecimals] = useState(18);
 
-  const { writeContractAsync } = useWriteContract(); // Contract write function
-
-  // Map token symbols to their decimals (needed for parseUnits)
-  const decimalsMap: Record<string, number> = {
-    USDC: 6,
-    USDT: 6,
-    DAI: 18,
+  const CONTRACTS = {
+    ETH: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+    USDT: "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
+    USDC: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
   };
 
-  const decimals = decimalsMap[sellToken] || 18; // Default to 18 if unknown
-  const amountInUnits = parseUnits(sellAmount, decimals); // Convert amount to base units
+  // Fetch decimals for non-ETH tokens
+  const { data: decimalsData } = useReadContract({
+    address: sellToken as `0x${string}`,
+    abi: ERC20_ABI,
+    functionName: "decimals",
+    chainId: arbitrum.id,
+    query: { enabled: sellToken !== CONTRACTS.ETH && isAddress(sellToken) },
+  });
 
-  // Fetch swap quote using Redux query (with skip if invalid)
+  useEffect(() => {
+    if (sellToken === CONTRACTS.ETH) {
+      setDecimals(18);
+    } else if (decimalsData) {
+      setDecimals(Number(decimalsData));
+    }
+  }, [CONTRACTS.ETH, decimalsData, sellToken]);
+
+  const amountInUnits = parseUnits(sellAmount, decimals);
+
+  // Fetch swap quote using Redux Toolkit Query
   const {
     data: quote,
     isLoading,
@@ -71,33 +184,47 @@ const TokenSwap: React.FC<TokenSwapProps> = ({
       sellToken,
       buyToken,
       sellAmount: amountInUnits.toString(),
-      takerAddress: address, // Pass a fallback if address is not available
+      takerAddress: address,
     },
     {
       skip: !address || !sellAmount || parseFloat(sellAmount) <= 0,
     }
   );
 
-  // Function to validate token and address
-  const isValidAddress = (addr: string) => {
-    return isAddress(addr);
-  };
+  // Fetch allowance for non-ETH tokens
+  const { data: allowanceData } = useReadContract({
+    address: sellToken as `0x${string}`,
+    abi: ERC20_ABI,
+    functionName: "allowance",
+    args: quote?.issues?.allowance?.spender
+      ? [address, quote.issues.allowance.spender]
+      : undefined,
+    chainId: arbitrum.id,
+    query: {
+      enabled:
+        sellToken !== CONTRACTS.ETH &&
+        isAddress(sellToken) &&
+        !!quote?.issues?.allowance?.spender &&
+        !!address,
+    },
+  });
 
-  // Function to approve ERC20 if needed and send the swap transaction
+  console.log("Simulating Swap");
+
+  // Trigger simulation when quote is fully available and valid
+
   const handleApproveAndSwap = async () => {
-    // Validate the user's address
-    if (!address || !isValidAddress(address)) {
+    if (!address || !isAddress(address)) {
       setStatus("Invalid wallet address");
       return;
     }
 
-    // Validate token addresses
-    if (!isValidAddress(sellToken)) {
+    if (!isAddress(sellToken)) {
       setStatus("Invalid sell token address");
       return;
     }
 
-    if (!isValidAddress(buyToken)) {
+    if (!isAddress(buyToken)) {
       setStatus("Invalid buy token address");
       return;
     }
@@ -107,93 +234,116 @@ const TokenSwap: React.FC<TokenSwapProps> = ({
       return;
     }
 
-    setStatus("Processing swap...");
-    console.log("Processing Swap");
+    // Check allowance for non-ETH tokens
+    if (sellToken !== CONTRACTS.ETH && quote.issues?.allowance?.spender) {
+      if (BigInt(allowanceData as bigint) < amountInUnits) {
+        setStatus("Approving token...");
 
-    try {
-      console.log(quote);
-
-      // Ensure quote is not null and has the expected structure
-      if (quote && quote.issues && quote.issues.allowance) {
-        const allowanceTarget = quote.issues.allowance.spender;
-        if (allowanceTarget) {
-          console.log("Allowance Target:", allowanceTarget);
-
-          // 1. Check current allowance
-          let allowance: bigint = 0n;
-
-          // Skip allowance check for ETH (ETH doesn't require allowance)
-          if (sellToken !== "0xEeeeeEeeeEeEeeEeEeEeeEeEeEeeEeEeEeEeeEe") {
-            allowance = await publicClient.readContract({
-              address: sellToken as `0x${string}`,
-              abi: ERC20_ABI,
-              functionName: "allowance",
-              args: [address, allowanceTarget],
-            });
-            console.log("Allowance checked:", allowance.toString());
-          } else {
-            console.log("ETH does not require allowance");
-          }
-
-          // 2. Approve the contract to spend tokens if necessary
-          if (BigInt(allowance) < amountInUnits) {
-            setStatus("Approving token...");
-            console.log("Approving token...");
-
-            // Call the approve function for the ERC20 token
-            await writeContractAsync({
-              address: sellToken as `0x${string}`,
-              abi: ERC20_ABI,
-              functionName: "approve",
-              args: [allowanceTarget, amountInUnits],
-              account: address!,
-              chain: arbitrum, // Specify Arbitrum chain here
-            });
-            setStatus("Token approved");
-            console.log("Token Approved");
-          }
-        } else {
-          setStatus("No allowance spender found in the quote.");
+        try {
+          await writeContract({
+            address: sellToken as `0x${string}`,
+            abi: ERC20_ABI,
+            functionName: "approve",
+            args: [
+              quote.issues.allowance.spender as `0x${string}`,
+              amountInUnits,
+            ],
+            chain: arbitrum,
+            account: address as `0x${string}`,
+          });
+          setStatus("Token approved");
+        } catch (error) {
+          console.error("Error approving token:", error);
+          setStatus("Error approving token");
+          return;
         }
       } else {
-        setStatus("Quote is invalid or incomplete.");
+        setStatus("Token already approved");
       }
+    } else if (sellToken === CONTRACTS.ETH) {
+      setStatus("Native token detected, no approval needed");
+    }
 
-      // 3. Send the swap transaction (via MetaMask)
-      setStatus("Sending swap transaction...");
-      console.log("Sending swap transaction...");
+    setStatus("Processing swap...");
+    if (quote.permit2?.eip712) {
+      try {
+        setStatus("Signing Permit2 data...");
+        console.log("Signing Permit2 data...");
 
-      // const tx = await writeContractAsync({
-      //   address: quote.transaction.to, // address contract 0X
-      //   abi: ERC20_ABI,
-      //   functionName: "swap",
-      //   args: [sellCoin, buyCoin],
-      //   account: address,
-      //   chain: arbitrum, // Specify Arbitrum chain here
+        const signature = await signTypedDataAsync({
+          ...quote.permit2.eip712,
+          account: address as `0x${string}`,
+        });
+        console.log("signature ", signature);
+
+        const signatureLengthInHex = numberToHex(signature.length, {
+          signed: false,
+          size: 32,
+        });
+        console.log("signatureLengthInHex ", signatureLengthInHex);
+        console.log(quote?.transaction.data);
+        console.log({
+          account: address,
+          gas: quote?.transaction.gas
+            ? BigInt(quote?.transaction.gas)
+            : undefined,
+          to: quote?.transaction.to,
+          data: concat([
+            quote?.transaction.data,
+            signatureLengthInHex,
+            signature,
+          ]),
+          chain: arbitrum,
+        });
+
+        const simulation = await simulateContract(wagmiconfig, {
+          // abi: ETHERSCANABI,
+          value: quote?.transaction.value
+            ? BigInt(quote.transaction.value)
+            : undefined, // value is used for native tokens
+          account: address,
+          gas: quote?.transaction.gas
+            ? BigInt(quote?.transaction.gas)
+            : undefined,
+          to: quote?.transaction.to,
+          data: concat([
+            quote?.transaction.data,
+            signatureLengthInHex,
+            signature,
+          ]),
+          chain: arbitrum,
+        });
+
+        console.log("simulation", simulation);
+      } catch (error) {
+        console.error("Error:", error);
+        setStatus("Error");
+        return;
+      }
+    }
+
+    // Simulate the swap transaction
+    setStatus("Sending swap transaction...");
+
+    try {
+      // const txHash = await sendTransaction({
+      //   to: quote.transaction.to,
+      //   data: txData,
+      //   value: BigInt(quote.transaction.value || 0),
+      //   gas: quote.transaction.gas ? BigInt(quote.transaction.gas) : undefined,
+      //   gasPrice: quote.transaction.gasPrice
+      //     ? BigInt(quote.transaction.gasPrice)
+      //     : undefined,
+      //   chainId: arbitrum.id,
       // });
-
-      const tx = await window.ethereum.request({
-        method: "eth_sendTransaction",
-        params: [
-          {
-            from: address,
-            to: quote.transaction.to,
-            data: quote.data,
-            value: quote.value,
-            gas: quote.gas?.toString(),
-          },
-        ],
-      });
-
-      setStatus(`Transaction sent! Hash: ${tx}`);
-      console.log("hash :", tx);
-    } catch (err) {
-      console.error(err);
-      setStatus("Error during swap.");
+      // setStatus(`Transaction sent! Hash: ${txHash}`);
+      // console.log(`See tx details at https://arbiscan.io/tx/${txHash}`);
+    } catch (error) {
+      console.error("Error sending transaction:", error);
+      setStatus("Error during swap");
     }
   };
 
-  // Render UI
   return (
     <Card
       sx={{
@@ -209,7 +359,7 @@ const TokenSwap: React.FC<TokenSwapProps> = ({
           transform: expandedTool !== "swap" ? "scale(1.05)" : "scale(1.02)",
         },
       }}
-      onClick={() => handleToolClick("swap")} // Expand on click
+      onClick={() => handleToolClick("swap")}
     >
       <CardHeader
         title={

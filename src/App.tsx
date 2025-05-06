@@ -16,7 +16,7 @@ import { Provider } from "react-redux";
 import { motion } from "framer-motion";
 
 import theme from "./theme";
-import { config } from "./wagmiConfig";
+import { wagmiconfig } from "./wagmiConfig";
 import SendUSDC from "./components/SendUSDCProps";
 import InfoSection from "./components/InfoSection";
 import "@rainbow-me/rainbowkit/styles.css";
@@ -33,7 +33,7 @@ const queryClient = new QueryClient();
 const App = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [expandedTool, setExpandedTool] = useState<
-    "send" |"read" | "graph" | "swap" | null
+    "send" | "read" | "graph" | "swap" | null
   >(null);
 
   // Ref to detect clicks outside of Popover
@@ -67,11 +67,11 @@ const App = () => {
           setExpandedTool(Tool.SWAP);
         }
         break;
-        case Tool.READ:
-          if (expandedTool !== Tool.READ) {
-            setExpandedTool(Tool.READ);
-          }
-          break;
+      case Tool.READ:
+        if (expandedTool !== Tool.READ) {
+          setExpandedTool(Tool.READ);
+        }
+        break;
     }
   };
 
@@ -99,7 +99,7 @@ const App = () => {
   return (
     <SnackbarProvider>
       <Provider store={store}>
-        <WagmiProvider config={config}>
+        <WagmiProvider config={wagmiconfig}>
           <QueryClientProvider client={queryClient}>
             <RainbowKitProvider>
               <ThemeProvider theme={theme}>
@@ -158,9 +158,9 @@ const App = () => {
                       transition={{ duration: 0.4, delay: 0.1 }}
                       layout
                     >
-                      <GraphACoin 
-                          expandedTool={expandedTool}
-                          handleToolClick={handleToolClick}
+                      <GraphACoin
+                        expandedTool={expandedTool}
+                        handleToolClick={handleToolClick}
                       />
                     </motion.div>
                     <motion.div
@@ -169,10 +169,9 @@ const App = () => {
                       transition={{ duration: 0.4, delay: 0.1 }}
                       layout
                     >
-                                            <TokenSwap 
-                          expandedTool={expandedTool}
-                          handleToolClick={handleToolClick}
-
+                      <TokenSwap
+                        expandedTool={expandedTool}
+                        handleToolClick={handleToolClick}
                       />
                     </motion.div>
                     <Popover

@@ -12,8 +12,12 @@ import {
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import { useSelector, useDispatch } from "react-redux";
-import { getTransaction, getTransactionReceipt, GetTransactionReturnType } from "@wagmi/core";
-import { config } from "../wagmiConfig";
+import {
+  getTransaction,
+  getTransactionReceipt,
+  GetTransactionReturnType,
+} from "@wagmi/core";
+import { wagmiconfig } from "../wagmiConfig";
 import { parseAbi, decodeEventLog } from "viem";
 import { setHash } from "../redux/slices/hashReducer"; // Import your Redux action (adjust path as needed)
 
@@ -26,8 +30,8 @@ interface RootState {
 
 // Props for the ReadATransaction component
 interface ReadATransactionProps {
-  expandedTool: "send" |"read" |  "graph" |"swap" |  null; // Controls which tool is expanded in the UI
-  handleToolClick: (tool: "send" |"read" | "graph"| "swap") => void; // Callback to toggle tool expansion
+  expandedTool: "send" | "read" | "graph" | "swap" | null; // Controls which tool is expanded in the UI
+  handleToolClick: (tool: "send" | "read" | "graph" | "swap") => void; // Callback to toggle tool expansion
   setAnchorEl: (el: HTMLElement | null) => void; // Sets anchor element for info icon
 }
 
@@ -78,7 +82,9 @@ const ReadATransaction = ({
   const [transactionData, setTransactionData] =
     useState<TransactionData | null>(null);
   // State to store token transfer details (e.g., token amount)
-  const [tokenTransfer, setTokenTransfer] = useState<TokenTransfer | null>(null);
+  const [tokenTransfer, setTokenTransfer] = useState<TokenTransfer | null>(
+    null
+  );
   // State to handle errors during transaction fetching
   const [error, setError] = useState<string | null>(null);
 
@@ -102,7 +108,7 @@ const ReadATransaction = ({
   const fetchTokenTransfer = async (hash: `0x${string}`) => {
     try {
       // Fetch the transaction receipt containing event logs
-      const receipt = await getTransactionReceipt(config, { hash });
+      const receipt = await getTransactionReceipt(wagmiconfig, { hash });
       console.log("Transaction receipt:", receipt);
 
       // Iterate through logs to find ERC-20 Transfer events
@@ -113,7 +119,10 @@ const ReadATransaction = ({
             abi: transferEventAbi,
             data: log.data, // Non-indexed event data (e.g., value)
             topics: log.topics, // Indexed event data (e.g., from, to)
-          }) as { eventName: string; args: { from: string; to: string; value: bigint } };
+          }) as {
+            eventName: string;
+            args: { from: string; to: string; value: bigint };
+          };
 
           // Check if the log is a Transfer event
           if (decodedLog.eventName === "Transfer") {
@@ -157,7 +166,7 @@ const ReadATransaction = ({
     try {
       setError(null); // Clear any previous errors
       // Fetch basic transaction details (e.g., from, to, value in wei)
-      const transaction = await getTransaction(config, { hash });
+      const transaction = await getTransaction(wagmiconfig, { hash });
       console.log("Fetched transaction:", transaction);
 
       setTransactionData(transaction); // Store transaction data

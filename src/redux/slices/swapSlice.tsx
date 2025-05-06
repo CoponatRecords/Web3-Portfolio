@@ -1,15 +1,54 @@
-// Import required tools from Redux Toolkit Query for API creation and data fetching
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Define the expected structure of the API response from the 0x Swap endpoint
 export interface QuoteResponse {
+  permit2: {
+    eip712: {
+      types: {
+        PermitTransferFrom: [
+          { name: "permitted"; type: "TokenPermissions" },
+          { name: "spender"; type: "address" },
+          { name: "nonce"; type: "uint256" },
+          { name: "deadline"; type: "uint256" }
+        ];
+        EIP712Domain: [
+          { name: "name"; type: "string" },
+          { name: "chainId"; type: "uint256" },
+          { name: "verifyingContract"; type: "address" }
+        ];
+        TokenPermissions: [
+          { name: "token"; type: "address" },
+          { name: "amount"; type: "uint256" }
+        ];
+      };
+      primaryType: "PermitTransferFrom";
+      domain: {
+        name: string;
+        chainId: bigint;
+        verifyingContract: `0x${string}`;
+      };
+      message: {
+        permitted: {
+          token: `0x${string}`;
+          amount: bigint;
+        };
+        spender: `0x${string}`;
+        nonce: bigint;
+        deadline: bigint;
+      };
+    };
+  };
   issues: {
     allowance?: {
       spender: `0x${string}` | null;
     };
   };
   transaction: {
+    value: bigint;
     to: `0x${string}`;
+    gas: bigint;
+    gasPrice: bigint;
+    data: `0x${string}`;
   };
   price: string; // Estimated price for the swap
   guaranteedPrice: string; // Guaranteed price provided by 0x (within slippage tolerance)

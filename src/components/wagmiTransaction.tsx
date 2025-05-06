@@ -3,10 +3,10 @@ import { parseUnits } from "viem";
 import { useAccount } from "wagmi";
 import { sepolia } from "wagmi/chains";
 import { Button, CircularProgress } from "@mui/material";
-import { config } from "../wagmiConfig";
+import { wagmiconfig } from "../wagmiConfig";
 import { TransactionFail, TransactionSucces } from "./TransactionResponse";
 import { useDispatch, useSelector } from "react-redux";
-import {  setHash } from "../redux/slices/hashReducer";
+import { setHash } from "../redux/slices/hashReducer";
 import { useState } from "react";
 import { RootState } from "../redux/store";
 
@@ -39,7 +39,6 @@ interface SendTransactionProps {
   myvalue: number;
 }
 
-
 export function SendTransaction({ to, myvalue }: SendTransactionProps) {
   const dispatch = useDispatch();
   let txHash = useSelector((state: RootState) => state.hash.myhash); // Line 20
@@ -59,7 +58,7 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
         throw new Error("Connect your wallet!");
       }
 
-      const balance = await readContract(config, {
+      const balance = await readContract(wagmiconfig, {
         address: mycontract,
         abi,
         functionName: "balanceOf",
@@ -70,7 +69,7 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
 
       const amountInSmallestUnits = parseUnits(myvalue.toString(), 6);
 
-      const simulationResult = await simulateContract(config, {
+      const simulationResult = await simulateContract(wagmiconfig, {
         account: address,
         address: mycontract,
         abi,
@@ -78,10 +77,9 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
         args: [to, amountInSmallestUnits],
       });
 
-
       console.log("Simulation result:", simulationResult);
 
-      txHash = await writeContract(config, {
+      txHash = await writeContract(wagmiconfig, {
         chain: sepolia,
         account: address,
         address: mycontract,
@@ -89,7 +87,7 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
         functionName: "transfer",
         args: [to, amountInSmallestUnits],
       });
-      
+
       console.log("Transaction sent:", txHash);
       dispatch(setHash(`${txHash}`));
       setIsSuccess(true);
