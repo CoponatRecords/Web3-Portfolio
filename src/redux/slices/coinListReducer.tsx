@@ -1,24 +1,24 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface CoinItem {
+type CoinItem = {
   id: number;
   coin: string;
-}
+};
 
-interface CoinListState {
+type CoinListState = {
   coins: CoinItem[];
-}
+};
 
 // Function to load coins from localStorage (if available)
 const loadFromLocalStorage = (): CoinItem[] => {
   try {
-    const storedCoins = localStorage.getItem('coins');
+    const storedCoins = localStorage.getItem("coins");
     if (storedCoins) {
       return JSON.parse(storedCoins);
     }
     return [];
   } catch (error) {
-    console.log(`error ${error}`)
+    console.log(`error ${error}`);
     return [];
   }
 };
@@ -26,7 +26,7 @@ const loadFromLocalStorage = (): CoinItem[] => {
 // Function to save coins to localStorage
 const saveToLocalStorage = (coins: CoinItem[]): void => {
   try {
-    localStorage.setItem('coins', JSON.stringify(coins));
+    localStorage.setItem("coins", JSON.stringify(coins));
   } catch (error) {
     console.error("Couldn't save to localStorage", error);
   }
@@ -37,7 +37,7 @@ const initialState: CoinListState = {
 };
 
 const coinListSlice = createSlice({
-  name: 'coinList',
+  name: "coinList",
   initialState,
   reducers: {
     addCoin: (state, action: PayloadAction<string>) => {
@@ -53,17 +53,20 @@ const coinListSlice = createSlice({
       }
 
       saveToLocalStorage(state.coins); // Save updated state to localStorage
-      console.log('Coins added:', JSON.parse(JSON.stringify(state.coins))); // Log the updated coin list
+      console.log("Coins added:", JSON.parse(JSON.stringify(state.coins))); // Log the updated coin list
     },
     removeCoin: (state, action: PayloadAction<number>) => {
       state.coins = state.coins.filter((coin) => coin.id !== action.payload);
       saveToLocalStorage(state.coins); // Save updated state to localStorage
-      console.log('Coin removed:', JSON.parse(JSON.stringify(state.coins))); // Log the updated coin list
+      console.log("Coin removed:", JSON.parse(JSON.stringify(state.coins))); // Log the updated coin list
     },
     clearCoins: (state) => {
       state.coins = [];
       saveToLocalStorage(state.coins); // Save updated state to localStorage
-      console.log('All coins removed:', JSON.parse(JSON.stringify(state.coins))); // Log the updated coin list
+      console.log(
+        "All coins removed:",
+        JSON.parse(JSON.stringify(state.coins))
+      ); // Log the updated coin list
     },
   },
 });
@@ -71,4 +74,3 @@ const coinListSlice = createSlice({
 export const { addCoin, removeCoin, clearCoins } = coinListSlice.actions;
 
 export default coinListSlice.reducer;
-

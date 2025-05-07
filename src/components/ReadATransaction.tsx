@@ -22,18 +22,18 @@ import { parseAbi, decodeEventLog } from "viem";
 import { setHash } from "../redux/slices/hashReducer"; // Import your Redux action (adjust path as needed)
 
 // Define the shape of the Redux store for type safety
-interface RootState {
+type RootState = {
   hash: {
     myhash: `0x${string}` | null; // Transaction hash stored in Redux
   };
-}
+};
 
 // Props for the ReadATransaction component
-interface ReadATransactionProps {
+type ReadATransactionProps = {
   expandedTool: "send" | "read" | "graph" | "swap" | null; // Controls which tool is expanded in the UI
   handleToolClick: (tool: "send" | "read" | "graph" | "swap") => void; // Callback to toggle tool expansion
   setAnchorEl: (el: HTMLElement | null) => void; // Sets anchor element for info icon
-}
+};
 
 // Props for the ReadTransaction sub-component
 interface ReadTransactionProps {

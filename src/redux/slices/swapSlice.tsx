@@ -1,9 +1,16 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Define the expected structure of the API response from the 0x Swap endpoint
-export interface QuoteResponse {
+export type QuoteResponse = {
+  buyAmount: bigint;
   permit2: {
     eip712: {
+      value: {
+        permitted: { token: `0x${string}`; amount: bigint };
+        spender: `0x${string}`;
+        nonce: bigint;
+        deadline: bigint;
+      };
       types: {
         PermitTransferFrom: [
           { name: "permitted"; type: "TokenPermissions" },
@@ -59,15 +66,15 @@ export interface QuoteResponse {
   sellToken: `0x${string}`; // Address of the token being sold
   buyToken: `0x${string}`; // Address of the token being bought
   allowanceTarget: `0x${string}`; // Address that should be approved to spend tokens
-}
+};
 
 // Define the structure of the query parameters to request a swap quote
-export interface QuoteParams {
+export type QuoteParams = {
   sellToken: string; // Symbol or address of the token to sell
   buyToken: string; // Symbol or address of the token to buy
   sellAmount: string; // Amount to sell (in base units, e.g., wei)
   takerAddress: string; // Wallet address that will execute the swap
-}
+};
 
 // Create the Redux Toolkit API slice for interacting with the 0x Swap API
 export const swapApi = createApi({

@@ -34,10 +34,10 @@ const abi = [
 // Proxy contract address
 const mycontract = "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238";
 
-interface SendTransactionProps {
+type SendTransactionProps = {
   to: string;
   myvalue: number;
-}
+};
 
 export function SendTransaction({ to, myvalue }: SendTransactionProps) {
   const dispatch = useDispatch();

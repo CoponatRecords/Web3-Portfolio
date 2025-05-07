@@ -24,7 +24,7 @@ ChartJS.register(
 );
 
 // Define types for the chart data
-interface ChartData {
+type ChartData = {
   labels: string[];
   datasets: {
     label: string;
@@ -32,19 +32,19 @@ interface ChartData {
     borderColor: string;
     fill: boolean;
   }[];
-}
+};
 
 // Define types for WebSocket message
-interface WebSocketMessage {
+type WebSocketMessage = {
   k: {
     t: number; // Timestamp
     c: string; // Closing price
   };
-}
+};
 
-interface ChartComponentProps {
+type ChartComponentProps = {
   coin: string;
-}
+};
 
 const ChartComponent = ({ coin }: ChartComponentProps) => {
   // Type the ref as ChartJS instance for a line chart specifically

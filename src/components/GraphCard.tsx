@@ -1,11 +1,17 @@
 import React from "react";
-import { Card, CardHeader, CardContent, Collapse, Typography } from "@mui/material";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  Collapse,
+  Typography,
+} from "@mui/material";
 import CointousdChartContainer from "./CointousdChartContainer";
 
-interface Props {
+type Props = {
   expanded: boolean;
   onClick: () => void;
-}
+};
 
 const GraphCard: React.FC<Props> = ({ expanded, onClick }) => (
   <Card
@@ -28,7 +34,10 @@ const GraphCard: React.FC<Props> = ({ expanded, onClick }) => (
   >
     <CardHeader
       title={
-        <Typography variant="h6" sx={{ textAlign: "center", color: "text.primary" }}>
+        <Typography
+          variant="h6"
+          sx={{ textAlign: "center", color: "text.primary" }}
+        >
           Graph a Coin
         </Typography>
       }

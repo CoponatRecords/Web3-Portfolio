@@ -15,16 +15,14 @@ import {
   useAccount,
   useWriteContract,
   useReadContract,
-  // useSendTransaction,
   useSignTypedData,
 } from "wagmi";
-import { simulateContract } from "@wagmi/core";
-
+import { sendTransaction } from "@wagmi/core";
 import { parseUnits, isAddress } from "ethers";
 import { arbitrum } from "wagmi/chains";
-import { concat, numberToHex } from "viem";
 import { useGetSwapQuoteQuery } from "../redux/slices/swapSlice";
 import { wagmiconfig } from "../wagmiConfig";
+import { concat, Hex, numberToHex, size } from "viem";
 
 const ERC20_ABI = [
   {
@@ -62,73 +60,10 @@ const ERC20_ABI = [
   },
 ];
 
-// const ETHERSCANABI = [
-//   [
-//     {
-//       inputs: [{ internalType: "bytes20", name: "gitCommit", type: "bytes20" }],
-//       stateMutability: "nonpayable",
-//       type: "constructor",
-//     },
-//     { inputs: [], name: "InvalidOffset", type: "error" },
-//     { inputs: [], name: "InvalidTarget", type: "error" },
-//     {
-//       anonymous: false,
-//       inputs: [
-//         { indexed: true, internalType: "bytes20", name: "", type: "bytes20" },
-//       ],
-//       name: "GitCommit",
-//       type: "event",
-//     },
-//     { stateMutability: "nonpayable", type: "fallback" },
-//     {
-//       inputs: [{ internalType: "address", name: "", type: "address" }],
-//       name: "balanceOf",
-//       outputs: [],
-//       stateMutability: "pure",
-//       type: "function",
-//     },
-//     {
-//       inputs: [
-//         {
-//           components: [
-//             {
-//               internalType: "address payable",
-//               name: "recipient",
-//               type: "address",
-//             },
-//             {
-//               internalType: "contract IERC20",
-//               name: "buyToken",
-//               type: "address",
-//             },
-//             { internalType: "uint256", name: "minAmountOut", type: "uint256" },
-//           ],
-//           internalType: "struct ISettlerBase.AllowedSlippage",
-//           name: "slippage",
-//           type: "tuple",
-//         },
-//         { internalType: "bytes[]", name: "actions", type: "bytes[]" },
-//         { internalType: "bytes32", name: "", type: "bytes32" },
-//       ],
-//       name: "execute",
-//       outputs: [{ internalType: "bool", name: "", type: "bool" }],
-//       stateMutability: "payable",
-//       type: "function",
-//     },
-//     {
-//       inputs: [],
-//       name: "rebateClaimer",
-//       outputs: [{ internalType: "address", name: "", type: "address" }],
-//       stateMutability: "view",
-//       type: "function",
-//     },
-//     { stateMutability: "payable", type: "receive" },
-//   ],
-// ];
-interface TokenSwapProps {
+type TokenSwapProps = {
   expandedTool: "send" | "read" | "graph" | "swap" | null;
   handleToolClick: (tool: "send" | "read" | "graph" | "swap") => void;
-}
+};
 
 const TokenSwap: React.FC<TokenSwapProps> = ({
   expandedTool,
@@ -136,7 +71,7 @@ const TokenSwap: React.FC<TokenSwapProps> = ({
 }) => {
   const { address } = useAccount();
   const { writeContract } = useWriteContract();
-  // const { sendTransaction } = useSendTransaction();
+
   const { signTypedDataAsync } = useSignTypedData();
 
   const [sellToken, setSellToken] = useState(
@@ -209,10 +144,6 @@ const TokenSwap: React.FC<TokenSwapProps> = ({
     },
   });
 
-  console.log("Simulating Swap");
-
-  // Trigger simulation when quote is fully available and valid
-
   const handleApproveAndSwap = async () => {
     if (!address || !isAddress(address)) {
       setStatus("Invalid wallet address");
@@ -229,16 +160,55 @@ const TokenSwap: React.FC<TokenSwapProps> = ({
       return;
     }
 
-    if (!quote) {
-      setStatus("No quote available");
+    if (!quote || !quote.transaction) {
+      setStatus("No quote or transaction data available");
+      console.log("Quote:", quote);
       return;
     }
 
+    if (!isAddress(quote.transaction.to)) {
+      setStatus("Invalid transaction 'to' address");
+      console.error("Invalid transaction.to:", quote.transaction.to);
+      return;
+    }
+
+    // Validate quote fields
+    const slippageBuyToken = quote.buyToken || buyToken;
+    if (!isAddress(slippageBuyToken)) {
+      setStatus("Invalid buy token address in quote");
+      console.error("Invalid buyToken:", slippageBuyToken);
+      return;
+    }
+
+    if (!quote.buyAmount || isNaN(Number(quote.buyAmount))) {
+      setStatus("Invalid buy amount in quote");
+      console.error("Invalid buyAmount:", quote.buyAmount);
+      return;
+    }
+
+    // Construct slippage struct with correct buyAmount handling
+    const buyAmountInUnits = BigInt(quote.buyAmount);
+    const minAmountOut = (buyAmountInUnits * BigInt(90)) / BigInt(100); // 10% slippage tolerance
+    const slippage = {
+      recipient: address as `0x${string}`,
+      buyToken: slippageBuyToken as `0x${string}`,
+      minAmountOut,
+    };
+
+    console.log("Slippage:", slippage);
+
     // Check allowance for non-ETH tokens
     if (sellToken !== CONTRACTS.ETH && quote.issues?.allowance?.spender) {
+      if (!isAddress(quote.issues.allowance.spender)) {
+        setStatus("Invalid allowance spender address");
+        console.error(
+          "Invalid allowance spender:",
+          quote.issues.allowance.spender
+        );
+        return;
+      }
       if (BigInt(allowanceData as bigint) < amountInUnits) {
-        setStatus("Approving token...");
-
+        setStatus("Writting contract...");
         try {
           await writeContract({
             address: sellToken as `0x${string}`,
@@ -268,79 +238,66 @@ const TokenSwap: React.FC<TokenSwapProps> = ({
     if (quote.permit2?.eip712) {
       try {
         setStatus("Signing Permit2 data...");
-        console.log("Signing Permit2 data...");
+        console.log("Permit2 EIP-712 data:", quote.permit2.eip712);
 
-        const signature = await signTypedDataAsync({
+        const signature = (await signTypedDataAsync({
           ...quote.permit2.eip712,
           account: address as `0x${string}`,
-        });
-        console.log("signature ", signature);
+        })) as Hex;
+        console.log("Signature:", signature);
 
-        const signatureLengthInHex = numberToHex(signature.length, {
+        // Construct actions array with transaction data
+
+        const signatureLengthInHex = numberToHex(size(signature), {
           signed: false,
           size: 32,
         });
-        console.log("signatureLengthInHex ", signatureLengthInHex);
-        console.log(quote?.transaction.data);
-        console.log({
-          account: address,
-          gas: quote?.transaction.gas
-            ? BigInt(quote?.transaction.gas)
-            : undefined,
-          to: quote?.transaction.to,
-          data: concat([
-            quote?.transaction.data,
-            signatureLengthInHex,
-            signature,
-          ]),
-          chain: arbitrum,
-        });
+        const sigLengthHex = signatureLengthInHex as Hex;
+        const sig = signature as Hex;
 
-        const simulation = await simulateContract(wagmiconfig, {
-          // abi: ETHERSCANABI,
-          value: quote?.transaction.value
-            ? BigInt(quote.transaction.value)
-            : undefined, // value is used for native tokens
-          account: address,
-          gas: quote?.transaction.gas
-            ? BigInt(quote?.transaction.gas)
-            : undefined,
-          to: quote?.transaction.to,
-          data: concat([
-            quote?.transaction.data,
-            signatureLengthInHex,
-            signature,
-          ]),
-          chain: arbitrum,
-        });
+        const actions = concat([quote.transaction.data, sigLengthHex, sig]);
 
-        console.log("simulation", simulation);
+        try {
+          const ContractData = {
+            gas: quote.transaction.gas
+              ? BigInt(quote.transaction.gas)
+              : undefined,
+            to: quote.transaction.to,
+            address: quote.transaction.to as `0x${string}`,
+            data: actions,
+            value: quote.transaction.value
+              ? BigInt(quote.transaction.value)
+              : undefined,
+            gasPrice: quote?.transaction.gasPrice
+              ? BigInt(quote?.transaction.gasPrice)
+              : undefined,
+            chain: arbitrum,
+          };
+
+          // Send the transaction
+
+          console.log("Simulating swap with:", ContractData);
+
+          const transactionHash = await sendTransaction(
+            wagmiconfig,
+            ContractData
+          );
+
+          console.log("Transaction hash:", transactionHash);
+          setStatus(`Transaction sent: ${transactionHash}`);
+        } catch (error) {
+          console.error("Error during simulation or transaction:", error);
+          setStatus(`Error: ${error.message}`);
+          return;
+        }
       } catch (error) {
-        console.error("Error:", error);
-        setStatus("Error");
+        console.error("Error during signing:", error);
+        setStatus(`Error: ${error.message}`);
         return;
       }
-    }
-
-    // Simulate the swap transaction
-    setStatus("Sending swap transaction...");
-
-    try {
-      // const txHash = await sendTransaction({
-      //   to: quote.transaction.to,
-      //   data: txData,
-      //   value: BigInt(quote.transaction.value || 0),
-      //   gas: quote.transaction.gas ? BigInt(quote.transaction.gas) : undefined,
-      //   gasPrice: quote.transaction.gasPrice
-      //     ? BigInt(quote.transaction.gasPrice)
-      //     : undefined,
-      //   chainId: arbitrum.id,
-      // });
-      // setStatus(`Transaction sent! Hash: ${txHash}`);
-      // console.log(`See tx details at https://arbiscan.io/tx/${txHash}`);
-    } catch (error) {
-      console.error("Error sending transaction:", error);
-      setStatus("Error during swap");
+    } else {
+      setStatus("Permit2 data not available");
+      return;
     }
   };
 

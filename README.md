@@ -11,7 +11,7 @@ terminal créer commit push
 Envoyer des coins d'un wallet à l'autre avec metamask
 
 Apprendre git
-    https://www.alchemy.com/faucets/ethereum-sepolia
+https://www.alchemy.com/faucets/ethereum-sepolia
 
 usdc testnet ?
 dotenv
@@ -38,9 +38,7 @@ wagmi -builtontopofethers -> regarder wagmi
 
 🌈 RainbowKit : pour connecter un wallet en 2 clics
 🔌 Wagmi : la couche logique Web3 côté React
-🛠 Hardhat	: Écrire, tester et déployer des smart contracts
-
-
+🛠 Hardhat : Écrire, tester et déployer des smart contracts
 
 rpc alchemy
 
@@ -67,22 +65,24 @@ rust -> backend
 Portfoliot
 
 backend NestJS
-bignumber.js 
+bignumber.js
 
-faire un  token swap sur tesnet
+faire un token swap sur tesnet
 
-de usdc vers 
+de usdc vers
 
 done
-ajouetr https://notistack.com/ pour display transaction sucess ou error 
-display le contenu du swap depuis le hash 
+ajouetr https://notistack.com/ pour display transaction sucess ou error
+display le contenu du swap depuis le hash
 
 https://0x.org/docs/1.0/0x-swap-api/guides/working-in-the-testnet
 
-
-Faire un header pour la connection de wallet 
+Faire un header pour la connection de wallet
 ref: https://matcha.xyz/tokens/ethereum/eth
 
-switch to la bonne blocchain si le wallet est pas connecté à sepolia 
+switch to la bonne blocchain si le wallet est pas connecté à sepolia
 
 info quand je mets la souris dessus ce sort et quand je l'eneleve ca s'enlève
+
+j'utilise ANKR : depuis postman puis en code -> lire ce qu'il y a derrière un wallet
+le but c'est de lire le wallet pour afficher les coins disponibles
