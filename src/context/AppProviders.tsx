@@ -5,7 +5,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { Provider as ReduxProvider } from "react-redux";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { store } from "../redux/store";
-import { config } from "../wagmiConfig";
+import { wagmiconfig } from "../wagmiConfig";
 import theme from "../theme";
 
 const queryClient = new QueryClient();
@@ -13,7 +13,7 @@ const queryClient = new QueryClient();
 const AppProviders = ({ children }: { children: React.ReactNode }) => {
   return (
     <ReduxProvider store={store}>
-      <WagmiProvider config={config}>
+      <WagmiProvider config={wagmiconfig}>
         <QueryClientProvider client={queryClient}>
           <RainbowKitProvider>
             <ThemeProvider theme={theme}>

@@ -3,6 +3,7 @@ import { parseUnits } from "viem";
 import { useAccount } from "wagmi";
 import { sepolia } from "wagmi/chains";
 import { Button, CircularProgress } from "@mui/material";
+import { motion } from "framer-motion";
 import { wagmiconfig } from "../wagmiConfig";
 import { TransactionFail, TransactionSucces } from "./TransactionResponse";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,7 +42,7 @@ type SendTransactionProps = {
 
 export function SendTransaction({ to, myvalue }: SendTransactionProps) {
   const dispatch = useDispatch();
-  let txHash = useSelector((state: RootState) => state.hash.myhash); // Line 20
+  let txHash = useSelector((state: RootState) => state.hash.myhash);
 
   const { address, isConnected } = useAccount();
   const [isLoading, setIsLoading] = useState(false);
@@ -100,21 +101,39 @@ export function SendTransaction({ to, myvalue }: SendTransactionProps) {
   };
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+    >
       <Button
         variant="contained"
-        sx={{ mt: 2 }}
+        sx={{
+          mt: 2,
+          borderRadius: 2,
+          background: "linear-gradient(90deg, #6200ea 0%, #304ffe 100%)",
+          color: "#ffffff",
+          "&:hover": {
+            background: "linear-gradient(90deg, #7f39fb 0%, #3f51b5 100%)",
+          },
+          "&:disabled": {
+            background: "rgba(255, 255, 255, 0.3)",
+            color: "rgba(255, 255, 255, 0.5)",
+          },
+        }}
         fullWidth
         onClick={handleClick}
         disabled={isLoading}
       >
-        {isLoading ? <CircularProgress size={24} /> : "Send"}
+        {isLoading ? (
+          <CircularProgress size={24} sx={{ color: "#ffffff" }} />
+        ) : (
+          "Send"
+        )}
       </Button>
       {isSuccess && <TransactionSucces body="Transaction Success!" />}
-      {error && isConnected && <TransactionFail body={"Transaction Failed!"} />}
-      {error && !isConnected && (
-        <TransactionFail body={"Connect your wallet"} />
-      )}
-    </div>
+      {error && isConnected && <TransactionFail body="Transaction Failed!" />}
+      {error && !isConnected && <TransactionFail body="Connect your wallet" />}
+    </motion.div>
   );
 }
