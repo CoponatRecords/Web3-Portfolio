@@ -1,88 +1,78 @@
-Web3-Portfoliot
-🚀 Overview
-Web3-Portfoliot is a decentralized portfolio tracker designed for Web3 enthusiasts and developers. It allows users to monitor their cryptocurrency holdings and NFT collections across various blockchains, providing a comprehensive overview of their digital assets.
+# Web3-Portfoliot 🧬
 
-🛠️ Features
-Multi-Blockchain Support: Track assets across multiple blockchains.
+Live demo: http://myweb3portfolio.s3-website-us-east-1.amazonaws.com/
 
-NFT Collection Overview: View and manage your NFT holdings.
+A modern, animated, and decentralized-themed portfolio project crafted with React, Wagmi, and Web3 protocols. Designed for developers, artists, and creators looking to showcase their Web3 identity in an immersive and elegant way.
 
-Real-Time Portfolio Updates: Stay updated with real-time data.
+---
 
-User-Friendly Interface: Intuitive design for seamless navigation.
+## ✨ Features
 
-⚙️ Tech Stack
-Frontend: React.js
+- ⚛️ **React + Next.js** — Fast, flexible framework
+- 🔌 **Wagmi + viem** — Smooth wallet integrations and contract interactions
+- 💱 **0x Swap API** — Token swapping integration
+- 🎨 **Custom Canvas Animations** — Elegant, Web3-styled visuals
+- 🪪 **Permit2 Ready** — Future-proof token approval system
+- ⚡ **Modular Components** — Easy to customize and extend
 
-Backend: Node.js, Express.js
+---
 
-Blockchain Integration: Web3.js, Ethers.js
+## 🚀 Getting Started
 
-Database: MongoDB
+### 1. Clone the Repository
 
-Authentication: MetaMask, WalletConnect
-
-📦 Installation
-Prerequisites
-Node.js (v14 or higher)
-
-MongoDB (local or cloud instance)
-
-MetaMask or another Web3 wallet
-
-Steps
-Clone the repository:
-
-bash
-Copy
-Edit
+```bash
 git clone https://github.com/CoponatRecords/Web3-Portfoliot.git
 cd Web3-Portfoliot
-Install dependencies:
-
+2. Install Dependencies
 bash
 Copy
 Edit
 npm install
-Set up environment variables:
-
-Create a .env file in the root directory and add the following:
+# or
+yarn install
+3. Create .env.local
+Set up your environment variables in a .env.local file:
 
 env
 Copy
 Edit
-REACT_APP_INFURA_PROJECT_ID=your_infura_project_id
-REACT_APP_ALCHEMY_API_KEY=your_alchemy_api_key
-MONGO_URI=your_mongodb_connection_string
-Run the application:
-
-bash
-Copy
-Edit
-npm start
-The app should now be accessible at http://localhost:3000.
-
-📱 Usage
-Connect your Web3 wallet (e.g., MetaMask).
-
-Grant the necessary permissions.
-
-View your portfolio, including token balances and NFTs.
-
-🧪 Development
-To contribute or run the project in development mode:
-
+NEXT_PUBLIC_ALCHEMY_API_KEY=your_alchemy_key
+NEXT_PUBLIC_0X_API_BASE=https://api.0x.org
+4. Run the App
 bash
 Copy
 Edit
 npm run dev
-This will start both the frontend and backend servers concurrently.
+# or
+yarn dev
+📦 Tech Stack
+Layer	Tech
+Frontend	React, Next.js, Tailwind CSS
+Web3	Wagmi, viem, ethers.js
+Backend	(optional via 0x + Alchemy)
+Animations	HTML Canvas, custom shaders
 
-📝 License
-This project is licensed under the MIT License.
+🧠 Concepts
+This portfolio is built as a showcase of:
+
+Web3 wallet connectivity
+
+Token swap and DeFi UX
+
+Permit2-based token approvals
+
+Animated, abstract backgrounds
+
+Modular project/data components
+
+🛠️ Roadmap
+
+ Dark/light theme toggle
+
+ Swap history section
 
 🤝 Contributing
-We welcome contributions! Please fork the repository, create a new branch, and submit a pull request with your proposed changes.
+Pull requests, issues, and forks are welcome. If you'd like to collaborate on features like animation, UX, or crypto logic, feel free to open a discussion or PR.
 
-🌐 Demo
-A live demo of Web3-Portfoliot is available at http://myweb3portfolio.s3-website-us-east-1.amazonaws.com/
+```
