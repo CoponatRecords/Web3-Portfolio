@@ -62,21 +62,21 @@ Animations HTML Canvas, custom shaders
 🧠 Concepts
 This portfolio is built as a showcase of:
 
-Web3 wallet connectivity
+- Web3 wallet connectivity
 
-Token swap and DeFi UX
+- Token swap and DeFi UX
 
-Permit2-based token approvals
+- Permit2-based token approvals
 
-Animated, abstract backgrounds
+- Animated, abstract backgrounds
 
-Modular project/data components
+- Modular project/data components
 
 🛠️ Roadmap
 
-Dark/light theme toggle
+- Dark/light theme toggle
 
-Swap history section
+- Swap history section
 
 🤝 Contributing
 Pull requests, issues, and forks are welcome. If you'd like to collaborate on features like animation, UX, or crypto logic, feel free to open a discussion or PR.
