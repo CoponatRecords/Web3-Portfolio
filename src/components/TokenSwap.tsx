@@ -458,7 +458,7 @@ const TokenSwap: React.FC<TokenSwapProps> = ({
     <Card
       sx={{
         background: "linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%)",
-        borderRadius: 4,
+        borderRadius: 1,
         boxShadow:
           expandedTool === "swap"
             ? "0 8px 32px rgba(0, 0, 0, 0.3)"
@@ -475,7 +475,7 @@ const TokenSwap: React.FC<TokenSwapProps> = ({
     >
       <CardHeader
         title={
-          <Box width="100%" textAlign="center" sx={{ gap: { xs: 2, sm: 3 } }}>
+          <Box width="100%" textAlign="center">
             <Typography
               variant="h6"
               sx={{
@@ -558,7 +558,7 @@ const TokenSwap: React.FC<TokenSwapProps> = ({
                               width: "100%",
                               height: "100%",
                               objectFit: "cover",
-                              borderRadius: "50%",
+                              borderRadius: 1,
                             }}
                           />
                         ) : (
@@ -611,7 +611,7 @@ const TokenSwap: React.FC<TokenSwapProps> = ({
                     color: "rgba(255, 255, 255, 0.7)",
                   },
                   background: "rgba(255, 255, 255, 0.1)",
-                  borderRadius: 2,
+                  borderRadius: 1,
                 }}
               />
               <TextField
@@ -644,7 +644,7 @@ const TokenSwap: React.FC<TokenSwapProps> = ({
                     color: "rgba(255, 255, 255, 0.7)",
                   },
                   background: "rgba(255, 255, 255, 0.1)",
-                  borderRadius: 2,
+                  borderRadius: 1,
                 }}
               />
               <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -697,7 +697,7 @@ const TokenSwap: React.FC<TokenSwapProps> = ({
                               width: "100%",
                               height: "100%",
                               objectFit: "cover",
-                              borderRadius: "50%",
+                              borderRadius: 1,
                             }}
                           />
                         ) : (
@@ -750,7 +750,7 @@ const TokenSwap: React.FC<TokenSwapProps> = ({
                     color: "rgba(255, 255, 255, 0.7)",
                   },
                   background: "rgba(255, 255, 255, 0.1)",
-                  borderRadius: 2,
+                  borderRadius: 1,
                 }}
               />
 
@@ -778,7 +778,7 @@ const TokenSwap: React.FC<TokenSwapProps> = ({
                 }
                 variant="contained"
                 sx={{
-                  borderRadius: 2,
+                  borderRadius: 1,
                   background:
                     "linear-gradient(90deg, #6200ea 0%, #304ffe 100%)",
                   color: "#ffffff",

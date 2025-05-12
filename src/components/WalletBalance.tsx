@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import {
   Stack,
@@ -21,6 +22,13 @@ import { useAccount } from "wagmi";
 import { Alchemy, Network } from "alchemy-sdk";
 import TokenIcon from "@mui/icons-material/Token";
 
+// Constants
+const ALCHEMY_CONFIG = {
+  apiKey: import.meta.env.VITE_ALCHEMY_API_KEY,
+  network: Network.ARB_MAINNET,
+};
+
+// Types
 type TokenBalanceProps = {
   expandedTool: "send" | "read" | "graph" | "swap" | "balance" | null;
   handleToolClick: (
@@ -28,29 +36,38 @@ type TokenBalanceProps = {
   ) => void;
 };
 
-const ALCHEMY_API_KEY = import.meta.env.VITE_ALCHEMY_API_KEY;
-
-const config = {
-  apiKey: ALCHEMY_API_KEY,
-  network: Network.ARB_MAINNET,
+type TokenAsset = {
+  metadata: { name: string; symbol: string; logo?: string };
+  balance: number;
 };
 
-const alchemy = new Alchemy(config);
+// Styles
+const commonTextFieldSx = {
+  "& .MuiInputBase-input": {
+    fontSize: { xs: "0.875rem", sm: "1rem" },
+    color: "#ffffff",
+  },
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderColor: "rgba(255, 255, 255, 0.3)",
+  },
+  "& .MuiInputLabel-root": {
+    color: "rgba(255, 255, 255, 0.7)",
+  },
+  background: "rgba(255, 255, 255, 0.1)",
+  borderRadius: 1,
+};
 
+// Main Component
 const WalletBalance: React.FC<TokenBalanceProps> = ({
   expandedTool,
   handleToolClick,
 }) => {
   const { address } = useAccount();
   const [walletAddress, setWalletAddress] = useState<string>("");
-  const [walletContent, setWalletContent] = useState<
-    {
-      metadata: { name: string; symbol: string; logo?: string };
-      balance: number;
-    }[]
-  >([]);
+  const [walletContent, setWalletContent] = useState<TokenAsset[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const alchemy = new Alchemy(ALCHEMY_CONFIG);
 
   useEffect(() => {
     if (address && address !== walletAddress) {
@@ -66,28 +83,18 @@ const WalletBalance: React.FC<TokenBalanceProps> = ({
       return;
     }
 
-    setLoading(true);
-
     const fetchTokenBalances = async () => {
+      setLoading(true);
       try {
         const response = await alchemy.core.getTokenBalances(walletAddress);
-        const walletContentList: {
-          metadata: { name: string; symbol: string; logo?: string };
-          balance: number;
-        }[] = [];
+        const walletContentList: TokenAsset[] = [];
 
         for (const token of response.tokenBalances) {
           const balance = parseInt(token.tokenBalance as string, 16);
-
           if (balance !== 0) {
             const metadata = await alchemy.core.getTokenMetadata(
               token.contractAddress
             );
-            console.log("Token Metadata:", {
-              contractAddress: token.contractAddress,
-              metadata,
-            });
-
             const formattedBalance =
               balance / Math.pow(10, metadata.decimals || 18);
             const symbol =
@@ -101,15 +108,6 @@ const WalletBalance: React.FC<TokenBalanceProps> = ({
               },
               balance: formattedBalance,
             });
-
-            console.log(
-              "Formatted Balance:",
-              formattedBalance,
-              "Symbol:",
-              symbol,
-              "Logo:",
-              metadata.logo
-            );
           }
         }
 
@@ -130,7 +128,7 @@ const WalletBalance: React.FC<TokenBalanceProps> = ({
     <Card
       sx={{
         background: "linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%)",
-        borderRadius: 4,
+        borderRadius: 1,
         boxShadow:
           expandedTool === "balance"
             ? "0 8px 32px rgba(0, 0, 0, 0.3)"
@@ -138,7 +136,6 @@ const WalletBalance: React.FC<TokenBalanceProps> = ({
         transform: expandedTool === "balance" ? "scale(1.02)" : "scale(1)",
         transition: "transform 0.3s ease, box-shadow 0.3s ease",
         zIndex: expandedTool === "balance" ? 2 : 1,
-        cursor: "pointer",
         width: { xs: "100%", sm: "400px" },
         "&:hover": {
           transform: expandedTool !== "balance" ? "scale(1.05)" : "scale(1.02)",
@@ -192,27 +189,10 @@ const WalletBalance: React.FC<TokenBalanceProps> = ({
               <TextField
                 label="Wallet Address"
                 value={walletAddress}
-                onChange={(e) => {
-                  e.stopPropagation();
-                  setWalletAddress(e.target.value);
-                }}
-                onClick={(e) => e.stopPropagation()}
+                onChange={(e) => setWalletAddress(e.target.value)}
                 fullWidth
                 variant="outlined"
-                sx={{
-                  "& .MuiInputBase-input": {
-                    fontSize: { xs: "0.875rem", sm: "1rem" },
-                    color: "#ffffff",
-                  },
-                  "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "rgba(255, 255, 255, 0.3)",
-                  },
-                  "& .MuiInputLabel-root": {
-                    color: "rgba(255, 255, 255, 0.7)",
-                  },
-                  background: "rgba(255, 255, 255, 0.1)",
-                  borderRadius: 2,
-                }}
+                sx={commonTextFieldSx}
               />
               {error ? (
                 <Typography
@@ -241,7 +221,7 @@ const WalletBalance: React.FC<TokenBalanceProps> = ({
                   sx={{
                     p: 0,
                     bgcolor: "rgba(255, 255, 255, 0.05)",
-                    borderRadius: 2,
+                    borderRadius: 1,
                   }}
                 >
                   {walletContent.map((asset, index) => (
@@ -279,7 +259,7 @@ const WalletBalance: React.FC<TokenBalanceProps> = ({
                                 width: "100%",
                                 height: "100%",
                                 objectFit: "cover",
-                                borderRadius: "50%",
+                                borderRadius: 1,
                               }}
                             />
                           ) : (
@@ -316,7 +296,6 @@ const WalletBalance: React.FC<TokenBalanceProps> = ({
                   ))}
                 </List>
               )}
-
               <Typography
                 variant="caption"
                 sx={{

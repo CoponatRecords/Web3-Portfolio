@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -76,10 +76,6 @@ const ReadATransaction = ({
     null
   );
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    console.log("Redux hash:", hash);
-  }, [hash]);
 
   const handleIconClick = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
@@ -164,7 +160,7 @@ const ReadATransaction = ({
     <Card
       sx={{
         background: "linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%)",
-        borderRadius: 4,
+        borderRadius: 1,
         boxShadow:
           expandedTool === "read"
             ? "0 8px 32px rgba(0, 0, 0, 0.3)"
@@ -269,7 +265,7 @@ const ReadATransaction = ({
                     color: "rgba(255, 255, 255, 0.7)",
                   },
                   background: "rgba(255, 255, 255, 0.1)",
-                  borderRadius: 2,
+                  borderRadius: 1,
                 }}
               />
               <ReadTransaction myhash={hash} />
@@ -277,7 +273,7 @@ const ReadATransaction = ({
                 variant="contained"
                 sx={{
                   mt: 2,
-                  borderRadius: 2,
+                  borderRadius: 1,
                   background:
                     "linear-gradient(90deg, #6200ea 0%, #304ffe 100%)",
                   color: "#ffffff",

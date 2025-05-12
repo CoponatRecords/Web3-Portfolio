@@ -27,10 +27,12 @@ ChartJS.register(
 type ChartData = {
   labels: string[];
   datasets: {
+    borderWidth: number;
     label: string;
     data: number[];
     borderColor: string;
     fill: boolean;
+    pointRadius: number;
   }[];
 };
 
@@ -54,7 +56,9 @@ const ChartComponent = ({ coin }: ChartComponentProps) => {
     labels: [],
     datasets: [
       {
-        label: "Price",
+        pointRadius: 0,
+        borderWidth: 1,
+        label: "",
         data: [],
         borderColor: "rgb(75, 192, 192)",
         fill: false,
@@ -93,8 +97,18 @@ const ChartComponent = ({ coin }: ChartComponentProps) => {
 
   return (
     <div>
-      <h2>Live {coin.toUpperCase()}/USDT Chart</h2>
-      <Line ref={chartRef} data={chartData} />
+      <h5>Live {coin.toUpperCase()}/USD</h5>
+      <Line
+        ref={chartRef}
+        data={chartData}
+        options={{
+          plugins: {
+            legend: {
+              display: false, // 👈 removes the square and label above the chart
+            },
+          },
+        }}
+      />
       <WebSocketComponent onMessage={handleWebSocketMessage} coin={coin} />
     </div>
   );

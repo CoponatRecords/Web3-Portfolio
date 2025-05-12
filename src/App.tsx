@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, lazy, Suspense } from "react";
 import {
   Box,
   Container,
@@ -6,6 +6,7 @@ import {
   Popover,
   Typography,
   Button,
+  CircularProgress,
 } from "@mui/material";
 import { ThemeProvider, styled } from "@mui/material/styles";
 import { WagmiProvider } from "wagmi";
@@ -17,18 +18,20 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import theme from "./theme";
 import { wagmiconfig } from "./wagmiConfig";
-import SendUSDC from "./components/SendUSDCProps";
-import InfoSection from "./components/InfoSection";
 import "@rainbow-me/rainbowkit/styles.css";
 import "./App.css";
 import { store } from "./redux/store";
 import { SnackbarProvider } from "notistack";
-import ReadATransaction from "./components/ReadATransaction";
 import ButtonAppBar from "./components/AppBar";
-import TokenSwap from "./components/TokenSwap";
-import WalletBalance from "./components/WalletBalance";
-import { GraphACoin } from "./components/GraphACoin";
 import Squares from "./animations/Squares";
+
+// Lazy load components for better performance
+const SendUSDC = lazy(() => import("./components/SendUSDCProps"));
+const InfoSection = lazy(() => import("./components/InfoSection"));
+const ReadATransaction = lazy(() => import("./components/ReadATransaction"));
+const TokenSwap = lazy(() => import("./components/TokenSwap"));
+const WalletBalance = lazy(() => import("./components/WalletBalance"));
+const GraphACoin = lazy(() => import("./components/GraphACoin"));
 
 const queryClient = new QueryClient();
 
@@ -39,8 +42,14 @@ const GlassContainer = styled(Container)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   border: "1px solid rgba(255, 255, 255, 0.15)",
   padding: theme.spacing(2),
+  [theme.breakpoints.down("sm")]: {
+    padding: theme.spacing(1.5),
+    maxWidth: "100%",
+    margin: theme.spacing(1),
+  },
   [theme.breakpoints.up("sm")]: {
     padding: theme.spacing(3),
+    maxWidth: "600px",
   },
 }));
 
@@ -82,18 +91,76 @@ const App = () => {
   const id = open ? "simple-popover" : undefined;
 
   const itemVariants = {
-    gap: { xs: 2, sm: 3 }, // Increased gap for tool spacing
-
-    hidden: { opacity: 0, y: 10 },
-    visible: {
+    initial: {
+      opacity: 0,
+      scale: 0.95, // Start with a slight scale down for smooth entry
+    },
+    animate: {
       opacity: 1,
-      y: 0,
-      transition: { duration: 0.4, ease: "easeOut" },
+      scale: 1, // Scale to normal size
+      transition: {
+        duration: 0.4,
+        ease: "easeOut",
+        delay: 0.2, // Small delay to stagger animation
+      },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.95, // Fade out with scale down
+      transition: {
+        duration: 0.3,
+        ease: "easeIn",
+      },
+    },
+    hover: {
+      scale: 1.05, // Slightly scale up on hover for interactivity
+      transition: {
+        duration: 0.2,
+        ease: "easeOut",
+      },
     },
   };
 
   const name = "Sebastien Coponat";
-  const qualifications = "Blockchain Developer | React & Web3"; // Update with your qualifications
+  const qualificationsTitle = "Web3 Frontend Developer";
+
+  const stackList = [
+    "React",
+    "TypeScript",
+    "Wagmi",
+    "RainbowKit",
+    "ZeroX API & Permit2",
+    "Permit2",
+    "ethers.js v6",
+    "Viem",
+    "Binance WebSocket",
+    "Redux",
+    "MUI",
+    "Framer Motion",
+    "Prettier",
+    "Git & GitHub",
+    "@tanstack/react-query",
+    "notistack",
+  ];
+
+  const techLinks: { [key: string]: string } = {
+    React: "https://react.dev",
+    TypeScript: "https://www.typescriptlang.org",
+    Wagmi: "https://wagmi.sh",
+    RainbowKit: "https://www.rainbowkit.com",
+    "ZeroX API & Permit2": "https://0x.org",
+    "ethers.js v6": "https://docs.ethers.org",
+    Viem: "https://viem.sh",
+    "Binance WebSocket":
+      "https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams",
+    Redux: "https://redux.js.org",
+    MUI: "https://mui.com",
+    "Framer Motion": "https://www.framer.com/motion",
+    Prettier: "https://prettier.io",
+    "Git & GitHub": "https://github.com",
+    "@tanstack/react-query": "https://tanstack.com/query",
+    notistack: "https://notistack.com",
+  };
 
   return (
     <SnackbarProvider>
@@ -111,9 +178,10 @@ const App = () => {
                     width: "100%",
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
                     alignItems: "center",
                     background: "transparent",
+                    overflowX: "hidden",
                   }}
                 >
                   <ButtonAppBar />
@@ -123,15 +191,15 @@ const App = () => {
                       flex: 1,
                       display: "flex",
                       justifyContent: "center",
-                      alignItems: "center",
+                      alignItems: "flex-start",
                       width: "100%",
-                      p: { xs: 1, sm: 2 },
+                      p: { xs: 0, sm: 2 },
                     }}
                   >
                     <Squares
                       direction="diagonal"
                       speed={0.3}
-                      squareSize={20}
+                      squareSize={15}
                       fadeDuration={1200}
                       hoverStrength={0.8}
                       gravityStrength={1000}
@@ -140,19 +208,17 @@ const App = () => {
                       squareBorderOpacity={0.01}
                       hoverFillColor="#6f00ff"
                       borderColor="#00f7ff"
-                      particleCount={2}
+                      particleCount={1}
                     />
                     <GlassContainer
-                      maxWidth="sm"
                       sx={{
                         justifyContent: "center",
                         zIndex: 2,
-                        maxWidth: { xs: "95%", sm: 600 },
+                        width: { xs: "100%", sm: "600px" },
                         display: "flex",
                         flexDirection: "column",
-
                         alignItems: "center",
-                        gap: { xs: 2, sm: 3 }, // Increased gap for tool spacing
+                        gap: { xs: 1.5, sm: 2 },
                       }}
                     >
                       {/* Name, Qualifications, and LinkedIn */}
@@ -167,6 +233,10 @@ const App = () => {
                             color: "#ffffff",
                             fontWeight: 600,
                             textShadow: "0 0 6px rgba(111, 0, 255, 0.4)",
+                            fontSize: {
+                              xs: "clamp(1.2rem, 5vw, 1.5rem)",
+                              sm: "1.75rem",
+                            },
                           }}
                         >
                           {name}
@@ -177,31 +247,99 @@ const App = () => {
                             color: "rgba(255, 255, 255, 0.8)",
                             mt: 0.5,
                             fontWeight: 400,
+                            textAlign: "center",
+                            fontSize: { xs: "0.75rem", sm: "0.875rem" },
                           }}
                         >
-                          {qualifications}
+                          <Button
+                            href="https://www.linkedin.com/in/vacher-coponat/?locale=en_US"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            startIcon={
+                              <LinkedInIcon sx={{ fontSize: "1.25rem" }} />
+                            }
+                            sx={{
+                              color: "#00f7ff",
+                              fontSize: { xs: "0.75rem", sm: "0.875rem" },
+                              fontWeight: 400,
+                              textTransform: "none",
+                              "&:hover": {
+                                color: "#1acccc",
+                                textShadow: "0 0 6px rgba(0, 247, 255, 0.4)",
+                              },
+                              "&:active": {
+                                color: "#1acccc",
+                              },
+                            }}
+                          >
+                            LinkedIn
+                          </Button>
+                          {qualificationsTitle}
                         </Typography>
-                        <Button
-                          href="https://www.linkedin.com/in/vacher-coponat/?locale=en_US"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          startIcon={
-                            <LinkedInIcon sx={{ fontSize: "1.25rem" }} />
-                          }
+
+                        <Box
                           sx={{
+                            display: "flex",
+                            flexWrap: "wrap",
+                            justifyContent: "center",
+                            gap: { xs: 0.5, sm: 1 },
                             mt: 1,
-                            color: "#00f7ff",
-                            fontSize: "0.75rem",
-                            fontWeight: 400,
-                            textTransform: "none",
-                            "&:hover": {
-                              color: "#1acccc",
-                              textShadow: "0 0 6px rgba(0, 247, 255, 0.4)",
-                            },
                           }}
                         >
-                          LinkedIn
-                        </Button>
+                          {stackList.map((tech) => (
+                            <motion.div
+                              key={tech}
+                              whileHover={{
+                                scale: 1.1,
+                                transition: { duration: 0.3, ease: "easeOut" },
+                              }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <Button
+                                href={techLinks[tech]}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                sx={{
+                                  px: { xs: 1, sm: 1.5 },
+                                  py: { xs: 0.4, sm: 0.5 },
+                                  fontSize: { xs: "0.65rem", sm: "0.75rem" },
+                                  background: "rgba(255, 255, 255, 0.1)",
+                                  borderRadius: 1,
+                                  color: "#00f7ff",
+                                  border: "1px solid rgba(0, 247, 255, 0.4)",
+                                  boxShadow: "0 0 6px rgba(0, 247, 255, 0.2)",
+                                  backdropFilter: "blur(6px)",
+                                  textTransform: "none",
+                                  position: "relative",
+                                  overflow: "hidden",
+                                  minWidth: "60px",
+                                  "&:hover": {
+                                    color: "#1acccc",
+                                    background:
+                                      "linear-gradient(90deg, rgba(111, 0, 255, 0.47), rgba(0, 247, 255, 0.51), rgba(111, 0, 255, 0.51))",
+                                    backgroundSize: "200%",
+                                    animation:
+                                      "moveGradient 3s linear infinite",
+                                    boxShadow:
+                                      "0 0 12px rgba(0, 247, 255, 0.6)",
+                                    border: "1px solid rgba(0, 247, 255, 0.8)",
+                                    textShadow:
+                                      "0 0 6px rgba(0, 247, 255, 0.5)",
+                                  },
+                                  "&:active": {
+                                    background: "rgba(0, 247, 255, 0.3)",
+                                  },
+                                  "@keyframes moveGradient": {
+                                    "0%": { backgroundPosition: "0% 50%" },
+                                    "100%": { backgroundPosition: "200% 50%" },
+                                  },
+                                }}
+                              >
+                                {tech}
+                              </Button>
+                            </motion.div>
+                          ))}
+                        </Box>
                       </motion.div>
 
                       {/* Tools */}
@@ -209,53 +347,77 @@ const App = () => {
                         sx={{
                           display: "flex",
                           flexDirection: "column",
-                          gap: { xs: 1, sm: 2 }, // 32px on xs, 48px on sm
-                          width: "100%",
-                          alignItems: "center",
-                          // Debugging: Add background to visualize container
+                          gap: { xs: 1, sm: 1.5 },
+                          width: "100%", // Full width for the Box itself
+                          maxWidth: "100%", // Prevents overflow
+                          alignItems: "center", // Always center child elements horizontally
+                          boxSizing: "border-box", // Ensures no overflow from padding/margins
+                          "& > *": {
+                            width: { xs: "100%", sm: "auto" }, // Full width on small screens, auto on larger
+                            maxWidth: "100%", // Prevents child elements from overflowing
+                          },
                         }}
                       >
-                        <motion.div variants={itemVariants}>
-                          <TokenSwap
-                            expandedTool={expandedTool}
-                            handleToolClick={handleToolClick}
-                          />
-                        </motion.div>
-                        <motion.div variants={itemVariants}>
-                          <WalletBalance
-                            expandedTool={expandedTool}
-                            handleToolClick={handleToolClick}
-                          />
-                        </motion.div>
-                        <motion.div variants={itemVariants}>
-                          <SendUSDC
-                            expandedTool={expandedTool}
-                            handleToolClick={handleToolClick}
-                            setAnchorEl={setAnchorEl}
-                          />
-                        </motion.div>
-                        <motion.div variants={itemVariants}>
-                          <ReadATransaction
-                            expandedTool={expandedTool}
-                            handleToolClick={handleToolClick}
-                            setAnchorEl={setAnchorEl}
-                          />
-                        </motion.div>
-                        <motion.div variants={itemVariants}>
-                          <GraphACoin
-                            expandedTool={expandedTool}
-                            handleToolClick={handleToolClick}
-                          />
-                        </motion.div>
+                        <Suspense fallback={<CircularProgress />}>
+                          <motion.div variants={itemVariants}>
+                            <TokenSwap
+                              expandedTool={expandedTool}
+                              handleToolClick={handleToolClick}
+                            />
+                          </motion.div>
+                          <motion.div variants={itemVariants}>
+                            <WalletBalance
+                              expandedTool={expandedTool}
+                              handleToolClick={handleToolClick}
+                            />
+                          </motion.div>
+                          <motion.div variants={itemVariants}>
+                            <SendUSDC
+                              expandedTool={expandedTool}
+                              handleToolClick={handleToolClick}
+                              setAnchorEl={setAnchorEl}
+                            />
+                          </motion.div>
+                          <motion.div variants={itemVariants}>
+                            <ReadATransaction
+                              expandedTool={expandedTool}
+                              handleToolClick={handleToolClick}
+                              setAnchorEl={setAnchorEl}
+                            />
+                          </motion.div>
+                          <motion.div
+                            variants={itemVariants}
+                            style={{
+                              width: expandedTool === Tool.GRAPH ? "100%" : "",
+                            }}
+                          >
+                            {" "}
+                            <GraphACoin
+                              expandedTool={expandedTool}
+                              handleToolClick={handleToolClick}
+                            />
+                          </motion.div>
+                        </Suspense>
                         <motion.div
                           variants={itemVariants}
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.98 }}
                         >
-                          <motion.div
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.03 }}
-                            whileTap={{ scale: 0.98 }}
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: { xs: 1, sm: 1.5 },
+                              width: "100%", // Full width for the Box itself
+                              maxWidth: "100%", // Prevents overflow
+                              alignItems: "center", // Always center child elements horizontally
+                              justifyContent: "center", // Ensure vertical centering if needed
+                              boxSizing: "border-box", // Ensures no overflow from padding/margins
+                              "& > *": {
+                                width: { xs: "100%", sm: "auto" }, // Full width on small screens for children, auto on larger
+                                maxWidth: { xs: "100%", sm: "300px" }, // Full width on small, constrained on larger
+                              },
+                            }}
                           >
                             <Button
                               variant="contained"
@@ -266,7 +428,7 @@ const App = () => {
                                 <GitHubIcon sx={{ fontSize: "1.25rem" }} />
                               }
                               sx={{
-                                borderRadius: 2,
+                                borderRadius: 1,
                                 background:
                                   "linear-gradient(90deg, #6f00ff, #00f7ff)",
                                 color: "#ffffff",
@@ -276,17 +438,27 @@ const App = () => {
                                   boxShadow:
                                     "0 4px 16px rgba(111, 0, 255, 0.3)",
                                 },
+                                "&:active": {
+                                  background:
+                                    "linear-gradient(90deg, #8b3bff, #1acccc)",
+                                },
                                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                                 fontWeight: 500,
                                 textTransform: "none",
-                                py: 1,
-                                px: 3,
-                                mt: 2,
+                                py: { xs: 0.8, sm: 1 },
+                                px: { xs: 2, sm: 3 },
+                                mt: 1.5,
+                                width: { xs: "auto", sm: "auto" }, // Override Box's full-width, use natural width
+                                minWidth: { xs: "150px", sm: "150px" }, // Consistent minWidth, not 50%
+                                maxWidth: { xs: "300px", sm: "300px" }, // Constrain width on all screens
+                                alignSelf: "center", // Reinforce centering
+                                display: "flex", // Ensure Button's content is centered internally
+                                justifyContent: "center", // Center Button's content
                               }}
                             >
                               View Source on GitHub
                             </Button>
-                          </motion.div>
+                          </Box>
                         </motion.div>
                       </Box>
                       <Popover
@@ -306,27 +478,33 @@ const App = () => {
                         }}
                         PaperProps={{
                           sx: {
-                            maxWidth: { xs: "90vw", sm: "400px" },
+                            maxWidth: { xs: "85vw", sm: "400px" },
                             width: "100%",
                             background: "rgba(255, 255, 255, 0.1)",
                             backdropFilter: "blur(8px)",
-                            borderRadius: 4,
+                            borderRadius: 1,
                             border: "1px solid rgba(255, 255, 255, 0.15)",
                             color: "#ffffff",
+                            overflowY: "auto",
                           },
                         }}
                       >
-                        <Typography
-                          sx={{
-                            p: { xs: 1.5, sm: 2 },
-                            textAlign: "center",
-                            color: "#ffffff",
-                            fontWeight: 400,
-                          }}
-                          component="div"
+                        <Suspense
+                          fallback={<Typography>Loading...</Typography>}
                         >
-                          <InfoSection item={popoverRef} />
-                        </Typography>
+                          <Typography
+                            sx={{
+                              p: { xs: 1, sm: 2 },
+                              textAlign: "center",
+                              color: "#ffffff",
+                              fontWeight: 400,
+                              fontSize: { xs: "0.75rem", sm: "0.875rem" },
+                            }}
+                            component="div"
+                          >
+                            <InfoSection item={popoverRef} />
+                          </Typography>
+                        </Suspense>
                       </Popover>
                     </GlassContainer>
                   </Box>

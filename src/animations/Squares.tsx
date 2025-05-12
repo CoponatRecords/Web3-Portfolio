@@ -70,7 +70,6 @@ const Squares: React.FC<SquaresProps> = ({
         canvas.style.height = `${window.innerHeight}px`;
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.scale(dpr, dpr);
-        console.log("Canvas resized:", canvas.width, canvas.height);
       } catch (e) {
         console.error("Resize error:", e);
       }

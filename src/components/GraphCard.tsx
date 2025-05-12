@@ -19,7 +19,7 @@ const GraphCard: React.FC<Props> = ({ expanded, onClick }) => (
   <Card
     sx={{
       background: "linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%)",
-      borderRadius: 4,
+      borderRadius: 1,
       boxShadow: expanded
         ? "0 8px 32px rgba(0, 0, 0, 0.3)"
         : "0 4px 16px rgba(0, 0, 0, 0.2)",

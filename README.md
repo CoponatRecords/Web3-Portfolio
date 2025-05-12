@@ -86,3 +86,6 @@ info quand je mets la souris dessus ce sort et quand je l'eneleve ca s'enlève
 
 j'utilise ANKR : depuis postman puis en code -> lire ce qu'il y a derrière un wallet
 le but c'est de lire le wallet pour afficher les coins disponibles
+
+contrat qui swap avec seuil d'allowance
+deployer un subgraph puit des querries qui me donne l'info qui m'intéresse

@@ -19,7 +19,7 @@ const theme = createTheme({
     },
   },
   shape: {
-    borderRadius: 12,
+    borderRadius: 1,
   },
   typography: {
     fontFamily: "'Roboto', sans-serif",

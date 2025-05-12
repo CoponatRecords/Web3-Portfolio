@@ -20,7 +20,7 @@ export const TransactionSucces = ({ body }: BodyProps) => {
       style: {
         background: "rgba(255, 255, 255, 0.05)",
         color: "#ffffff",
-        borderRadius: "2px",
+        borderRadius: 1,
         boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
         fontSize: "1rem",
       },
@@ -28,7 +28,7 @@ export const TransactionSucces = ({ body }: BodyProps) => {
         <Button
           onClick={() => closeSnackbar(key)}
           sx={{
-            borderRadius: 2,
+            borderRadius: 1,
             background: "linear-gradient(90deg, #6200ea 0%, #304ffe 100%)",
             color: "#ffffff",
             "&:hover": {
@@ -53,7 +53,7 @@ export const TransactionSucces = ({ body }: BodyProps) => {
       <Box
         sx={{
           background: "rgba(255, 255, 255, 0.05)",
-          borderRadius: 2,
+          borderRadius: 1,
           p: 2,
           textAlign: "center",
         }}
@@ -86,7 +86,7 @@ export const TransactionFail = ({ body }: BodyProps) => {
       style: {
         background: "rgba(255, 255, 255, 0.05)",
         color: "#f44336",
-        borderRadius: "2px",
+        borderRadius: 1,
         boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
         fontSize: "1rem",
       },
@@ -94,7 +94,7 @@ export const TransactionFail = ({ body }: BodyProps) => {
         <Button
           onClick={() => closeSnackbar(key)}
           sx={{
-            borderRadius: 2,
+            borderRadius: 1,
             background: "linear-gradient(90deg, #6200ea 0%, #304ffe 100%)",
             color: "#ffffff",
             "&:hover": {
@@ -119,7 +119,7 @@ export const TransactionFail = ({ body }: BodyProps) => {
       <Box
         sx={{
           background: "rgba(255, 255, 255, 0.05)",
-          borderRadius: 2,
+          borderRadius: 1,
           p: 2,
           textAlign: "center",
         }}

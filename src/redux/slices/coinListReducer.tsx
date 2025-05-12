@@ -9,16 +9,25 @@ type CoinListState = {
   coins: CoinItem[];
 };
 
-// Function to load coins from localStorage (if available)
+// Function to load coins from localStorage
 const loadFromLocalStorage = (): CoinItem[] => {
   try {
     const storedCoins = localStorage.getItem("coins");
     if (storedCoins) {
-      return JSON.parse(storedCoins);
+      const parsedCoins = JSON.parse(storedCoins);
+      // Validate that parsedCoins is an array of CoinItem
+      if (
+        Array.isArray(parsedCoins) &&
+        parsedCoins.every(
+          (item) => typeof item.id === "number" && typeof item.coin === "string"
+        )
+      ) {
+        return parsedCoins;
+      }
     }
     return [];
   } catch (error) {
-    console.log(`error ${error}`);
+    console.warn(`Error loading from localStorage: ${error}`);
     return [];
   }
 };
@@ -32,8 +41,25 @@ const saveToLocalStorage = (coins: CoinItem[]): void => {
   }
 };
 
+// Define the default coin (Bitcoin, compatible with CoinItem)
+const defaultCoin: CoinItem = {
+  id: Date.now(), // Generate unique ID // Use a fixed number for the default coin
+  coin: "btc",
+};
+
+// Define the initial state
+const initialCoins = (() => {
+  const storedCoins = loadFromLocalStorage();
+  if (Array.isArray(storedCoins) && storedCoins.length > 0) {
+    return storedCoins;
+  } else {
+    saveToLocalStorage([defaultCoin]); // ✅ Save default to localStorage
+    return [defaultCoin];
+  }
+})();
+
 const initialState: CoinListState = {
-  coins: loadFromLocalStorage(), // Load coins from localStorage if available
+  coins: initialCoins,
 };
 
 const coinListSlice = createSlice({
@@ -45,28 +71,24 @@ const coinListSlice = createSlice({
       const coinExists = state.coins.some((item) => item.coin === coin);
 
       if (!coinExists) {
-        const id = Date.now();
+        const id = Date.now(); // Generate unique ID
         state.coins.push({ id, coin });
-        saveToLocalStorage(state.coins);
       } else {
         console.info(`${coin} already exists in the list.`);
       }
 
       saveToLocalStorage(state.coins); // Save updated state to localStorage
-      console.log("Coins added:", JSON.parse(JSON.stringify(state.coins))); // Log the updated coin list
+      console.log("Coins added:", state.coins); // Log the updated coin list
     },
     removeCoin: (state, action: PayloadAction<number>) => {
       state.coins = state.coins.filter((coin) => coin.id !== action.payload);
       saveToLocalStorage(state.coins); // Save updated state to localStorage
-      console.log("Coin removed:", JSON.parse(JSON.stringify(state.coins))); // Log the updated coin list
+      console.log("Coin removed:", state.coins); // Log the updated coin list
     },
     clearCoins: (state) => {
-      state.coins = [];
+      state.coins = [defaultCoin]; // Reset to default coin instead of empty
       saveToLocalStorage(state.coins); // Save updated state to localStorage
-      console.log(
-        "All coins removed:",
-        JSON.parse(JSON.stringify(state.coins))
-      ); // Log the updated coin list
+      console.log("Coins reset to default:", state.coins); // Log the updated coin list
     },
   },
 });
