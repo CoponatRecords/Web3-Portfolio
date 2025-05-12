@@ -111,7 +111,6 @@ const Squares: React.FC<SquaresProps> = ({
             life: 1,
           });
         }
-        console.log("Particles created:", particlesRef.current.length);
       } catch (e) {
         console.error("Create particle error:", e);
       }
@@ -156,18 +155,12 @@ const Squares: React.FC<SquaresProps> = ({
       try {
         timeRef.current = time * 0.001;
         if (!ctx) {
-          console.error("Context is null in drawGrid");
           return;
         }
-
-        console.log("Drawing frame at time:", time);
 
         ctx.save();
         ctx.globalAlpha = 1;
 
-        if (time - lastRenderTime.current > 1000) {
-          console.warn("Forcing redraw due to long pause");
-        }
         lastRenderTime.current = time;
 
         ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
@@ -216,7 +209,6 @@ const Squares: React.FC<SquaresProps> = ({
                 ctx.globalAlpha = 1;
               } else {
                 activeSquaresRef.current.delete(key);
-                console.log("Removed square:", key);
               }
             }
 
@@ -233,11 +225,6 @@ const Squares: React.FC<SquaresProps> = ({
             ctx.fill();
           }
         }
-
-        console.log(
-          `Active Squares: ${activeSquaresRef.current.size}, Particles: ${particlesRef.current.length}, Grid Offset:`,
-          gridOffset.current
-        );
 
         ctx.restore();
       } catch (e) {
@@ -272,7 +259,6 @@ const Squares: React.FC<SquaresProps> = ({
               (gridOffset.current.y - s + squareSize) % squareSize;
             break;
         }
-        console.log("Grid offset updated:", gridOffset.current);
       } catch (e) {
         console.error("Update offset error:", e);
       }
@@ -286,7 +272,6 @@ const Squares: React.FC<SquaresProps> = ({
         updateOffset(deltaTime);
         drawGrid(time);
         requestRef.current = requestAnimationFrame(loop);
-        console.log("Animation loop running at time:", time);
       } catch (e) {
         console.error("Animation loop error:", e);
         requestRef.current = requestAnimationFrame(loop);
@@ -311,7 +296,6 @@ const Squares: React.FC<SquaresProps> = ({
             y: baseY,
           });
           createParticle(baseX, baseY, squareSize);
-          console.log("Added square:", key, "at", baseX, baseY);
         }
       } catch (e) {
         console.error("Mouse move error:", e);
@@ -320,13 +304,11 @@ const Squares: React.FC<SquaresProps> = ({
 
     canvas.addEventListener("mousemove", handleMouseMove);
     requestRef.current = requestAnimationFrame(loop);
-    console.log("Animation loop started");
 
     return () => {
       window.removeEventListener("resize", resize);
       canvas.removeEventListener("mousemove", handleMouseMove);
       if (requestRef.current) cancelAnimationFrame(requestRef.current);
-      console.log("Animation loop stopped");
     };
   }, [
     direction,
