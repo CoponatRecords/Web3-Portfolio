@@ -2,7 +2,9 @@
 
 Live demo: http://myweb3portfolio.s3-website-us-east-1.amazonaws.com/
 
-A modern, animated, and decentralized-themed portfolio project crafted with React, Wagmi, and Web3 protocols. Designed for developers, artists, and creators looking to showcase their Web3 identity in an immersive and elegant way.
+A modern, animated, and decentralized-themed portfolio project crafted with React, Wagmi, and Web3 protocols.
+
+Designed to showcase a Web3 skillset in an immersive and elegant way.
 
 ---
 
