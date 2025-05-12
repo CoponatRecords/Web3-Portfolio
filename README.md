@@ -1,91 +1,88 @@
-# React + TypeScript + Vite
+Web3-Portfoliot
+🚀 Overview
+Web3-Portfoliot is a decentralized portfolio tracker designed for Web3 enthusiasts and developers. It allows users to monitor their cryptocurrency holdings and NFT collections across various blockchains, providing a comprehensive overview of their digital assets.
 
-Utiliser Redux state manager
-Coingecko api call avec redux
+🛠️ Features
+Multi-Blockchain Support: Track assets across multiple blockchains.
 
--> créer une branche
--> pull request sur github
+NFT Collection Overview: View and manage your NFT holdings.
 
-terminal créer commit push
+Real-Time Portfolio Updates: Stay updated with real-time data.
 
-Envoyer des coins d'un wallet à l'autre avec metamask
+User-Friendly Interface: Intuitive design for seamless navigation.
 
-Apprendre git
-https://www.alchemy.com/faucets/ethereum-sepolia
+⚙️ Tech Stack
+Frontend: React.js
 
-usdc testnet ?
-dotenv
+Backend: Node.js, Express.js
 
-transférer USDC
+Blockchain Integration: Web3.js, Ethers.js
 
-Créer une branch : git branch nom/de-la-branche
-Passer sur une branch : git switch nom/de-la-branche
-Pour commit :
-git add .
-git commit -m "fixed app.tsx"
-git push
+Database: MongoDB
 
-ou sinon
+Authentication: MetaMask, WalletConnect
 
-git stash
+📦 Installation
+Prerequisites
+Node.js (v14 or higher)
 
-git stash
-git pull origin master
-git stash pop
+MongoDB (local or cloud instance)
 
-ether.js
-wagmi -builtontopofethers -> regarder wagmi
+MetaMask or another Web3 wallet
 
-🌈 RainbowKit : pour connecter un wallet en 2 clics
-🔌 Wagmi : la couche logique Web3 côté React
-🛠 Hardhat : Écrire, tester et déployer des smart contracts
+Steps
+Clone the repository:
 
-rpc alchemy
+bash
+Copy
+Edit
+git clone https://github.com/CoponatRecords/Web3-Portfoliot.git
+cd Web3-Portfoliot
+Install dependencies:
 
-frontend integration smartcontract
+bash
+Copy
+Edit
+npm install
+Set up environment variables:
 
-npx
+Create a .env file in the root directory and add the following:
 
-créer un smartcontract basique
-j'intéragi avec
+env
+Copy
+Edit
+REACT_APP_INFURA_PROJECT_ID=your_infura_project_id
+REACT_APP_ALCHEMY_API_KEY=your_alchemy_api_key
+MONGO_URI=your_mongodb_connection_string
+Run the application:
 
-2 fonctions : une pour incrémenter un compteur
-l'autre pour la lire
+bash
+Copy
+Edit
+npm start
+The app should now be accessible at http://localhost:3000.
 
-pour mettre mon smartcontract sur sepolia
+📱 Usage
+Connect your Web3 wallet (e.g., MetaMask).
 
-npm hardhatdeploy ... un truc comme ca va upload mon smartcontract sur sepolia
+Grant the necessary permissions.
 
-connecter wallet dans la front end : rainbowkit
+View your portfolio, including token balances and NFTs.
 
-etherscan pour lire les blocs
+🧪 Development
+To contribute or run the project in development mode:
 
-rust -> backend
+bash
+Copy
+Edit
+npm run dev
+This will start both the frontend and backend servers concurrently.
 
-Portfoliot
+📝 License
+This project is licensed under the MIT License.
 
-backend NestJS
-bignumber.js
+🤝 Contributing
+We welcome contributions! Please fork the repository, create a new branch, and submit a pull request with your proposed changes.
 
-faire un token swap sur tesnet
-
-de usdc vers
-
-done
-ajouetr https://notistack.com/ pour display transaction sucess ou error
-display le contenu du swap depuis le hash
-
-https://0x.org/docs/1.0/0x-swap-api/guides/working-in-the-testnet
-
-Faire un header pour la connection de wallet
-ref: https://matcha.xyz/tokens/ethereum/eth
-
-switch to la bonne blocchain si le wallet est pas connecté à sepolia
-
-info quand je mets la souris dessus ce sort et quand je l'eneleve ca s'enlève
-
-j'utilise ANKR : depuis postman puis en code -> lire ce qu'il y a derrière un wallet
-le but c'est de lire le wallet pour afficher les coins disponibles
-
-contrat qui swap avec seuil d'allowance
-deployer un subgraph puit des querries qui me donne l'info qui m'intéresse
+🌐 Demo
+A live demo of Web3-Portfoliot is available at http://myweb3portfolio.s3-website-us-east-1.amazonaws.com/

@@ -194,17 +194,24 @@ const WalletBalance: React.FC<TokenBalanceProps> = ({
                 variant="outlined"
                 sx={commonTextFieldSx}
               />
-              {error ? (
+              {loading ? (
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    mt: 2,
+                    mb: 2,
+                  }}
+                >
+                  <CircularProgress size={24} sx={{ color: "#ffffff" }} />
+                </Box>
+              ) : error ? (
                 <Typography
                   variant="body2"
                   sx={{ mt: 1, textAlign: "center", color: "#f44336" }}
                 >
                   {error}
                 </Typography>
-              ) : loading ? (
-                <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-                  <CircularProgress size={24} sx={{ color: "#ffffff" }} />
-                </Box>
               ) : walletContent.length === 0 ? (
                 <Typography
                   variant="body2"
@@ -222,6 +229,22 @@ const WalletBalance: React.FC<TokenBalanceProps> = ({
                     p: 0,
                     bgcolor: "rgba(255, 255, 255, 0.05)",
                     borderRadius: 1,
+                    maxHeight: walletContent.length > 5 ? "300px" : "auto",
+                    overflowY: walletContent.length > 5 ? "auto" : "visible",
+                    "&::-webkit-scrollbar": {
+                      width: "8px",
+                    },
+                    "&::-webkit-scrollbar-track": {
+                      background: "rgba(255, 255, 255, 0.1)",
+                      borderRadius: "4px",
+                    },
+                    "&::-webkit-scrollbar-thumb": {
+                      background: "rgba(255, 255, 255, 0.3)",
+                      borderRadius: "4px",
+                    },
+                    "&::-webkit-scrollbar-thumb:hover": {
+                      background: "rgba(255, 255, 255, 0.5)",
+                    },
                   }}
                 >
                   {walletContent.map((asset, index) => (
