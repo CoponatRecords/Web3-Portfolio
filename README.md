@@ -29,8 +29,6 @@ cd Web3-Portfoliot
 2. Install Dependencies
 
 ```bash
-Copy
-Edit
 npm install
 # or
 yarn install
@@ -40,10 +38,6 @@ yarn install
    Set up your environment variables in a .env.local file:
 
 ```bash
-
-env
-Copy
-Edit
 NEXT_PUBLIC_ALCHEMY_API_KEY=your_alchemy_key
 NEXT_PUBLIC_0X_API_BASE=https://api.0x.org
 ```
@@ -51,8 +45,6 @@ NEXT_PUBLIC_0X_API_BASE=https://api.0x.org
 4. Run the App
 
 ```bash
-Copy
-Edit
 npm run dev
 # or
 yarn dev
