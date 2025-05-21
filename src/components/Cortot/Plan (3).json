@@ -1,0 +1,5491 @@
+{
+  "name": "Plan",
+  "categories": [
+    {
+      "name": "Gold",
+      "color": "#D5BC22"
+    },
+    {
+      "name": "Category I",
+      "color": "#9C27B0"
+    },
+    {
+      "name": "Category II",
+      "color": "#4CAF50"
+    }
+  ],
+  "zones": [
+    {
+      "name": "Ground floor",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "rows": [
+        {
+          "position": {
+            "x": 728.619365718723,
+            "y": 597.515049927832
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "109",
+              "seat_guid": "Groundfloor-1-109",
+              "uuid": "8a48188f-723b-41bc-ade7-deecd193969b",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "111",
+              "seat_guid": "Groundfloor-1-111",
+              "uuid": "e0c13d1d-b871-4b19-9630-0f20e8265f27",
+              "position": {
+                "x": -14.999800726683361,
+                "y": -0.07731856044676988
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "113",
+              "seat_guid": "Groundfloor-1-113",
+              "uuid": "5226c109-298d-4beb-8695-ed1af430557b",
+              "position": {
+                "x": -29.999601453366722,
+                "y": -0.15463712089365345
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "115",
+              "seat_guid": "Groundfloor-1-115",
+              "uuid": "ea4a0051-f635-4bf0-a30a-948dfb104fc3",
+              "position": {
+                "x": -44.99940218005008,
+                "y": -0.23195568134042333
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "117",
+              "seat_guid": "Groundfloor-1-117",
+              "uuid": "ff07e694-5221-4c2b-932d-ec5729424f09",
+              "position": {
+                "x": -59.999202906733444,
+                "y": -0.3092742417873069
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "119",
+              "seat_guid": "Groundfloor-1-119",
+              "uuid": "b49514c1-72b7-4b72-b849-99250387aa04",
+              "position": {
+                "x": -74.9990036334168,
+                "y": -0.38659280223407677
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "121",
+              "seat_guid": "Groundfloor-1-121",
+              "uuid": "da200a3b-4d31-4fc4-8c14-04039f4c2c85",
+              "position": {
+                "x": -89.99880436010017,
+                "y": -0.46391136268096034
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "123",
+              "seat_guid": "Groundfloor-1-123",
+              "uuid": "911ed1ab-854b-467e-9dfd-06b661c85b86",
+              "position": {
+                "x": -104.99860508678353,
+                "y": -0.5412299231277302
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "125",
+              "seat_guid": "Groundfloor-1-125",
+              "uuid": "880b3509-ee6f-43ca-9bb6-ea5d8a6759f4",
+              "position": {
+                "x": -119.99840581346677,
+                "y": -0.6185484835745001
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "127",
+              "seat_guid": "Groundfloor-1-127",
+              "uuid": "969e705b-c82f-4900-8feb-7037cb63e8d5",
+              "position": {
+                "x": -134.99820654015014,
+                "y": -0.6958670440213837
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "0f6dbd77-00d2-48f2-bcb3-253f50c17e6f",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 711.9671707340632,
+            "y": 578.6908295103906
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "143",
+              "seat_guid": "Groundfloor-1-143",
+              "uuid": "08df2e38-5b3e-4811-b251-ee648fa3bb9e",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "145",
+              "seat_guid": "Groundfloor-1-145",
+              "uuid": "da81e413-2209-4736-a308-449a4cb7fec3",
+              "position": {
+                "x": -14.999743517402294,
+                "y": -0.08771779834739846
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "147",
+              "seat_guid": "Groundfloor-1-147",
+              "uuid": "8dc642f6-d043-43a5-8158-e282206976e7",
+              "position": {
+                "x": -29.9994870348047,
+                "y": -0.1754355966947969
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "149",
+              "seat_guid": "Groundfloor-1-149",
+              "uuid": "78409be3-f60d-412a-9ce2-339a36182514",
+              "position": {
+                "x": -44.999230552206996,
+                "y": -0.26315339504219537
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "151",
+              "seat_guid": "Groundfloor-1-151",
+              "uuid": "8d23f20a-0394-4aa6-be45-98e12725ec6c",
+              "position": {
+                "x": -59.99897406960929,
+                "y": -0.3508711933895938
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "153",
+              "seat_guid": "Groundfloor-1-153",
+              "uuid": "9154dc5e-40a5-4cf3-b3f2-77ef53982684",
+              "position": {
+                "x": -74.99871758701158,
+                "y": -0.4385889917369923
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "155",
+              "seat_guid": "Groundfloor-1-155",
+              "uuid": "d5c4b387-feff-4bb8-a86f-f6cc0dab82ae",
+              "position": {
+                "x": -89.99846110441399,
+                "y": -0.5263067900843907
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "157",
+              "seat_guid": "Groundfloor-1-157",
+              "uuid": "635541f2-37e6-4526-8517-be3d38ef90a8",
+              "position": {
+                "x": -104.99820462181628,
+                "y": -0.6140245884317892
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "159",
+              "seat_guid": "Groundfloor-1-159",
+              "uuid": "4e425e85-73e9-409d-922b-dc5e04eda942",
+              "position": {
+                "x": -119.99794813921858,
+                "y": -0.7017423867791877
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "f76dcd0f-699b-4c1a-b2a8-d6b190200016",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 666.3546366456471,
+            "y": 613.4432364348979
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "81",
+              "seat_guid": "Groundfloor-1-81",
+              "uuid": "a417133c-8b87-4407-9769-c18753cfc1b5",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "83",
+              "seat_guid": "Groundfloor-1-83",
+              "uuid": "05e99ca7-650a-4ef5-a431-af10d2396237",
+              "position": {
+                "x": -14.999368779851125,
+                "y": 0.13760888788851844
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "85",
+              "seat_guid": "Groundfloor-1-85",
+              "uuid": "cb786ad7-4de2-47a7-ab44-9024d545ba9b",
+              "position": {
+                "x": -29.998737559702363,
+                "y": 0.27521777577715056
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "87",
+              "seat_guid": "Groundfloor-1-87",
+              "uuid": "730ab3ba-f1af-46fc-b255-1c4572ffdf95",
+              "position": {
+                "x": -44.99810633955349,
+                "y": 0.412826663665669
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "89",
+              "seat_guid": "Groundfloor-1-89",
+              "uuid": "8471b0cc-55f5-4287-87bd-fceaa6344391",
+              "position": {
+                "x": -59.997475119404726,
+                "y": 0.5504355515541874
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "91",
+              "seat_guid": "Groundfloor-1-91",
+              "uuid": "05b446ce-90b1-4446-8ee1-611ffca8cbed",
+              "position": {
+                "x": -74.99684389925585,
+                "y": 0.6880444394428196
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "b270677c-1d4a-4614-8351-67018e52d006",
+          "seat_label": "gold  %s"
+        },
+        {
+          "position": {
+            "x": 667.078645123241,
+            "y": 632.2674568523395
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "57",
+              "seat_guid": "Groundfloor-1-57",
+              "uuid": "7bd180ea-2894-4201-96ed-17e6263a49d9",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "59",
+              "seat_guid": "Groundfloor-1-59",
+              "uuid": "2474fe98-9c9b-4d84-a975-ea2a4e77ee6f",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "61",
+              "seat_guid": "Groundfloor-1-61",
+              "uuid": "67dad826-c9a3-4a8e-9852-8a8d871bee04",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "63",
+              "seat_guid": "Groundfloor-1-63",
+              "uuid": "7f5c73b5-6ae0-4e8d-8a47-a066ccca7a86",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "65",
+              "seat_guid": "Groundfloor-1-65",
+              "uuid": "b3b3e56d-0603-4753-bcc1-d6eb715048d0",
+              "position": {
+                "x": -60,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "67",
+              "seat_guid": "Groundfloor-1-67",
+              "uuid": "76329672-6856-4e0a-a52c-7a0032b55dbe",
+              "position": {
+                "x": -75,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "dbf5df18-339b-4b39-abc4-28061418aaad",
+          "seat_label": "gold  %s"
+        },
+        {
+          "position": {
+            "x": 651.8744670937691,
+            "y": 648.9196518369993
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "35",
+              "seat_guid": "Groundfloor-1-35",
+              "uuid": "916994d1-1b59-47e8-a7b6-050238471a0f",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "37",
+              "seat_guid": "Groundfloor-1-37",
+              "uuid": "3f14dae5-1ffc-48f8-8c57-40171fb4ec73",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "39",
+              "seat_guid": "Groundfloor-1-39",
+              "uuid": "f0ca4adf-3ad4-4014-af45-18199cb23105",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "41",
+              "seat_guid": "Groundfloor-1-41",
+              "uuid": "3eb662f4-876a-4e41-b902-9d258f1f87e1",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "43",
+              "seat_guid": "Groundfloor-1-43",
+              "uuid": "7344b229-233c-4656-be25-8904a5e3229f",
+              "position": {
+                "x": -60,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "31fbcbd5-e6c2-4396-b482-509911a33454",
+          "seat_label": "gold  %s"
+        },
+        {
+          "position": {
+            "x": 637.394297541891,
+            "y": 667.7438722544408
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "15",
+              "seat_guid": "Groundfloor-1-15",
+              "uuid": "edc34929-0296-448c-93bb-9992475f9df9",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "17",
+              "seat_guid": "Groundfloor-1-17",
+              "uuid": "d67ba966-d393-4e49-b142-c40d392479fc",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "19",
+              "seat_guid": "Groundfloor-1-19",
+              "uuid": "ca1c575c-9d84-4aaa-8972-eafae807bbc6",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "21",
+              "seat_guid": "Groundfloor-1-21",
+              "uuid": "4dc8f764-749a-4b82-9f3c-d8934a9f8d76",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "624d8633-bbf8-40e7-9894-2442d5022086",
+          "seat_label": "gold  %s"
+        },
+        {
+          "position": {
+            "x": 606.9859414829469,
+            "y": 684.953418649475
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "1",
+              "seat_guid": "Groundfloor-1-1",
+              "uuid": "15008f0c-4b75-4860-9999-20d6ee0f795f",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "3",
+              "seat_guid": "Groundfloor-1-3",
+              "uuid": "5e9bdd46-5e4f-4452-9f77-23f31db52933",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "297351cf-b4b0-416b-b87f-47fefbbc93ff",
+          "seat_label": "gold  %s"
+        },
+        {
+          "position": {
+            "x": 554.8573310961858,
+            "y": 576.6854611448284
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "161",
+              "seat_guid": "Groundfloor-1-161",
+              "uuid": "642716e6-5da4-427d-939f-b00d8d02c70d",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "163",
+              "seat_guid": "Groundfloor-1-163",
+              "uuid": "189026ff-321e-4471-a1d1-983946213258",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "165",
+              "seat_guid": "Groundfloor-1-165",
+              "uuid": "aed88881-6817-4e05-8ae6-96f687398e84",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "167",
+              "seat_guid": "Groundfloor-1-167",
+              "uuid": "ffe26b1f-6fc1-452d-b209-96c7924334be",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "169",
+              "seat_guid": "Groundfloor-1-169",
+              "uuid": "7aac7fab-c21f-411b-a77f-dc61f7209e5a",
+              "position": {
+                "x": -60,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "171",
+              "seat_guid": "Groundfloor-1-171",
+              "uuid": "028d686c-7ef9-4482-bb92-284b9ea84f88",
+              "position": {
+                "x": -75,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "173",
+              "seat_guid": "Groundfloor-1-173",
+              "uuid": "23e9ed53-c3bf-4cb0-ae52-9cb234b1ddd6",
+              "position": {
+                "x": -90,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "175",
+              "seat_guid": "Groundfloor-1-175",
+              "uuid": "a183b926-3a7b-4304-9f4e-65e774201a5e",
+              "position": {
+                "x": -105,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "18aeb2e3-3af3-446d-b9a0-237be865be19",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 539.6531530667138,
+            "y": 596.7910414502381
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "129",
+              "seat_guid": "Groundfloor-1-129",
+              "uuid": "3cd176e0-c827-4885-86a3-96acc9a57b64",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "131",
+              "seat_guid": "Groundfloor-1-131",
+              "uuid": "c289eece-9303-4853-98bf-2bf7afd0fad6",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "133",
+              "seat_guid": "Groundfloor-1-133",
+              "uuid": "96382fd4-d0f4-4d9e-984d-a196aa8f8caf",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "135",
+              "seat_guid": "Groundfloor-1-135",
+              "uuid": "76b9f6f8-8741-434f-bb42-2f2e74832c2b",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "137",
+              "seat_guid": "Groundfloor-1-137",
+              "uuid": "d7f707ff-bd4c-4c67-9629-4a47ed6df7f4",
+              "position": {
+                "x": -60,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "139",
+              "seat_guid": "Groundfloor-1-139",
+              "uuid": "80fc8160-f64c-4429-ad13-c9f8fad6c739",
+              "position": {
+                "x": -75,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "141",
+              "seat_guid": "Groundfloor-1-141",
+              "uuid": "e7f76fc1-9cd3-4e4a-821f-a1c8defc1fcd",
+              "position": {
+                "x": -90,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "afb318b2-0c97-4f72-8704-ad9f564f01da",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 539.6531530667138,
+            "y": 613.4432364348979
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "93",
+              "seat_guid": "Groundfloor-1-93",
+              "uuid": "2ed4098f-719d-41f5-ba3b-c8de952aeb70",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "95",
+              "seat_guid": "Groundfloor-1-95",
+              "uuid": "e4313af7-194b-413e-8015-d76478dcd222",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "97",
+              "seat_guid": "Groundfloor-1-97",
+              "uuid": "5d556fe0-56b8-4d1c-970a-615d60cd54f3",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "99",
+              "seat_guid": "Groundfloor-1-99",
+              "uuid": "d6e90a44-02d1-4ce9-9216-c08813a589a2",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "101",
+              "seat_guid": "Groundfloor-1-101",
+              "uuid": "dc0a8a03-5eec-4868-8cf9-13d5f5d7cfe1",
+              "position": {
+                "x": -60,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "103",
+              "seat_guid": "Groundfloor-1-103",
+              "uuid": "b102de42-699e-45e4-b7b4-e4fd958947e9",
+              "position": {
+                "x": -75,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "105",
+              "seat_guid": "Groundfloor-1-105",
+              "uuid": "49b550c5-8b5d-46f0-93eb-f963582c3ff7",
+              "position": {
+                "x": -90,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "c58ecf01-220d-43c2-bb9a-2bbc15201ab1",
+          "seat_label": "gold  %s"
+        },
+        {
+          "position": {
+            "x": 523.7249665596479,
+            "y": 631.5434483747456
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "69",
+              "seat_guid": "Groundfloor-1-69",
+              "uuid": "9f5ce98f-22ce-4470-a18a-e105bf063e65",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "71",
+              "seat_guid": "Groundfloor-1-71",
+              "uuid": "9e2a212d-eb09-49d4-b52f-e2531678ca24",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "73",
+              "seat_guid": "Groundfloor-1-73",
+              "uuid": "94e5ad67-5a8c-4cf9-be62-4280a8ac77c0",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "75",
+              "seat_guid": "Groundfloor-1-75",
+              "uuid": "1efc811f-fc7e-482b-b849-d7fd8d3e9e31",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "77",
+              "seat_guid": "Groundfloor-1-77",
+              "uuid": "3782b5de-e986-47de-b0bc-5fc0a022c508",
+              "position": {
+                "x": -60,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "79",
+              "seat_guid": "Groundfloor-1-79",
+              "uuid": "ed7c15c7-546f-4c08-8ff0-e82086ed634e",
+              "position": {
+                "x": -75,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "8fe53cd4-bf82-42b5-8158-35712093b001",
+          "seat_label": "gold  %s"
+        },
+        {
+          "position": {
+            "x": 524.4489750372418,
+            "y": 647.4716348818115
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "45",
+              "seat_guid": "Groundfloor-1-45",
+              "uuid": "a0ec6c53-40fd-4602-b233-75dcdcd99ab1",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "47",
+              "seat_guid": "Groundfloor-1-47",
+              "uuid": "8320baa7-868e-4438-b3a5-bd85f02a4c6c",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "49",
+              "seat_guid": "Groundfloor-1-49",
+              "uuid": "e2739da9-a091-4f00-a7bb-02221fb5051b",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "51",
+              "seat_guid": "Groundfloor-1-51",
+              "uuid": "52f7945c-3417-460e-b6c9-b0408582b21c",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "53",
+              "seat_guid": "Groundfloor-1-53",
+              "uuid": "a82a5cb1-25e1-40d7-9658-c443b6e44f9c",
+              "position": {
+                "x": -60,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "55",
+              "seat_guid": "Groundfloor-1-55",
+              "uuid": "aecbee99-8648-4c1c-9dd0-3e640f02d5e2",
+              "position": {
+                "x": -75,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "31b2ac3c-fc5f-4880-8915-f4bf32b528ae",
+          "seat_label": "gold  %s"
+        },
+        {
+          "position": {
+            "x": 509.2447970077698,
+            "y": 666.295855299253
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "23",
+              "seat_guid": "Groundfloor-1-23",
+              "uuid": "89320dd2-6edc-40bc-9a80-734f8932c83a",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "25",
+              "seat_guid": "Groundfloor-1-25",
+              "uuid": "069f8ad5-1ed9-43cf-92bd-585ced50507f",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "27",
+              "seat_guid": "Groundfloor-1-27",
+              "uuid": "b1ed2002-4c09-4a14-933a-dfbdddcd688e",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "29",
+              "seat_guid": "Groundfloor-1-29",
+              "uuid": "94f321c8-def5-4e90-b27c-9b824ebc4192",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "31",
+              "seat_guid": "Groundfloor-1-31",
+              "uuid": "c2c0c73c-19e3-4989-ab18-b4ed42c0dab1",
+              "position": {
+                "x": -60,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "7fd3ea22-115e-4bdb-9d92-8430a91c23b8",
+          "seat_label": "gold  %s"
+        },
+        {
+          "position": {
+            "x": 509.2447970077698,
+            "y": 682.224041806319
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "5",
+              "seat_guid": "Groundfloor-1-5",
+              "uuid": "8b2ee20f-d53e-4ae6-ad14-b22662bf833b",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "7",
+              "seat_guid": "Groundfloor-1-7",
+              "uuid": "d0fb42f1-cb73-4174-9045-76a94d68542a",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "9",
+              "seat_guid": "Groundfloor-1-9",
+              "uuid": "8b06fcfc-41e6-4bfb-a812-3a1370e38dc6",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "11",
+              "seat_guid": "Groundfloor-1-11",
+              "uuid": "b48879cf-5344-4b59-8693-d525b4f3108d",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "13",
+              "seat_guid": "Groundfloor-1-13",
+              "uuid": "eacec61d-c1b8-4a15-8b0d-f1db75030b91",
+              "position": {
+                "x": -60,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "500f2191-cf16-4956-b4ed-af5571593c1b",
+          "seat_label": "gold  %s"
+        },
+        {
+          "position": {
+            "x": 433.2239068604098,
+            "y": 666.6542242556692
+          },
+          "row_number": "",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "33",
+              "seat_guid": "Groundfloor--1",
+              "uuid": "3930920d-5185-4075-ab12-761d0f7abdbb",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "b60d6718-dced-40c5-b02e-e181f6abdeae",
+          "seat_label": "gold  %s"
+        },
+        {
+          "position": {
+            "x": 434.6719238155976,
+            "y": 613.6672737108332
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "107",
+              "seat_guid": "5e9e5b4a-2651-469f-8801-49a37150e87e",
+              "uuid": "90a59a6e-9fa4-4acc-b3f4-489fae4c369f",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "cb6ccb7f-e9ab-4c57-b65d-48f20627e7c5",
+          "seat_label": "gold  %s"
+        },
+        {
+          "position": {
+            "x": 524.0856984887255,
+            "y": 536.5806384530237
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "199",
+              "seat_guid": "Groundfloor-1-199",
+              "uuid": "ee017207-dba9-483a-853c-550847d304c4",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "f415bc83-913f-4781-9ef4-e607be332759",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 705.7822582707685,
+            "y": 519.8600961417927
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "177",
+              "seat_guid": "Groundfloor-1-177",
+              "uuid": "82f60edc-8eab-4ffd-9175-c08f66628226",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "179",
+              "seat_guid": "Groundfloor-1-179",
+              "uuid": "97077c50-28e4-4ef3-94dc-413478fce09f",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "181",
+              "seat_guid": "Groundfloor-1-181",
+              "uuid": "dd07bb45-afdb-4ce3-9599-7e773f0c0c72",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "35584263-6bae-46a8-91c7-0aac0fc49a96",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 643.9420128645079,
+            "y": 519.8600961417927
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "183",
+              "seat_guid": "Groundfloor-1-183",
+              "uuid": "ec707082-8f4d-4d85-98a8-75c82032cc17",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "185",
+              "seat_guid": "Groundfloor-1-185",
+              "uuid": "89488ba1-d58c-4c8f-a36c-49e02fead096",
+              "position": {
+                "x": -14.999810614429862,
+                "y": -0.07537593273582388
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "187",
+              "seat_guid": "Groundfloor-1-187",
+              "uuid": "99f6f13c-1770-4d45-8a91-ad0c14e51663",
+              "position": {
+                "x": -29.999621228859837,
+                "y": -0.15075186547164776
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "189",
+              "seat_guid": "Groundfloor-1-189",
+              "uuid": "68ac7358-8379-443d-8e68-836f7df407c7",
+              "position": {
+                "x": -44.9994318432897,
+                "y": -0.22612779820747164
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "191",
+              "seat_guid": "Groundfloor-1-191",
+              "uuid": "6f518d28-0e10-4451-8922-eb6c268f09ee",
+              "position": {
+                "x": -59.999242457719674,
+                "y": -0.3015037309432955
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "193",
+              "seat_guid": "Groundfloor-1-193",
+              "uuid": "08bac51e-f042-4d62-a4cc-b32ad13c0fe4",
+              "position": {
+                "x": -74.99905307214954,
+                "y": -0.3768796636791194
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "195",
+              "seat_guid": "Groundfloor-1-195",
+              "uuid": "f144ccbe-9e71-49fe-927f-36cd4d7b517a",
+              "position": {
+                "x": -89.99886368657951,
+                "y": -0.4522555964149433
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "197",
+              "seat_guid": "Groundfloor-1-197",
+              "uuid": "e9848bdc-58b4-4eac-a72a-cca9a221ea0a",
+              "position": {
+                "x": -104.99867430100937,
+                "y": -0.5276315291508809
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "01c76fbf-7b16-4436-b671-e6298a1fdf49",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 720.273394940502,
+            "y": 500.91014818906433
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "201",
+              "seat_guid": "Groundfloor-1-201",
+              "uuid": "048840d7-2180-45c5-9ef9-c218cb1a3052",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "203",
+              "seat_guid": "Groundfloor-1-203",
+              "uuid": "4f00ec21-a6ae-42b9-8b77-f2df043bccea",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "205",
+              "seat_guid": "Groundfloor-1-205",
+              "uuid": "e84993c0-9e19-4e72-af5c-339258e893eb",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "207",
+              "seat_guid": "Groundfloor-1-207",
+              "uuid": "d0c01d15-c044-4c7b-89df-57c98ee1c7d1",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "cf70094c-16c7-4a24-bd42-0d8f9d8032b2",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 720.273394940502,
+            "y": 484.7917459174942
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "219",
+              "seat_guid": "Groundfloor-1-219",
+              "uuid": "9a06544a-0c7e-441a-8bef-a28624856758",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "221",
+              "seat_guid": "Groundfloor-1-221",
+              "uuid": "4ba296df-be53-45b1-9f04-4bcb81cbb2b6",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "223",
+              "seat_guid": "Groundfloor-1-223",
+              "uuid": "36e9638a-2964-4e13-91d4-4a2da5881a37",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "225",
+              "seat_guid": "Groundfloor-1-225",
+              "uuid": "b1bf08ec-c058-42ec-994c-dcb1212431c4",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "22c9da24-8114-49b4-8492-ba45ce191cbe",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 720.8307463508763,
+            "y": 466.3543607458537
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "233",
+              "seat_guid": "Groundfloor-1-233",
+              "uuid": "d6898256-b091-4dd2-8cdd-3ebc292c1529",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "235",
+              "seat_guid": "Groundfloor-1-235",
+              "uuid": "9833ddc2-b831-4504-826c-e02703036219",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "237",
+              "seat_guid": "Groundfloor-1-237",
+              "uuid": "576d8e8f-1bc1-40c3-89b3-aacc35aed672",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "239",
+              "seat_guid": "Groundfloor-1-239",
+              "uuid": "0388955a-e319-4ce6-9ae7-cc3aefec2ecc",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "8cc4a43e-0687-4f85-96e6-507a9f027342",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 643.9420128645078,
+            "y": 501.46749959943867
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "209",
+              "seat_guid": "Groundfloor-1-209",
+              "uuid": "3bde3dd4-be71-4c70-8bf2-7995c0dd873e",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "211",
+              "seat_guid": "Groundfloor-1-211",
+              "uuid": "7f5acd51-e5d6-4fc8-8ccc-111f7ebe95af",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "213",
+              "seat_guid": "Groundfloor-1-213",
+              "uuid": "42ba1bc5-5ce4-40ab-b4ab-4c96aae3134f",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "215",
+              "seat_guid": "Groundfloor-1-215",
+              "uuid": "6dfbcfec-40a2-48d4-91e8-80c37ae640c3",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "217",
+              "seat_guid": "Groundfloor-1-217",
+              "uuid": "6c7ce2c5-47d0-4807-8732-44d95b1e383a",
+              "position": {
+                "x": -60,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "685cb04c-3968-4197-9146-f96af3da5175",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 645.0309545399626,
+            "y": 484.18960587783334
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "227",
+              "seat_guid": "Groundfloor-1-227",
+              "uuid": "5cd8f669-ebc0-49be-ae05-d5d5071a96f6",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "229",
+              "seat_guid": "Groundfloor-1-229",
+              "uuid": "72865a03-570e-4c8d-853f-3fda778b49bc",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "231",
+              "seat_guid": "Groundfloor-1-231",
+              "uuid": "65e16847-cebd-4fd3-aa6d-a8886ea38038",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "5c63aebe-4b16-43c9-a2fc-68af05dbf013",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 643.9420128645079,
+            "y": 465.7970093354793
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "241",
+              "seat_guid": "Groundfloor-1-241",
+              "uuid": "ff37eef5-1033-4ff7-99a4-9730d967a7d1",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "243",
+              "seat_guid": "Groundfloor-1-243",
+              "uuid": "efd81aa6-8533-4f41-93e1-2c4da70ca298",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "7e4c6ddb-d80e-42fb-b312-2c6d4f09df35",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 690.7337701906606,
+            "y": 449.07646702424836
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "245",
+              "seat_guid": "Groundfloor-1-245",
+              "uuid": "7d97aeec-c1d8-4e1d-ad99-64b050f3edcd",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "247",
+              "seat_guid": "Groundfloor-1-247",
+              "uuid": "b87ae30c-9c29-430b-b7b9-a1bbb40f2d52",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "249",
+              "seat_guid": "Groundfloor-1-249",
+              "uuid": "3b18d467-8557-4537-a090-dbe9cdaf8dbb",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "251",
+              "seat_guid": "Groundfloor-1-251",
+              "uuid": "d7348b7d-a090-4e6b-bba7-72e366ed1f2d",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "29cf1cc5-53de-466c-95c1-68bb9404bd1d",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 705,
+            "y": 390
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "2",
+              "seat_guid": "LGD-1-2",
+              "uuid": "211bf534-81b8-44c4-ab35-f50db37d8c75",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "1",
+              "seat_guid": "LGD-1-1",
+              "uuid": "1b1bc83e-bc9e-43a5-8715-ea4ce7c050e2",
+              "position": {
+                "x": -12.68233354546453,
+                "y": -8.009894870819721
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "a261e449-3636-4dad-b1fb-9eb7a9716b3e",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 672.5760338531586,
+            "y": 369.93159812389877
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "2",
+              "seat_guid": "LGE-1-2",
+              "uuid": "db20bd5c-b88a-41bb-9839-257a92c47677",
+              "position": {
+                "x": 0,
+                "y": -1.0024214269848812
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "1",
+              "seat_guid": "LGE-1-1",
+              "uuid": "07d81dc6-2f86-46a2-8b8c-7997b9ae8a0e",
+              "position": {
+                "x": -12.79922750477931,
+                "y": -7.821750141809673
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "178aa976-8791-4fc8-ab8d-ca0e4b0e47a1",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 713.1432410333349,
+            "y": 375.19410721211824
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "4",
+              "seat_guid": "LGD-1-4",
+              "uuid": "2f0a96d8-1001-475d-ab14-b4cd0e91c4c7",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "3",
+              "seat_guid": "LGD-1-3",
+              "uuid": "ae489dc7-154b-414b-82f5-e9bb48383f5e",
+              "position": {
+                "x": -12.480754415067622,
+                "y": -8.320502943378472
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "3e9e6a18-7296-4f54-a369-00b4ce42eff2",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 681.4595695258877,
+            "y": 355.8659999754111
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "4",
+              "seat_guid": "LGE-1-4",
+              "uuid": "0a797627-abab-40a5-bc0e-80f24830574e",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "3",
+              "seat_guid": "LGE-1-3",
+              "uuid": "3a03263b-8457-4283-a63b-e34668246702",
+              "position": {
+                "x": -12.862393885688107,
+                "y": -8.719857758397836
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "2ed9ba44-41d8-4251-83ac-ec3a1634a3c8",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 643.7045429167893,
+            "y": 352.1645267784407
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "2",
+              "seat_guid": "LGF-1-2",
+              "uuid": "42f36839-22a7-4f2b-b80d-2d462d2ca303",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "1",
+              "seat_guid": "LGF-1-1",
+              "uuid": "a57a99ba-cb17-4da9-9c4e-f2beee854f4f",
+              "position": {
+                "x": -12.379608918747522,
+                "y": -7.467837306894978
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "07c5dfea-0af2-4cab-b390-07e4ee3407ca",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 665,
+            "y": 315
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "55",
+              "seat_guid": "Groundfloor-1-55",
+              "uuid": "debc6666-d56d-494b-abec-ab2bf807ff0b",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "57",
+              "seat_guid": "Groundfloor-1-57",
+              "uuid": "e3576f5e-8c53-4c12-906f-a2893989392f",
+              "position": {
+                "x": -12.131041264547775,
+                "y": -8.82257546512568
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "28bc471c-a23b-49d7-b374-c85e9602060a",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 728.8384264471092,
+            "y": 352.1645267784407
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "49",
+              "seat_guid": "Groundfloor-1-49",
+              "uuid": "5afdbec1-3161-43a2-863e-6b859b0bc738",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "51",
+              "seat_guid": "Groundfloor-1-51",
+              "uuid": "33980621-741a-4812-b0e8-07bf825d694f",
+              "position": {
+                "x": -12.58441930541494,
+                "y": -8.162866576485328
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "53",
+              "seat_guid": "Groundfloor-1-53",
+              "uuid": "9499737d-6cf7-41ba-9ad8-f9c119e2452c",
+              "position": {
+                "x": -25.168838610829766,
+                "y": -16.325733152970656
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "4de22f88-6c21-43dc-89ef-e8f7aec7b33b",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 764.3725691380254,
+            "y": 355.125705336017
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "65",
+              "seat_guid": "Groundfloor-1-65",
+              "uuid": "e29356b6-86c9-4308-be36-0bc3adcbfd34",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "67",
+              "seat_guid": "Groundfloor-1-67",
+              "uuid": "e0a31d10-01d2-45de-aed0-059fca49f809",
+              "position": {
+                "x": -12.63407100992265,
+                "y": -8.085805446350491
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "69",
+              "seat_guid": "Groundfloor-1-69",
+              "uuid": "2654aaa8-dae9-411f-9a94-c26758468675",
+              "position": {
+                "x": -25.2681420198453,
+                "y": -16.17161089270104
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "71",
+              "seat_guid": "Groundfloor-1-71",
+              "uuid": "ef8c6e39-887b-45df-9c5d-7b88950dbb9c",
+              "position": {
+                "x": -37.90221302976795,
+                "y": -24.25741633905153
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "73",
+              "seat_guid": "Groundfloor-1-73",
+              "uuid": "bddd2d7f-82e8-4bbc-8e9b-6eb9049a41c1",
+              "position": {
+                "x": -50.53628403969071,
+                "y": -32.34322178540202
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "fa134c69-7a88-4ae0-b735-833bedfcb44b",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 759.017419203049,
+            "y": 332.7670713454581
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "89",
+              "seat_guid": "Groundfloor-1-89",
+              "uuid": "54429d40-060d-4bb7-9920-1e0d44fc1739",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "91",
+              "seat_guid": "Groundfloor-1-91",
+              "uuid": "83f6a014-6e19-4272-ab5e-b1a6869c95d2",
+              "position": {
+                "x": -12.821812728325995,
+                "y": -7.784672013626448
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "93",
+              "seat_guid": "Groundfloor-1-93",
+              "uuid": "f189bf80-3d0f-49b9-aff8-f1ffe1860683",
+              "position": {
+                "x": -25.643625456651876,
+                "y": -15.569344027252896
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "95",
+              "seat_guid": "Groundfloor-1-95",
+              "uuid": "2023b979-c76e-4f40-be9e-b64d79718670",
+              "position": {
+                "x": -38.46543818497787,
+                "y": -23.354016040879344
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "40851bea-994f-4777-be1f-d498a7267414",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 755.3159460060785,
+            "y": 312.0388214424236
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "101",
+              "seat_guid": "Groundfloor-1-101",
+              "uuid": "3c3184da-98c4-44e4-b880-627732b833f4",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "103",
+              "seat_guid": "Groundfloor-1-103",
+              "uuid": "67fa87fd-93d1-43e2-9c12-93ee8f2c76b8",
+              "position": {
+                "x": -12.625411233985119,
+                "y": -8.099320414254635
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "105",
+              "seat_guid": "Groundfloor-1-105",
+              "uuid": "740b380c-ff07-4f47-9834-561145f183e7",
+              "position": {
+                "x": -25.25082246797035,
+                "y": -16.198640828509212
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "107",
+              "seat_guid": "Groundfloor-1-107",
+              "uuid": "e4dafd5b-d733-4594-8189-e4f03455063a",
+              "position": {
+                "x": -37.87623370195547,
+                "y": -24.297961242763847
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "504270ba-7a1c-461d-9ab7-c077a72200f8",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 687.2088391818226,
+            "y": 308.3373482454532
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "75",
+              "seat_guid": "Groundfloor-1-75",
+              "uuid": "85e5a0c9-3968-4765-b981-4d4ad7d76a38",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "77",
+              "seat_guid": "Groundfloor-1-77",
+              "uuid": "210d23b6-47ce-4b10-8562-d0ad4ed90155",
+              "position": {
+                "x": -12.600590666531616,
+                "y": -8.13788147213495
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "79",
+              "seat_guid": "Groundfloor-1-79",
+              "uuid": "5c6ad05f-ad0f-4f20-850c-3b955dcc61ff",
+              "position": {
+                "x": -25.20118133306312,
+                "y": -16.275762944269957
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "eda56615-d376-489b-b0f4-e7d47bcd895e",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 696.0923748545516,
+            "y": 293.5314554575715
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "97",
+              "seat_guid": "Groundfloor-1-97",
+              "uuid": "b6625f21-0f7a-419e-9346-ac48040dce9d",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "99",
+              "seat_guid": "Groundfloor-1-99",
+              "uuid": "f4a511e6-b1b8-4666-a8d3-0d5cbaaeaaf9",
+              "position": {
+                "x": -12.81297833421661,
+                "y": -7.799204203436204
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "eba83ec1-8392-41e0-b809-2fa0975af9ae",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 608.7376074060494,
+            "y": 292.7911608181774
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "59",
+              "seat_guid": "Groundfloor-1-59",
+              "uuid": "ba7c4cd8-6c3d-4bb0-933c-f1740291e4ab",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "61",
+              "seat_guid": "Groundfloor-1-61",
+              "uuid": "bb1f1e9c-9fa0-49b3-901b-cac1539c886c",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "63",
+              "seat_guid": "Groundfloor-1-63",
+              "uuid": "5c2d5347-f141-47a0-a0a6-1295f7e38e27",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "b9753445-9cde-4bc9-bef0-24f8b3d2a57d",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 651.8477839501242,
+            "y": 337.3586339905589
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "4",
+              "seat_guid": "LGF-1-4",
+              "uuid": "f62740ad-700c-41a0-81bc-78f0aaf83646",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "3",
+              "seat_guid": "LGF-1-3",
+              "uuid": "920b02a9-840d-4e65-8005-a0ea33626cb6",
+              "position": {
+                "x": -12.79922750477931,
+                "y": -7.821750141809673
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "9dc33950-a652-4a13-8b4e-b35c75372245",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 623.5435001939311,
+            "y": 276.50467875150747
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "81",
+              "seat_guid": "Groundfloor-1-81",
+              "uuid": "ab5dd6cd-32c9-4050-b7e7-9766ecc111f9",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "83",
+              "seat_guid": "Groundfloor-1-83",
+              "uuid": "b869ca93-7753-46cc-816b-6c212e412825",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "85",
+              "seat_guid": "Groundfloor-1-85",
+              "uuid": "dcac06f4-2b42-4509-9b07-05df79c42fb5",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "87",
+              "seat_guid": "Groundfloor-1-87",
+              "uuid": "ca3f2115-01cc-48e6-bf54-435c5eaf5be0",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "b6cf7419-50e0-4a05-a4c5-bba77663fbb5",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 553.2155094514928,
+            "y": 311.2985268030296
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "1",
+              "seat_guid": "60098b71-5f08-4f42-93af-7d32a62bd19c",
+              "uuid": "1da6605e-16e4-415e-ac10-26bed0043659",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "2",
+              "seat_guid": "2be3397c-9a39-4496-80b3-79f87ddb451e",
+              "uuid": "c879c505-9544-4fb4-8b58-59ef4e9ee8cf",
+              "position": {
+                "x": -14.999504287909417,
+                "y": -0.12194718933261584
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "3",
+              "seat_guid": "54f84e6e-35e4-4991-bb56-0ebcab9e2228",
+              "uuid": "f929eff0-acd9-42bc-8e2d-358ced37b3b6",
+              "position": {
+                "x": -29.999008575818948,
+                "y": -0.24389437866517483
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "4",
+              "seat_guid": "64c088cb-258b-49fc-a56f-6c64222599eb",
+              "uuid": "72ec2f4c-57a6-4b47-bdc5-9c71c07132fe",
+              "position": {
+                "x": -44.998512863728365,
+                "y": -0.36584156799779066
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "5",
+              "seat_guid": "5663f353-c649-439a-8f7c-8b9f3e8bda4e",
+              "uuid": "c5dddf6c-462e-4d70-9f0c-74efd35692a0",
+              "position": {
+                "x": -59.99801715163778,
+                "y": -0.4877887573304065
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "6",
+              "seat_guid": "37c34519-0166-45ad-95c2-ecc95f7929b7",
+              "uuid": "fe17bfe0-d449-47e2-aad0-894822138029",
+              "position": {
+                "x": -74.99752143954726,
+                "y": -0.6097359466630223
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "7",
+              "seat_guid": "0d74d6b5-7943-4aa8-a5c2-641c07a303af",
+              "uuid": "b1f37aad-4909-415d-8a18-8a2a14329971",
+              "position": {
+                "x": -89.99702572745667,
+                "y": -0.7316831359955813
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "4297252c-d712-4861-9335-216d84269ade",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 553.2155094514928,
+            "y": 294.27175009696555
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "17",
+              "seat_guid": "Groundfloor-1-17",
+              "uuid": "4b5c0dd4-913d-4cf5-aaf9-5bb144407bd4",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "19",
+              "seat_guid": "Groundfloor-1-19",
+              "uuid": "267d2847-2eea-476d-a451-466e854ad5fe",
+              "position": {
+                "x": -15,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "21",
+              "seat_guid": "Groundfloor-1-21",
+              "uuid": "51ecd24b-4d79-444d-88e0-66eab320d476",
+              "position": {
+                "x": -30,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "23",
+              "seat_guid": "Groundfloor-1-23",
+              "uuid": "ba1a9b95-baaa-4ae0-8173-908ea980d5eb",
+              "position": {
+                "x": -45,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "25",
+              "seat_guid": "Groundfloor-1-25",
+              "uuid": "8f40dd22-60c5-4e7b-87e5-c1db4e0a1c8a",
+              "position": {
+                "x": -60,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "27",
+              "seat_guid": "Groundfloor-1-27",
+              "uuid": "496e68c7-68d8-42cf-b13d-3381c8cdb3c0",
+              "position": {
+                "x": -75,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "29",
+              "seat_guid": "Groundfloor-1-29",
+              "uuid": "83fa1099-9399-4dce-8ee9-f7bb890ec2e5",
+              "position": {
+                "x": -90,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "31",
+              "seat_guid": "Groundfloor-1-31",
+              "uuid": "c38aa6b3-72f9-4089-96b8-4d8dd1618941",
+              "position": {
+                "x": -105,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "669a68bb-9a68-442e-b7e4-52a5626cc8b7",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 552.4757773704324,
+            "y": 277.8924416797172
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "33",
+              "seat_guid": "Groundfloor-1-33",
+              "uuid": "baf4a634-8eb9-436c-aa4a-dd42a9b29e71",
+              "position": {
+                "x": -1.2789769243681803e-13,
+                "y": 1.3322676295501878e-15
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "35",
+              "seat_guid": "Groundfloor-1-35",
+              "uuid": "df9ada4f-32fb-417d-8560-6933e7559034",
+              "position": {
+                "x": -14.99979905421916,
+                "y": -0.07764234057167574
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "37",
+              "seat_guid": "Groundfloor-1-37",
+              "uuid": "94300c27-f78a-4e30-9f2e-3b41c494655d",
+              "position": {
+                "x": -29.999598108438168,
+                "y": -0.15528468114340988
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "39",
+              "seat_guid": "Groundfloor-1-39",
+              "uuid": "1d52c85d-ad01-4a6a-806a-8db1da436c31",
+              "position": {
+                "x": -44.99939716265726,
+                "y": -0.23292702171508906
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "41",
+              "seat_guid": "Groundfloor-1-41",
+              "uuid": "bd761f46-3969-42d7-a45b-3ceed49a2453",
+              "position": {
+                "x": -59.99919621687629,
+                "y": -0.310569362286768
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "43",
+              "seat_guid": "Groundfloor-1-43",
+              "uuid": "c7e82369-a62a-4c31-b4d2-8f11b073c8d5",
+              "position": {
+                "x": -74.99899527109537,
+                "y": -0.38821170285850215
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "45",
+              "seat_guid": "Groundfloor-1-45",
+              "uuid": "e99fd3ba-16ad-4f95-b189-5b0239500b57",
+              "position": {
+                "x": -89.9987943253144,
+                "y": -0.4658540434301841
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "47",
+              "seat_guid": "Groundfloor-1-47",
+              "uuid": "89a1f87f-68b6-4079-99cf-bbdee5fd98c2",
+              "position": {
+                "x": -104.99859337953343,
+                "y": -0.543496384001919
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "a196a1c2-5956-4b2f-a654-af131e08c705",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 325.20476051811414,
+            "y": 277.2449733909016
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "36",
+              "seat_guid": "Groundfloor-1-36",
+              "uuid": "b55c8c15-523e-41d3-acc4-c8147bc835c8",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "38",
+              "seat_guid": "Groundfloor-1-38",
+              "uuid": "7d91b6dd-778c-4687-92ed-6c8324bd9928",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "40",
+              "seat_guid": "Groundfloor-1-40",
+              "uuid": "f70dc1f6-c2f6-4127-96f3-d0bb5d689b2f",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "42",
+              "seat_guid": "Groundfloor-1-42",
+              "uuid": "f6792941-7537-447c-8c8e-ebebec593e49",
+              "position": {
+                "x": 45,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "44",
+              "seat_guid": "Groundfloor-1-44",
+              "uuid": "0cdea0c6-8dc8-4f32-a0c4-e98805ca9021",
+              "position": {
+                "x": 60,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "46",
+              "seat_guid": "Groundfloor-1-46",
+              "uuid": "3d5c1f2f-8837-4228-aa2e-8d7eb15644f7",
+              "position": {
+                "x": 75,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "48",
+              "seat_guid": "Groundfloor-1-48",
+              "uuid": "120c745e-d2ad-4a01-ae11-2df8e3f8e69d",
+              "position": {
+                "x": 90,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "50",
+              "seat_guid": "Groundfloor-1-50",
+              "uuid": "5e026234-962b-469d-894e-00511c24f573",
+              "position": {
+                "x": 105,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "20ba102b-138f-4522-b5fa-d98956aceb86",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 325.20476051811414,
+            "y": 294.27175009696555
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "20",
+              "seat_guid": "Groundfloor-1-20",
+              "uuid": "33fb2526-cb58-4191-9d8b-c35a3dfce4cf",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "22",
+              "seat_guid": "Groundfloor-1-22",
+              "uuid": "36e36016-c0ff-44c0-b42a-5017722bc70c",
+              "position": {
+                "x": 14.999643294531666,
+                "y": 0.1034458158243865
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "24",
+              "seat_guid": "Groundfloor-1-24",
+              "uuid": "8302ebeb-2570-4962-8066-b8a05003d1e8",
+              "position": {
+                "x": 29.99928658906333,
+                "y": 0.20689163164871616
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "26",
+              "seat_guid": "Groundfloor-1-26",
+              "uuid": "3dbb1a7f-8a9a-4a4c-aaf5-b1048d61b933",
+              "position": {
+                "x": 44.99892988359494,
+                "y": 0.31033744747310266
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "28",
+              "seat_guid": "Groundfloor-1-28",
+              "uuid": "1bb81109-8073-45d9-891b-7a74208f7152",
+              "position": {
+                "x": 59.998573178126605,
+                "y": 0.4137832632974323
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "30",
+              "seat_guid": "Groundfloor-1-30",
+              "uuid": "67741d81-0e1a-49f1-b132-1ce3fa35e373",
+              "position": {
+                "x": 74.99821647265827,
+                "y": 0.5172290791218188
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "32",
+              "seat_guid": "Groundfloor-1-32",
+              "uuid": "f7f46b12-6817-4d31-9a6f-97ab2ff1ab06",
+              "position": {
+                "x": 89.99785976718994,
+                "y": 0.6206748949461485
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "34",
+              "seat_guid": "Groundfloor-1-34",
+              "uuid": "420ffd5d-203b-41a6-8220-a90fc2a19a91",
+              "position": {
+                "x": 104.9975030617216,
+                "y": 0.724120710770535
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "78bb1aa1-842b-4a0a-b34c-09d96fa80c7a",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 325.20476051811414,
+            "y": 311.2985268030296
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "2",
+              "seat_guid": "Groundfloor-1-2",
+              "uuid": "8ca87816-b948-4979-9559-498eabba9c3a",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "4",
+              "seat_guid": "Groundfloor-1-4",
+              "uuid": "c137ca81-064e-4627-8b90-c63362e3edb5",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "6",
+              "seat_guid": "Groundfloor-1-6",
+              "uuid": "2a4453ea-f2c5-4af2-bf38-3181a777aca5",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "8",
+              "seat_guid": "Groundfloor-1-8",
+              "uuid": "60d46aae-cceb-4986-811a-924dc068350f",
+              "position": {
+                "x": 45,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "10",
+              "seat_guid": "Groundfloor-1-10",
+              "uuid": "2b181001-2b21-44fc-830a-96f96640defb",
+              "position": {
+                "x": 60,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "12",
+              "seat_guid": "Groundfloor-1-12",
+              "uuid": "3997a1eb-12bf-41cf-b5ed-d6a11a2e04b9",
+              "position": {
+                "x": 75,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "14",
+              "seat_guid": "Groundfloor-1-14",
+              "uuid": "322ce87e-1228-4d9b-8ebb-db5fa37c65ff",
+              "position": {
+                "x": 90,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "16",
+              "seat_guid": "Groundfloor-1-16",
+              "uuid": "4df4f8ac-d437-4bb5-b8fc-b91c23470c56",
+              "position": {
+                "x": 105,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "18",
+              "seat_guid": "Groundfloor-1-18",
+              "uuid": "db3d0317-1b30-4e9b-b21d-a7b14acae5c9",
+              "position": {
+                "x": 120,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "ccffbef3-c9c3-4176-b69c-b9dcd115d1d0",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 254.13647513628183,
+            "y": 275.7643841121134
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "82",
+              "seat_guid": "Groundfloor-1-82",
+              "uuid": "45440a72-8555-4134-913b-4dbd47e7576c",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "84",
+              "seat_guid": "Groundfloor-1-84",
+              "uuid": "624ee1ae-88d7-4d93-9426-8f98a9fe733d",
+              "position": {
+                "x": 14.998169280520415,
+                "y": 0.23434639500811727
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "86",
+              "seat_guid": "Groundfloor-1-86",
+              "uuid": "1dae197e-06f6-4540-a3ee-5ce7ae55bc88",
+              "position": {
+                "x": 29.996338561040886,
+                "y": 0.46869279001623454
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "88",
+              "seat_guid": "Groundfloor-1-88",
+              "uuid": "f0a8ec6a-2e97-4c55-b426-e8ee1343ab5a",
+              "position": {
+                "x": 44.9945078415613,
+                "y": 0.7030391850243518
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "52a5f97d-4db8-40d9-882a-3276deabd9fc",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 269.68266256355764,
+            "y": 292.7911608181774
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "60",
+              "seat_guid": "Groundfloor-1-60",
+              "uuid": "ff9d2742-5cbd-4ada-951c-4242cf2fe6fb",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "62",
+              "seat_guid": "Groundfloor-1-62",
+              "uuid": "f9cfe59b-7461-4926-b106-875613a47d57",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "64",
+              "seat_guid": "Groundfloor-1-64",
+              "uuid": "82e06968-c35e-4c5a-b58b-3b07ec67ecba",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "78509662-9820-41df-a349-9ba8cfe7c199",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 156.5906701954802,
+            "y": 373.6330713208692
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "4",
+              "seat_guid": "Groundfloor-1-4",
+              "uuid": "8a20ecde-ca72-43ca-990d-9737193320fb",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "3",
+              "seat_guid": "Groundfloor-1-3",
+              "uuid": "4559b22a-81ed-4cfb-9c11-9df68a496200",
+              "position": {
+                "x": 13.416407864998746,
+                "y": -6.708203932499373
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "f2a02fee-8d75-4cc6-8f9d-949509cac928",
+          "seat_label": "Balcon %s"
+        },
+        {
+          "position": {
+            "x": 189.16363432882002,
+            "y": 356.6062946148052
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "4",
+              "seat_guid": "Groundfloor-1-4",
+              "uuid": "1875b889-aa99-4c24-979f-b2cf5727f97e",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "3",
+              "seat_guid": "Groundfloor-1-3",
+              "uuid": "55a715b3-b46c-49c8-9725-355ded907616",
+              "position": {
+                "x": 13.273773335729715,
+                "y": -6.986196492489398
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "8ec7ed5b-62d5-4aab-b3fb-dca9e2197bb5",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 164.73391122881515,
+            "y": 388.43896410875095
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "2",
+              "seat_guid": "Groundfloor-1-2",
+              "uuid": "5f36b9e2-1d36-456c-b1b6-c9b7afe28686",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "1",
+              "seat_guid": "Groundfloor-1-1",
+              "uuid": "48f63188-bd03-469e-bdb4-9af7cf6e78d0",
+              "position": {
+                "x": 13.273773335729743,
+                "y": -6.986196492489341
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "b0904902-b66a-480c-a620-1137f959d59e",
+          "seat_label": "Balcon %s"
+        },
+        {
+          "position": {
+            "x": 196.56658072276088,
+            "y": 371.4121874026869
+          },
+          "row_number": "2",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "2",
+              "seat_guid": "Groundfloor-2-2",
+              "uuid": "e7ab638c-a4f2-48c7-9c0d-c0ef365e0aef",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "1",
+              "seat_guid": "Groundfloor-2-1",
+              "uuid": "38a7ff4a-3014-4a1c-9d0d-553cbb960f61",
+              "position": {
+                "x": 13.168433593715775,
+                "y": -7.182781960208558
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "cd7db4fc-5f33-44a6-9833-1263bbbc5644",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 220.25600918337165,
+            "y": 341.80040182692346
+          },
+          "row_number": "3",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "4",
+              "seat_guid": "Groundfloor-3-4",
+              "uuid": "714e8376-cc5b-4c63-b85a-9b228f4019d0",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "3",
+              "seat_guid": "Groundfloor-3-3",
+              "uuid": "c10fc18a-e401-4278-9df0-7ee081b3ce01",
+              "position": {
+                "x": 13.168433593715775,
+                "y": -7.182781960208558
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "043fb6f4-b54b-431e-b37c-6b6b23a7646a",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 226.91866093791845,
+            "y": 355.8659999754111
+          },
+          "row_number": "4",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "2",
+              "seat_guid": "Groundfloor-4-2",
+              "uuid": "e15df2fb-23ad-4005-9063-272bc53174c8",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "1",
+              "seat_guid": "Groundfloor-4-1",
+              "uuid": "540cfde6-5d36-4308-b98d-36d82e3368f0",
+              "position": {
+                "x": 12.753977200317934,
+                "y": -7.8953192192444135
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "5532da0f-3e88-40a2-a395-302e52939e7c",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 372.78002331944936,
+            "y": 682.8395850896279
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "6",
+              "seat_guid": "Groundfloor-1-6",
+              "uuid": "1b447265-6e77-44f6-9ec8-5874892292f5",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "8",
+              "seat_guid": "Groundfloor-1-8",
+              "uuid": "49bb2dac-c0f9-4e6c-a0b8-b91a913d6f09",
+              "position": {
+                "x": 14.99931977416469,
+                "y": 0.14285066451589046
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "10",
+              "seat_guid": "Groundfloor-1-10",
+              "uuid": "347d5608-7443-41f1-b246-8e837ad6139a",
+              "position": {
+                "x": 29.998639548329322,
+                "y": 0.28570132903166723
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "12",
+              "seat_guid": "Groundfloor-1-12",
+              "uuid": "216abfa0-001d-440e-8497-199ecc903459",
+              "position": {
+                "x": 44.99795932249401,
+                "y": 0.4285519935475577
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "14",
+              "seat_guid": "Groundfloor-1-14",
+              "uuid": "e04c063c-dff4-4b8f-bd2d-b5aae05e5db2",
+              "position": {
+                "x": 59.9972790966587,
+                "y": 0.5714026580634481
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "d04b6b8e-8d90-47fa-82d0-913d20cbcf64",
+          "seat_label": "gold  %s"
+        },
+        {
+          "position": {
+            "x": 357.3364252383206,
+            "y": 665.6140333837535
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "24",
+              "seat_guid": "Groundfloor-1-24",
+              "uuid": "d7f10ceb-8cb5-4a9d-9d4e-727086df4d52",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "26",
+              "seat_guid": "Groundfloor-1-26",
+              "uuid": "624c9d84-ee72-4b05-9930-0296940da533",
+              "position": {
+                "x": 14.997428644876948,
+                "y": 0.27773016009030016
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "28",
+              "seat_guid": "Groundfloor-1-28",
+              "uuid": "d7f054ee-f900-43dd-88a9-1629240c88f9",
+              "position": {
+                "x": 29.994857289753952,
+                "y": 0.5554603201806003
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "30",
+              "seat_guid": "Groundfloor-1-30",
+              "uuid": "f2f1d352-42f3-491a-99cf-fdd862eb3325",
+              "position": {
+                "x": 44.9922859346309,
+                "y": 0.8331904802709005
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "32",
+              "seat_guid": "Groundfloor-1-32",
+              "uuid": "0f7d32d0-9dee-4450-ad7f-12f6191a0ddb",
+              "position": {
+                "x": 59.98971457950785,
+                "y": 1.1109206403612006
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "d890ee91-3e58-4ebd-9be6-4843c087bf09",
+          "seat_label": "gold  %s"
+        },
+        {
+          "position": {
+            "x": 327.2135304389767,
+            "y": 576.5925937588387
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "160",
+              "seat_guid": "Groundfloor-1-160",
+              "uuid": "c52bb423-2573-4693-a976-fd7699570c80",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "162",
+              "seat_guid": "Groundfloor-1-162",
+              "uuid": "12b4bae3-e227-45bd-aad1-2aae0d66ceca",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "164",
+              "seat_guid": "Groundfloor-1-164",
+              "uuid": "683bfa90-8ecf-490d-afa6-6e1880cc52da",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "166",
+              "seat_guid": "Groundfloor-1-166",
+              "uuid": "315315c6-7a1e-4a43-ad02-6e8ca64c3757",
+              "position": {
+                "x": 45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "168",
+              "seat_guid": "Groundfloor-1-168",
+              "uuid": "fdda214f-4e7b-49c6-83ff-99d5379933db",
+              "position": {
+                "x": 60,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "170",
+              "seat_guid": "Groundfloor-1-170",
+              "uuid": "52bba484-b4f5-4956-89ef-63eb9cf8b6ef",
+              "position": {
+                "x": 75,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "172",
+              "seat_guid": "Groundfloor-1-172",
+              "uuid": "912c1740-7aa6-4eed-9c8f-91670bafc33a",
+              "position": {
+                "x": 90,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "174",
+              "seat_guid": "Groundfloor-1-174",
+              "uuid": "687153ad-7ec3-41b9-94c6-0c3ecaa53f13",
+              "position": {
+                "x": 105,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "764c564a-4287-429a-9c4a-48a0c16fdaf8",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 328.02316096302974,
+            "y": 596.0237263361124
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "126",
+              "seat_guid": "Groundfloor-1-126",
+              "uuid": "f2eb26ab-55d0-400a-90cf-f44b86f68922",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "128",
+              "seat_guid": "Groundfloor-1-128",
+              "uuid": "df3cddff-698e-4ca3-a846-baf269a8e4e4",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "130",
+              "seat_guid": "Groundfloor-1-130",
+              "uuid": "148df26c-d9f0-4e69-9042-844089c36cb3",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "132",
+              "seat_guid": "Groundfloor-1-132",
+              "uuid": "d0893818-2941-43a6-b8c0-0173c7f843ff",
+              "position": {
+                "x": 45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "134",
+              "seat_guid": "Groundfloor-1-134",
+              "uuid": "29cb688a-3933-4766-b832-2fe6ba443f43",
+              "position": {
+                "x": 60,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "136",
+              "seat_guid": "Groundfloor-1-136",
+              "uuid": "627c6946-d992-49a6-acbc-a7dee366f27f",
+              "position": {
+                "x": 75,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "138",
+              "seat_guid": "Groundfloor-1-138",
+              "uuid": "296ef068-f912-4e4a-a471-03fcd0f0b174",
+              "position": {
+                "x": 90,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "140",
+              "seat_guid": "Groundfloor-1-140",
+              "uuid": "61787948-c1a0-4ec5-83ca-440b2a26f511",
+              "position": {
+                "x": 105,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "5711f3e3-99d2-437a-af60-df2397a29668",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 341.786879871932,
+            "y": 612.2163368171739
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "96",
+              "seat_guid": "Groundfloor-1-96",
+              "uuid": "90e5554b-9a51-485b-b08a-c30735862e5b",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "98",
+              "seat_guid": "Groundfloor-1-98",
+              "uuid": "234c39fe-7439-444a-8577-70f053365b51",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "100",
+              "seat_guid": "Groundfloor-1-100",
+              "uuid": "d7c2568f-0100-4021-ae5d-11efb75ae299",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "102",
+              "seat_guid": "Groundfloor-1-102",
+              "uuid": "c20f4428-d6be-40a8-b118-e196e3e16605",
+              "position": {
+                "x": 45,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "104",
+              "seat_guid": "Groundfloor-1-104",
+              "uuid": "035e8eda-5952-442d-8463-0aed211cb47f",
+              "position": {
+                "x": 60,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "106",
+              "seat_guid": "Groundfloor-1-106",
+              "uuid": "afa1516b-e427-4fa8-949a-f5ce27e6d283",
+              "position": {
+                "x": 75,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "254d26fa-c221-46e5-b4ef-41d7ea5ced37",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 341.786879871932,
+            "y": 630.8378388703945
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "68",
+              "seat_guid": "Groundfloor-1-68",
+              "uuid": "2da5b666-14ff-45b8-b60a-9597179e266a",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "70",
+              "seat_guid": "Groundfloor-1-70",
+              "uuid": "d8e0c0b9-b789-418c-b678-3d716acb7f7c",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "72",
+              "seat_guid": "Groundfloor-1-72",
+              "uuid": "5e21752e-3942-4e6b-9ad0-e0dd8c88d2bc",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "74",
+              "seat_guid": "Groundfloor-1-74",
+              "uuid": "1ec0a589-ca41-4bc5-92e7-51f7dec238a2",
+              "position": {
+                "x": 45,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "76",
+              "seat_guid": "Groundfloor-1-76",
+              "uuid": "fc275740-418d-461c-a55d-d0926b400695",
+              "position": {
+                "x": 60,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "78",
+              "seat_guid": "Groundfloor-1-78",
+              "uuid": "b38f8742-6b5c-48bb-a183-47af3ec71c65",
+              "position": {
+                "x": 75,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "80",
+              "seat_guid": "Groundfloor-1-80",
+              "uuid": "455271b0-04f5-4fbf-b7bd-371b19d10053",
+              "position": {
+                "x": 90,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "fb663580-13ce-45de-b78e-71e353274acf",
+          "seat_label": "gold  %s"
+        },
+        {
+          "position": {
+            "x": 357.1698598289404,
+            "y": 647.030449351456
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "44",
+              "seat_guid": "Groundfloor-1-44",
+              "uuid": "fa7d3aaf-ba0f-4e5f-bc47-950db1e63d79",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "46",
+              "seat_guid": "Groundfloor-1-46",
+              "uuid": "f6f61acc-1c2d-4975-a0f6-43a10baeb596",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "48",
+              "seat_guid": "Groundfloor-1-48",
+              "uuid": "333f204b-511d-4b9b-b8ff-051e230d8e24",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "50",
+              "seat_guid": "Groundfloor-1-50",
+              "uuid": "e11cb178-ff66-488d-8541-594c8ee3ef4a",
+              "position": {
+                "x": 45,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "52",
+              "seat_guid": "Groundfloor-1-52",
+              "uuid": "0cd3d636-efc9-4cbc-9e83-65b07a6bb4bf",
+              "position": {
+                "x": 60,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            },
+            {
+              "seat_number": "54",
+              "seat_guid": "Groundfloor-1-54",
+              "uuid": "12792bcf-236a-4335-89b1-f10411600bd5",
+              "position": {
+                "x": 75,
+                "y": 0
+              },
+              "category": "Gold",
+              "radius": 5
+            }
+          ],
+          "uuid": "4440e924-1544-4629-a3b5-e8e6f2f87796",
+          "seat_label": "gold  %s"
+        },
+        {
+          "position": {
+            "x": 165.28742562836203,
+            "y": 574.1637021866794
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "142",
+              "seat_guid": "Groundfloor-1-142",
+              "uuid": "42cafc93-c815-4418-a60b-f58673531a42",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "144",
+              "seat_guid": "Groundfloor-1-144",
+              "uuid": "26419eea-7b0f-42d3-b24a-e661ecc56276",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "146",
+              "seat_guid": "Groundfloor-1-146",
+              "uuid": "e82572f6-0e0b-48e0-99e5-0402b0f0e453",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "148",
+              "seat_guid": "Groundfloor-1-148",
+              "uuid": "f7b9a595-571b-41e3-b8a4-3d6a0eb236e0",
+              "position": {
+                "x": 45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "150",
+              "seat_guid": "Groundfloor-1-150",
+              "uuid": "0e490414-0b06-41f0-b24c-60582d656452",
+              "position": {
+                "x": 60,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "152",
+              "seat_guid": "Groundfloor-1-152",
+              "uuid": "e2cb3ea8-b0f1-4d03-942c-297356770d57",
+              "position": {
+                "x": 75,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "154",
+              "seat_guid": "Groundfloor-1-154",
+              "uuid": "57d95761-baec-4ae2-abf0-b8ac4d50b03d",
+              "position": {
+                "x": 90,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "156",
+              "seat_guid": "Groundfloor-1-156",
+              "uuid": "b7a6fda4-d11d-4070-935f-60c0d0333550",
+              "position": {
+                "x": 105,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "158",
+              "seat_guid": "Groundfloor-1-158",
+              "uuid": "3d499185-4e39-44fc-aa49-7f1a58c05b68",
+              "position": {
+                "x": 120,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "fdb5313d-e7b8-49f8-9b00-5201cd896ae0",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 165.28742562836203,
+            "y": 592.7852042399002
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "108",
+              "seat_guid": "Groundfloor-1-108",
+              "uuid": "7b544aa2-0c3f-47dd-b4fa-f2568f5d6036",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "110",
+              "seat_guid": "Groundfloor-1-110",
+              "uuid": "e5086a68-6ba4-48c1-9b32-dfa7fa83697d",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "112",
+              "seat_guid": "Groundfloor-1-112",
+              "uuid": "475719d1-1528-488f-8cd6-008a3d4b625b",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "114",
+              "seat_guid": "Groundfloor-1-114",
+              "uuid": "be0d4fb4-8123-48e1-8a53-c7b268e589fe",
+              "position": {
+                "x": 45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "116",
+              "seat_guid": "Groundfloor-1-116",
+              "uuid": "ce2ce374-ebef-455b-8d8e-1467ed14d65e",
+              "position": {
+                "x": 60,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "118",
+              "seat_guid": "Groundfloor-1-118",
+              "uuid": "992a97a5-c8d3-4301-aeae-16601aa11ece",
+              "position": {
+                "x": 75,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "120",
+              "seat_guid": "Groundfloor-1-120",
+              "uuid": "d911849c-147c-4c2e-82e0-72f886c79094",
+              "position": {
+                "x": 90,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "122",
+              "seat_guid": "Groundfloor-1-122",
+              "uuid": "cb75c4b4-16ee-4e44-ab7e-863aa1de9666",
+              "position": {
+                "x": 105,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "124",
+              "seat_guid": "Groundfloor-1-124",
+              "uuid": "9adc32b0-8832-4a37-bb7d-575df9af9397",
+              "position": {
+                "x": 120,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "850056bd-8cca-48f8-8aea-fa169d217527",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 195.24375501832574,
+            "y": 609.7874452450146
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "82",
+              "seat_guid": "Groundfloor-1-82",
+              "uuid": "457f826c-2a91-4127-996e-5ba6ac9c2659",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "84",
+              "seat_guid": "Groundfloor-1-84",
+              "uuid": "2957302d-a019-4720-bd23-e75c3f1da768",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "86",
+              "seat_guid": "Groundfloor-1-86",
+              "uuid": "8e53f5fc-ecc9-494f-808f-c98c1ec026d7",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "88",
+              "seat_guid": "Groundfloor-1-88",
+              "uuid": "9624b1ba-8ce9-4192-b83a-41dcdc4adc15",
+              "position": {
+                "x": 45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "90",
+              "seat_guid": "Groundfloor-1-90",
+              "uuid": "55e21300-92be-4c78-b986-21d2c144dede",
+              "position": {
+                "x": 60,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "92",
+              "seat_guid": "Groundfloor-1-92",
+              "uuid": "d4bd5a52-29c9-4746-a703-45353018e190",
+              "position": {
+                "x": 74.99999999999997,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "94",
+              "seat_guid": "Groundfloor-1-94",
+              "uuid": "950b7b00-615a-4c09-9504-e877e44ccb06",
+              "position": {
+                "x": 89.99999999999997,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "722c7f36-ed21-4cb9-aedd-2042360de6f6",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 210.62673497533413,
+            "y": 627.5993167741823
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "56",
+              "seat_guid": "Groundfloor-1-56",
+              "uuid": "472326d7-7422-437c-9735-8dc184940c40",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "58",
+              "seat_guid": "Groundfloor-1-58",
+              "uuid": "09b6dde1-2708-489c-8ea9-cbfa5874efd3",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "60",
+              "seat_guid": "Groundfloor-1-60",
+              "uuid": "939280d0-8458-4023-b446-25dd18ef0760",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "62",
+              "seat_guid": "Groundfloor-1-62",
+              "uuid": "038775f5-87c6-4541-ba2b-f471f2ddbecd",
+              "position": {
+                "x": 45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "64",
+              "seat_guid": "Groundfloor-1-64",
+              "uuid": "d32fcecc-1835-453b-a70f-e98805834931",
+              "position": {
+                "x": 59.99999999999997,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "66",
+              "seat_guid": "Groundfloor-1-66",
+              "uuid": "c7218b6f-f48c-4a0f-9c99-f53adf8a5cc9",
+              "position": {
+                "x": 74.99999999999997,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "dfee10c0-ce5c-400f-8b27-628da80fe9c4",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 226.00971493234252,
+            "y": 644.6598269784798
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "34",
+              "seat_guid": "Groundfloor-1-34",
+              "uuid": "b68278d7-8eac-4ab7-99b1-f5a194c4fa25",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "36",
+              "seat_guid": "Groundfloor-1-36",
+              "uuid": "2a11c85d-c86b-457a-b020-9c13fa0fa05e",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "38",
+              "seat_guid": "Groundfloor-1-38",
+              "uuid": "25c4f43c-f720-4d3a-abfe-01e008f919ce",
+              "position": {
+                "x": 29.99999999999997,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "40",
+              "seat_guid": "Groundfloor-1-40",
+              "uuid": "4786967a-6887-4ecc-80df-8c1cac2355da",
+              "position": {
+                "x": 44.99999999999997,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "42",
+              "seat_guid": "Groundfloor-1-42",
+              "uuid": "0e3b0612-823a-4c73-93f1-f6cf1310d0fc",
+              "position": {
+                "x": 59.99999999999997,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "fcf4ed68-4d65-4cc2-a596-1f3d5926e211",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 239.77343384124475,
+            "y": 662.4134293084644
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "16",
+              "seat_guid": "Groundfloor-1-16",
+              "uuid": "510bd79e-ea08-46ec-b229-a2e7eff90c4c",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "18",
+              "seat_guid": "Groundfloor-1-18",
+              "uuid": "b6b6f05a-2f22-4f24-b059-543b7e2ad86f",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "20",
+              "seat_guid": "Groundfloor-1-20",
+              "uuid": "d0cd5d35-96e5-4fca-aae0-60ffcf72cdea",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "22",
+              "seat_guid": "Groundfloor-1-22",
+              "uuid": "2488099b-b18a-4aa4-9e0f-70815989e1d8",
+              "position": {
+                "x": 45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "b2f68659-c8c4-4219-9877-b1c251b94bc2",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 269.6714940320254,
+            "y": 679.415670313579
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "2",
+              "seat_guid": "Groundfloor-1-2",
+              "uuid": "9c776649-118b-4b02-b26a-db74d00dc527",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "4",
+              "seat_guid": "Groundfloor-1-4",
+              "uuid": "b7f02d31-efa8-4164-8a9b-c32823c8627d",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "99dd7f12-1a4d-4cc6-bd7a-0a01290683d3",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 234.10602017287326,
+            "y": 519.1088265510705
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "182",
+              "seat_guid": "Groundfloor-1-182",
+              "uuid": "9731fe9a-6100-4000-9177-6815279e3f2c",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "184",
+              "seat_guid": "Groundfloor-1-184",
+              "uuid": "ee7fbcc6-a28d-4839-ae63-127d384e6202",
+              "position": {
+                "x": 14.999569577755693,
+                "y": 0.11363310286174055
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "186",
+              "seat_guid": "Groundfloor-1-186",
+              "uuid": "046b0bf9-ac55-4be5-bb3d-49cf77045a5d",
+              "position": {
+                "x": 29.999139155511358,
+                "y": 0.2272662057235948
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "188",
+              "seat_guid": "Groundfloor-1-188",
+              "uuid": "a064c01c-c749-4ff2-80b7-528115a0e48c",
+              "position": {
+                "x": 44.99870873326708,
+                "y": 0.34089930858533535
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "190",
+              "seat_guid": "Groundfloor-1-190",
+              "uuid": "5b3e4f5a-f01d-42b7-8203-b4d8e6dedb74",
+              "position": {
+                "x": 59.998278311022744,
+                "y": 0.4545324114471896
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "192",
+              "seat_guid": "Groundfloor-1-192",
+              "uuid": "1add47ea-93ca-40fd-a10d-325762804822",
+              "position": {
+                "x": 74.99784788877847,
+                "y": 0.5681655143089301
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "194",
+              "seat_guid": "Groundfloor-1-194",
+              "uuid": "6b514b18-c243-45e4-adcf-928f27b7bbcd",
+              "position": {
+                "x": 89.99741746653413,
+                "y": 0.6817986171707844
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "196",
+              "seat_guid": "Groundfloor-1-196",
+              "uuid": "e90c0f12-f270-41d6-9764-830e7e18defd",
+              "position": {
+                "x": 104.99698704428985,
+                "y": 0.7954317200325249
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "63758e3b-0079-454c-9f7e-a8d14ed57a55",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 370.12394821378956,
+            "y": 537.0027401551215
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "198",
+              "seat_guid": "Cat 1 %s",
+              "uuid": "e67f9af1-1349-4f32-8d21-e1bd4b391f54",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "400dbfa0-f7da-4743-b7a4-4bc65099a29c",
+          "seat_label": "198"
+        },
+        {
+          "position": {
+            "x": 233.29638964882017,
+            "y": 500.4873244978498
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "208",
+              "seat_guid": "Groundfloor-1-208",
+              "uuid": "6553d59e-5b1c-4a0a-9fb5-69efe9cdc7ae",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "210",
+              "seat_guid": "Groundfloor-1-210",
+              "uuid": "5a92ad84-9660-4632-9f3d-059387746f23",
+              "position": {
+                "x": 14.998701692125508,
+                "y": 0.1973513380542613
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "212",
+              "seat_guid": "Groundfloor-1-212",
+              "uuid": "fc99f8b3-e82f-4f03-ad40-d659cf6b3b4a",
+              "position": {
+                "x": 29.997403384250987,
+                "y": 0.3947026761085226
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "214",
+              "seat_guid": "Groundfloor-1-214",
+              "uuid": "f3d0c9f3-6029-4c6f-8d6d-16e093a76a25",
+              "position": {
+                "x": 44.996105076376494,
+                "y": 0.5920540141628408
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "216",
+              "seat_guid": "Groundfloor-1-216",
+              "uuid": "00ef555f-56df-4a9b-975d-266a5ee69faf",
+              "position": {
+                "x": 59.994806768502,
+                "y": 0.7894053522171021
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "f287e2d7-513d-4495-ad68-172840e8191d",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 234.10602017287326,
+            "y": 484.2947140167883
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "228",
+              "seat_guid": "Groundfloor-1-228",
+              "uuid": "31a33c25-d258-45c8-b3d0-715bc0eaa7f2",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "230",
+              "seat_guid": "Groundfloor-1-230",
+              "uuid": "dda662eb-95a8-44a8-be20-4412f2ea39ad",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "232",
+              "seat_guid": "Groundfloor-1-232",
+              "uuid": "20c3b854-c0ea-45ce-9023-a144b3540d11",
+              "position": {
+                "x": 30.00000000000003,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "234",
+              "seat_guid": "Groundfloor-1-234",
+              "uuid": "638d9bb5-f88c-4998-a384-2d6b14600aa8",
+              "position": {
+                "x": 45.00000000000003,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "9a8b2c8d-9e49-4815-b103-90a1dbc051dc",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 234.10602017287326,
+            "y": 465.23907111127954
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "246",
+              "seat_guid": "Groundfloor-1-246",
+              "uuid": "cf074ca8-79e7-4700-87be-6e2bd62034b3",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "248",
+              "seat_guid": "Groundfloor-1-248",
+              "uuid": "da5284a7-5922-4358-a3ca-a2c5d70cab8f",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "e568e3bc-b536-4801-8b61-aa3e0aedb5e9",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 234.10602017287326,
+            "y": 448.6709709584531
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "258",
+              "seat_guid": "Groundfloor-1-258",
+              "uuid": "101a4f9f-d2ee-43a9-9dad-977c2f05e5e2",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "6031ffa0-4803-46d0-8680-679b9d34004e",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 158.00075091188435,
+            "y": 448.6709709584531
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "250",
+              "seat_guid": "Groundfloor-1-250",
+              "uuid": "320dde75-9ed8-49e4-a971-84b14b85a117",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "252",
+              "seat_guid": "Groundfloor-1-252",
+              "uuid": "d0e043bc-c4f9-49af-970e-4a951aa68237",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "254",
+              "seat_guid": "Groundfloor-1-254",
+              "uuid": "c99f910c-6677-494c-9d08-011aa763adcf",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "256",
+              "seat_guid": "Groundfloor-1-256",
+              "uuid": "78827dc2-8b4f-4196-b38e-02b7d9a42dc8",
+              "position": {
+                "x": 45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "402da73c-dccc-4a09-8db7-3072d0c74789",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 141.8081404308229,
+            "y": 465.6732119635676
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "236",
+              "seat_guid": "Groundfloor-1-236",
+              "uuid": "d36e9be4-525c-4203-943c-79af19d8ba8b",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "238",
+              "seat_guid": "Groundfloor-1-238",
+              "uuid": "6aac696c-3966-4c3a-8509-2f2a2f3eeba5",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "240",
+              "seat_guid": "Groundfloor-1-240",
+              "uuid": "d7d7c6fb-8fd0-4a53-a14c-1dae968a42a3",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "242",
+              "seat_guid": "Groundfloor-1-242",
+              "uuid": "add43b1c-188c-4a94-80ed-ca22b4c5e2f0",
+              "position": {
+                "x": 45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "244",
+              "seat_guid": "Groundfloor-1-244",
+              "uuid": "6a8edaae-d5b7-41f2-80f3-eed8396d33df",
+              "position": {
+                "x": 60,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "6db44b6b-9411-473f-930f-b0a175ae201e",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 142.61777095487597,
+            "y": 484.2947140167883
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "218",
+              "seat_guid": "Groundfloor-1-218",
+              "uuid": "c70292d5-631c-407a-a3cf-9fa917d42d2d",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "220",
+              "seat_guid": "Groundfloor-1-220",
+              "uuid": "44b7766e-9817-410a-88c2-448b7865ebc8",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "222",
+              "seat_guid": "Groundfloor-1-222",
+              "uuid": "d66898e3-8aad-414b-b9d4-150a1c04d0e8",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "224",
+              "seat_guid": "Groundfloor-1-224",
+              "uuid": "f63a6d78-879f-4fcb-adf4-ca095e957557",
+              "position": {
+                "x": 45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "226",
+              "seat_guid": "Groundfloor-1-226",
+              "uuid": "0218c8cc-df69-4e00-85bb-f059c8472642",
+              "position": {
+                "x": 60,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "ddf55ca9-e27d-4d2d-a928-7a4356f1604f",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 158.00075091188435,
+            "y": 501.2969550219028
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "200",
+              "seat_guid": "Groundfloor-1-200",
+              "uuid": "015cd769-29f0-4942-87b9-b803b69ecfb8",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "202",
+              "seat_guid": "Groundfloor-1-202",
+              "uuid": "a830e77e-1609-4410-80c4-3934bbd234d0",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "204",
+              "seat_guid": "Groundfloor-1-204",
+              "uuid": "607366de-4ef2-4361-8a2a-0114bca91ecb",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "206",
+              "seat_guid": "Groundfloor-1-206",
+              "uuid": "2f99417b-0340-4a36-9ece-9ca5d81184a8",
+              "position": {
+                "x": 45,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "c3f4bc09-4e8d-4417-8cee-31da031291a1",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 173.38373086889274,
+            "y": 519.9184570751236
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "176",
+              "seat_guid": "Groundfloor-1-176",
+              "uuid": "341488f5-81b4-4411-a33f-2973abd814f2",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "178",
+              "seat_guid": "Groundfloor-1-178",
+              "uuid": "1a310a2a-83e8-4a41-ab6e-519fd1e0353a",
+              "position": {
+                "x": 15,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "180",
+              "seat_guid": "Groundfloor-1-180",
+              "uuid": "eb2fa5f2-574f-42ff-99d9-818b2a4a9159",
+              "position": {
+                "x": 30,
+                "y": 0
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "9a05d9a9-09a1-4212-b214-c44b61a91f4c",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 188.07251135793513,
+            "y": 431.0276910598388
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "260",
+              "seat_guid": "Groundfloor-1-260",
+              "uuid": "b50e4afb-50fe-4d57-993e-a6cc255ec026",
+              "position": {
+                "x": 0,
+                "y": -2.831068712794149e-15
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "262",
+              "seat_guid": "Groundfloor-1-262",
+              "uuid": "e16eaaac-06b9-4369-a9cc-5d130ea2cb88",
+              "position": {
+                "x": 14.998918144795255,
+                "y": 0.18015128567810734
+              },
+              "category": "Category I",
+              "radius": 5
+            },
+            {
+              "seat_number": "264",
+              "seat_guid": "Groundfloor-1-264",
+              "uuid": "28c0146c-f992-4f11-9cc0-d41c2149a99e",
+              "position": {
+                "x": 29.99783628959051,
+                "y": 0.3603025713562177
+              },
+              "category": "Category I",
+              "radius": 5
+            }
+          ],
+          "uuid": "33a90105-2ae0-4ad8-92bc-b91ad2f691c3",
+          "seat_label": "Cat 1 %s"
+        },
+        {
+          "position": {
+            "x": 106.95961220664093,
+            "y": 351.2961773786889
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "66",
+              "seat_guid": "Groundfloor-1-66",
+              "uuid": "3c73bbd3-733a-47a4-aa63-432dea51d1e0",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "68",
+              "seat_guid": "Groundfloor-1-68",
+              "uuid": "85d1cee5-2c3c-4ba7-afdc-d49a8001c55c",
+              "position": {
+                "x": 13.607823516162242,
+                "y": -6.310874674162221
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "70",
+              "seat_guid": "Groundfloor-1-70",
+              "uuid": "ebde8d9d-bdbc-4592-b476-3fe93e2d02ee",
+              "position": {
+                "x": 27.215647032324497,
+                "y": -12.621749348324386
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "72",
+              "seat_guid": "Groundfloor-1-72",
+              "uuid": "43a0026d-cf1c-4fff-a4a1-7c4009a5b8a6",
+              "position": {
+                "x": 40.823470548486725,
+                "y": -18.932624022486607
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "74",
+              "seat_guid": "Groundfloor-1-74",
+              "uuid": "09f09d02-d53d-4a87-bad8-0d6dc29053dc",
+              "position": {
+                "x": 54.43129406464898,
+                "y": -25.24349869664877
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "360dc8c1-0d63-490e-861e-22c62d5501e6",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 78.62254386478335,
+            "y": 327.8168921811498
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "104",
+              "seat_guid": "Groundfloor-1-104",
+              "uuid": "631697b0-b10b-4517-8fd4-818b008bb041",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "106",
+              "seat_guid": "Groundfloor-1-106",
+              "uuid": "f055f5f5-4e94-445d-87a7-d556e236fd2b",
+              "position": {
+                "x": 13.352223190213692,
+                "y": -6.835066633085546
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "108",
+              "seat_guid": "Groundfloor-1-108",
+              "uuid": "f88b9404-4ebe-4cc4-af15-ebcb5378bea8",
+              "position": {
+                "x": 26.704446380427385,
+                "y": -13.670133266171149
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "110",
+              "seat_guid": "Groundfloor-1-110",
+              "uuid": "3d9e4c79-0b85-4be7-8958-80b25210ba47",
+              "position": {
+                "x": 40.05666957064108,
+                "y": -20.505199899256695
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "112",
+              "seat_guid": "Groundfloor-1-112",
+              "uuid": "a9ad93b1-ab81-4e26-beb5-64067b45b4dd",
+              "position": {
+                "x": 53.40889276085477,
+                "y": -27.340266532342298
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "114",
+              "seat_guid": "Groundfloor-1-114",
+              "uuid": "8e416200-6307-45da-9c41-e28f3270d1c0",
+              "position": {
+                "x": 66.76111595106843,
+                "y": -34.175333165427844
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "eb0d6c78-3f0a-4706-bfbe-37fa6dc3b30f",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 99.55453368723364,
+            "y": 336.60442414280396
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "90",
+              "seat_guid": "Groundfloor-1-90",
+              "uuid": "6520f317-3dcd-475f-a7e4-04be53100f45",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "92",
+              "seat_guid": "Groundfloor-1-92",
+              "uuid": "5ec91833-b23d-456c-ae5d-05c1769acecc",
+              "position": {
+                "x": 13.337037155820738,
+                "y": -6.864651477260679
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "94",
+              "seat_guid": "Groundfloor-1-94",
+              "uuid": "963235c3-8b12-42ed-91cd-c5de63f58eef",
+              "position": {
+                "x": 26.674074311641476,
+                "y": -13.729302954521359
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "96",
+              "seat_guid": "Groundfloor-1-96",
+              "uuid": "90d08711-5a3b-4cfc-9421-7182ef6e7ec1",
+              "position": {
+                "x": 40.011111467462214,
+                "y": -20.593954431782038
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "98",
+              "seat_guid": "Groundfloor-1-98",
+              "uuid": "67fb7da3-4824-42b1-aa2d-c84e6752e7b8",
+              "position": {
+                "x": 53.34814862328294,
+                "y": -27.458605909042717
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "4fc219c2-4415-4af7-b5a9-15a54d5292cc",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 179.13513265029405,
+            "y": 295.4316712190269
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "100",
+              "seat_guid": "Groundfloor-1-100",
+              "uuid": "85dd4c54-dd23-47a1-8423-bb4b1a778eea",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "102",
+              "seat_guid": "Groundfloor-1-102",
+              "uuid": "db942637-1df7-447e-bbe0-ba0e68f5715a",
+              "position": {
+                "x": 13.273773335729743,
+                "y": -6.986196492489341
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "f5b33fbf-b7ed-421b-bd3d-7ceeaa5f1f36",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 186.42180736677173,
+            "y": 309.1953901279291
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "76",
+              "seat_guid": "Groundfloor-1-76",
+              "uuid": "91de6fdc-471d-4bef-97ab-6a5e94a0d34b",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "78",
+              "seat_guid": "Groundfloor-1-78",
+              "uuid": "a3d37327-d8bf-4123-a603-95096ec2c3a8",
+              "position": {
+                "x": 13.630152659449692,
+                "y": -6.262502573260633
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "80",
+              "seat_guid": "Groundfloor-1-80",
+              "uuid": "9b20358c-2c56-47a3-a7de-7c1d8685cfa7",
+              "position": {
+                "x": 27.260305318899384,
+                "y": -12.525005146521323
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "fd08d346-efcc-4319-ab15-bb23a462309d",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 141.77372474092306,
+            "y": 352.9154384267951
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "50",
+              "seat_guid": "Groundfloor-1-50",
+              "uuid": "8e416eec-9800-46fc-b893-54faf985843b",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "52",
+              "seat_guid": "Groundfloor-1-52",
+              "uuid": "09fa6c8c-64c5-4732-94b0-29ee6ddec2b7",
+              "position": {
+                "x": 13.563729701189857,
+                "y": -6.405094581117453
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "54",
+              "seat_guid": "Groundfloor-1-54",
+              "uuid": "bef6d433-41c1-4c17-93dd-43dfc8e6436e",
+              "position": {
+                "x": 27.127459402379714,
+                "y": -12.810189162234906
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "1bc437ff-2c23-484f-941d-454b7d6c48ea",
+          "seat_label": "Balc"
+        },
+        {
+          "position": {
+            "x": 194.39970880437284,
+            "y": 325.3880006089906
+          },
+          "row_number": "1",
+          "row_number_position": null,
+          "seats": [
+            {
+              "seat_number": "56",
+              "seat_guid": "Groundfloor-1-56",
+              "uuid": "451b827a-b142-47ea-bcd5-8b995ed899db",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "category": "Category II",
+              "radius": 5
+            },
+            {
+              "seat_number": "58",
+              "seat_guid": "Groundfloor-1-58",
+              "uuid": "8fbef3f1-6cf0-4320-9c9d-2e6d2e5ff51b",
+              "position": {
+                "x": 13.273773335729743,
+                "y": -6.986196492489341
+              },
+              "category": "Category II",
+              "radius": 5
+            }
+          ],
+          "uuid": "b6ad8ef7-44a6-47e2-97c5-d805a87b2a73",
+          "seat_label": "Balc"
+        }
+      ],
+      "areas": [],
+      "uuid": "e1aed886-75fb-4540-8c63-aafc455916ee",
+      "zone_id": "Groundfloor"
+    },
+    {
+      "name": "LGI",
+      "zone_id": "LGI",
+      "uuid": "06d4d77e-0909-4f6f-9d58-82eb61c43dda",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "rows": [],
+      "areas": []
+    },
+    {
+      "name": "LG H",
+      "zone_id": "LGH",
+      "uuid": "a9636c9d-9303-4fed-962b-b890e33b8746",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "rows": [],
+      "areas": []
+    },
+    {
+      "name": "LG G",
+      "zone_id": "LGG",
+      "uuid": "60b29c7f-499a-4472-b29d-4677f099d814",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "rows": [],
+      "areas": []
+    },
+    {
+      "name": "LG F",
+      "zone_id": "LGF",
+      "uuid": "002a8d0a-0763-45f2-ad7e-dcf1cfe336ef",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "rows": [],
+      "areas": []
+    },
+    {
+      "name": "LG E",
+      "zone_id": "LGE",
+      "uuid": "6a714e8e-c7b3-4f25-a102-9095abb7096f",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "rows": [],
+      "areas": []
+    },
+    {
+      "name": "LG D",
+      "zone_id": "LGD",
+      "uuid": "065a10c0-1f4b-4bb6-a4a4-a19e3a54893d",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "rows": [],
+      "areas": []
+    },
+    {
+      "name": "Balcon",
+      "zone_id": "Balcon",
+      "uuid": "7fcb0cb5-b11d-49e9-8f68-f0952c801809",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "rows": [],
+      "areas": []
+    }
+  ],
+  "size": {
+    "width": 900,
+    "height": 900
+  }
+}

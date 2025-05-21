@@ -1,4 +1,6 @@
 # Web3-Portfoliot 🧬
+Hi !
+I'm Sebastien Coponat, and this is my web3 portfoliot. 
 
 Live demo: http://myweb3portfolio.s3-website-us-east-1.amazonaws.com/
 
@@ -28,7 +30,7 @@ git clone https://github.com/CoponatRecords/Web3-Portfoliot.git
 cd Web3-Portfoliot
 ```
 
-2. Install Dependencies
+### 2. Install Dependencies
 
 ```bash
 npm install
@@ -36,15 +38,16 @@ npm install
 yarn install
 ```
 
-3. Create .env.local
-   Set up your environment variables in a .env.local file:
+### 3. Create .env.local
+
+Set up your environment variables in a .env.local file:
 
 ```bash
 NEXT_PUBLIC_ALCHEMY_API_KEY=your_alchemy_key
 NEXT_PUBLIC_0X_API_BASE=https://api.0x.org
 ```
 
-4. Run the App
+### 4. Run the App
 
 ```bash
 npm run dev
@@ -52,14 +55,16 @@ npm run dev
 yarn dev
 ```
 
-📦 Tech Stack
+### 📦 Tech Stack
+
 Layer Tech
 Frontend React, Next.js, Tailwind CSS
 Web3 Wagmi, viem, ethers.js
-Backend (optional via 0x + Alchemy)
+0x + Alchemy
 Animations HTML Canvas, custom shaders
 
-🧠 Concepts
+### 🧠 Concepts
+
 This portfolio is built as a showcase of:
 
 - Web3 wallet connectivity
@@ -72,11 +77,9 @@ This portfolio is built as a showcase of:
 
 - Modular project/data components
 
-🛠️ Roadmap
+### 🛠️ Roadmap
 
 - Dark/light theme toggle
-
 - Swap history section
-
-🤝 Contributing
-Pull requests, issues, and forks are welcome. If you'd like to collaborate on features like animation, UX, or crypto logic, feel free to open a discussion or PR.
+- Create smartcontract to create anonymity for a wallet
+- Pool transfer / create a Casino lottery setup in a smartcontract
