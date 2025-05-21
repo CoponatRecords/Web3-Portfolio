@@ -2373,7 +2373,7 @@ const plan = [
             seats: [
               {
                 seat_number: "1",
-                seat_guid: "60098b71-5f08-4f42-93af-7d32a62bd19c",
+                seat_guid: "Groundfloor-1-1",
                 uuid: "1da6605e-16e4-415e-ac10-26bed0043659",
                 position: {
                   x: 0,
@@ -2383,8 +2383,8 @@ const plan = [
                 radius: 5,
               },
               {
-                seat_number: "2",
-                seat_guid: "2be3397c-9a39-4496-80b3-79f87ddb451e",
+                seat_number: "3",
+                seat_guid: "Groundfloor-1-3",
                 uuid: "c879c505-9544-4fb4-8b58-59ef4e9ee8cf",
                 position: {
                   x: -14.999504287909417,
@@ -2394,8 +2394,8 @@ const plan = [
                 radius: 5,
               },
               {
-                seat_number: "3",
-                seat_guid: "54f84e6e-35e4-4991-bb56-0ebcab9e2228",
+                seat_number: "5",
+                seat_guid: "Groundfloor-1-5",
                 uuid: "f929eff0-acd9-42bc-8e2d-358ced37b3b6",
                 position: {
                   x: -29.999008575818948,
@@ -2405,8 +2405,8 @@ const plan = [
                 radius: 5,
               },
               {
-                seat_number: "4",
-                seat_guid: "64c088cb-258b-49fc-a56f-6c64222599eb",
+                seat_number: "7",
+                seat_guid: "Groundfloor-1-7",
                 uuid: "72ec2f4c-57a6-4b47-bdc5-9c71c07132fe",
                 position: {
                   x: -44.998512863728365,
@@ -2416,8 +2416,8 @@ const plan = [
                 radius: 5,
               },
               {
-                seat_number: "5",
-                seat_guid: "5663f353-c649-439a-8f7c-8b9f3e8bda4e",
+                seat_number: "9",
+                seat_guid: "Groundfloor-1-9",
                 uuid: "c5dddf6c-462e-4d70-9f0c-74efd35692a0",
                 position: {
                   x: -59.99801715163778,
@@ -2427,8 +2427,8 @@ const plan = [
                 radius: 5,
               },
               {
-                seat_number: "6",
-                seat_guid: "37c34519-0166-45ad-95c2-ecc95f7929b7",
+                seat_number: "11",
+                seat_guid: "Groundfloor-1-11",
                 uuid: "fe17bfe0-d449-47e2-aad0-894822138029",
                 position: {
                   x: -74.99752143954726,
@@ -2438,8 +2438,8 @@ const plan = [
                 radius: 5,
               },
               {
-                seat_number: "7",
-                seat_guid: "0d74d6b5-7943-4aa8-a5c2-641c07a303af",
+                seat_number: "13",
+                seat_guid: "Groundfloor-1-13",
                 uuid: "b1f37aad-4909-415d-8a18-8a2a14329971",
                 position: {
                   x: -89.99702572745667,

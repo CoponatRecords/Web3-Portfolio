@@ -5,53 +5,64 @@ import {
   Paper,
   Button,
   TextField,
+  CircularProgress,
   createTheme,
   ThemeProvider,
+  Grid,
 } from "@mui/material";
-import plan from "./plan";
+import SearchIcon from "@mui/icons-material/Search";
+import plan from "./plan"; // Placeholder for your plan data
 
-// Define MUI theme to match Sarah Coponat's shop style
+// Define MUI theme for a luxurious, concert-themed aesthetic
 const theme = createTheme({
   typography: {
-    fontFamily: '"Montserrat", sans-serif',
+    fontFamily: '"Playfair Display", serif',
     h3: {
-      fontFamily: '"Poppins", sans-serif',
+      fontFamily: '"Playfair Display", serif',
       fontWeight: 700,
-      color: "#333333",
+      color: "#2B2A4C",
       textTransform: "uppercase",
-      letterSpacing: "0.1em",
+      letterSpacing: "0.12em",
+      fontSize: "2.5rem",
     },
     subtitle1: {
-      fontFamily: '"Montserrat", sans-serif',
+      fontFamily: '"Lora", serif',
       fontWeight: 400,
-      color: "#666666",
-      lineHeight: 1.8,
+      color: "#5A5A5A",
+      lineHeight: 1.9,
+      fontSize: "1.1rem",
     },
     h6: {
-      fontFamily: '"Poppins", sans-serif',
-      fontWeight: 700,
-      color: "#333333",
+      fontFamily: '"Playfair Display", serif',
+      fontWeight: 600,
+      color: "#2B2A4C",
       textTransform: "uppercase",
-      letterSpacing: "0.05em",
+      letterSpacing: "0.08em",
     },
     body2: {
-      fontFamily: '"Montserrat", sans-serif',
+      fontFamily: '"Lora", serif',
       fontWeight: 400,
-      color: "#666666",
+      color: "#5A5A5A",
     },
     caption: {
-      fontFamily: '"Montserrat", sans-serif',
+      fontFamily: '"Lora", serif',
       fontWeight: 500,
-      color: "#333333",
+      color: "#2B2A4C",
     },
   },
   palette: {
     primary: {
-      main: "#D4A017", // Muted gold
-      dark: "#B88E14", // Darker gold for hover
+      main: "#C19A6B",
+      dark: "#A67B5B",
+      contrastText: "#FFFFFF",
+    },
+    secondary: {
+      main: "#2B2A4C",
+      dark: "#1A1A2E",
     },
     background: {
-      default: "#F7F7F7", // Soft white
+      default: "#F9F6F2",
+      paper: "rgba(255, 255, 255, 0.97)",
     },
   },
   components: {
@@ -59,13 +70,18 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: "none",
-          fontFamily: '"Montserrat", sans-serif',
+          fontFamily: '"Lora", serif',
           fontWeight: 600,
-          borderRadius: "25px",
-          padding: "10px 24px",
+          borderRadius: "30px",
+          padding: "12px 28px",
+          background: "linear-gradient(135deg, #C19A6B 0%, #A67B5B 100%)",
           color: "#FFFFFF",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+          transition: "all 0.3s ease",
           "&:hover": {
-            backgroundColor: "#B88E14",
+            background: "linear-gradient(135deg, #A67B5B 0%, #8B5A2B 100%)",
+            boxShadow: "0 6px 16px rgba(0,0,0,0.25)",
+            transform: "translateY(-2px)",
           },
         },
       },
@@ -74,14 +90,28 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           "& .MuiInputBase-root": {
-            fontFamily: '"Montserrat", sans-serif',
-            borderRadius: "8px",
+            fontFamily: '"Lora", serif',
+            borderRadius: "12px",
+            backgroundColor: "#FFFFFF",
+            transition: "all 0.3s ease",
           },
           "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#D4A017",
+            borderColor: "#C19A6B",
+            borderWidth: "2px",
           },
           "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#B88E14",
+            borderColor: "#A67B5B",
+          },
+          "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#2B2A4C",
+            boxShadow: "0 0 8px rgba(43, 42, 76, 0.3)",
+          },
+          "& .MuiInputLabel-root": {
+            fontFamily: '"Lora", serif',
+            color: "#5A5A5A",
+            "&.Mui-focused": {
+              color: "#2B2A4C",
+            },
           },
         },
       },
@@ -89,16 +119,17 @@ const theme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          borderRadius: "16px",
-          backgroundColor: "rgba(255, 255, 255, 0.95)",
-          boxShadow: "0 6px 24px rgba(0,0,0,0.1)",
+          borderRadius: "24px",
+          background: "linear-gradient(180deg, #FFFFFF 0%, #F9F6F2 100%)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
+          border: "1px solid rgba(193, 154, 107, 0.2)",
         },
       },
     },
   },
 });
 
-// Define interfaces for TypeScript
+// Define interfaces
 interface SeatData {
   id: string;
   seatNumber: string;
@@ -145,8 +176,14 @@ interface PlanData {
   name?: string;
 }
 
-// Define category colors with improved contrast
-const categoryColors: { [key: string]: string } = {};
+// Category colors
+const categoryColors: { [key: string]: string } = {
+  "Category I": "#C19A6B",
+  "Category II": "#8B5A2B",
+  "Category III": "#6B7280",
+  "Category IV": "#4B5EAA",
+  "Category V": "#2B2A4C",
+};
 
 // Get seat display color
 const getSeatDisplayColor = (
@@ -155,20 +192,20 @@ const getSeatDisplayColor = (
   venueCategoriesMap: { [key: string]: Category },
   isLocked: boolean
 ): string => {
-  if (isLocked) return "#ef4444"; // Red for locked
+  if (isLocked) return "#ef4444";
   if (status === "available") {
     const categoryDetails = venueCategoriesMap[seatCategoryKey];
-    return categoryDetails ? categoryDetails.color : "#22c55e"; // Green as default
+    return categoryDetails ? categoryDetails.color : "#22c55e";
   }
   switch (status) {
     case "selected":
-      return "#f97316"; // Orange
+      return "#f97316";
     case "reserved":
-      return "#ef4444"; // Red
+      return "#ef4444";
     case "sold":
-      return "#991b1b"; // Dark red
+      return "#991b1b";
     default:
-      return "#d1d5db"; // Gray
+      return "#d1d5db";
   }
 };
 
@@ -194,53 +231,59 @@ const Seat: React.FC<SeatProps> = ({
     venueCategoriesMap,
     isLocked
   );
-  const seatSize = seat.radius * 3;
+  const seatSize = seat.radius * 3.5;
+  const [, setIsHovered] = useState(false);
 
   return (
     <Box
       onClick={() => !isLocked && onClick()}
+      onMouseEnter={() => !isLocked && setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       sx={{
         width: seatSize,
         height: seatSize,
         backgroundColor,
-        margin: 0.5,
+        margin: 0.75,
         borderRadius: "50%",
         cursor: isLocked ? "not-allowed" : "pointer",
         position: "absolute",
         top: seat.absoluteY,
         left: seat.absoluteX,
         transform: "translate(-50%, -50%)",
-        border: isHighlighted ? "3px solid #D4A017" : "1.5px solid #FFFFFF",
+        border: isHighlighted
+          ? "3px solid #C19A6B"
+          : "2px solid rgba(255,255,255,0.9)",
         boxShadow: isHighlighted
-          ? "0 0 12px rgba(212, 160, 23, 0.7)"
-          : "0 2px 8px rgba(0,0,0,0.15)",
+          ? "0 0 15px rgba(193, 154, 107, 0.8)"
+          : "0 3px 10px rgba(0,0,0,0.2)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        transition: "transform 0.2s ease-in-out, box-shadow 0.2s, border 0.2s",
+        transition: "transform 0.3s ease, box-shadow 0.3s, border 0.3s",
+        zIndex: 1, // Ensure seat is above background but below tooltip
         "&:hover": {
+          zIndex: 10,
           transform: !isLocked
-            ? "translate(-50%, -50%) scale(1.1)"
+            ? "translate(-50%, -50%) scale(2  )"
             : "translate(-50%, -50%)",
           boxShadow: !isLocked
-            ? "0 4px 12px rgba(0,0,0,0.3)"
-            : "0 2px 8px rgba(0,0,0,0.15)",
+            ? "0 6px 20px rgba(0,0,0,0.3)"
+            : "0 3px 10px rgba(0,0,0,0.2)",
         },
       }}
-      title={`Siège: ${seat.seatNumber}\nCatégorie: ${
-        seat.categoryKey || "N/A"
-      }\nStatut: ${seat.status}`}
+      role="button"
+      aria-label={`Siège ${seat.seatNumber}, Catégorie ${seat.categoryKey}, Statut ${seat.status}`}
     >
       <Typography
         sx={{
-          color: backgroundColor === "#DAA520" ? "#333333" : "#FFFFFF",
-          fontSize: `${seatSize * 0.4}px`,
-          fontWeight: 600,
+          color: backgroundColor === "#C19A6B" ? "#2B2A4C" : "#FFFFFF",
+          fontSize: `${seatSize * 0.45}px`,
+          fontWeight: 700,
           textShadow:
-            backgroundColor === "#DAA520"
+            backgroundColor === "#C19A6B"
               ? "none"
-              : "0 1px 2px rgba(0,0,0,0.5)",
-          fontFamily: '"Montserrat", sans-serif',
+              : "0 1px 3px rgba(0,0,0,0.6)",
+          fontFamily: '"Lora", serif',
         }}
       >
         {seat.seatNumber}
@@ -256,22 +299,34 @@ interface LegendItemProps {
 }
 
 const LegendItem: React.FC<LegendItemProps> = ({ color, label }) => (
-  <Box sx={{ display: "flex", alignItems: "center", marginBottom: 1.5 }}>
+  <Box
+    sx={{
+      display: "flex",
+      alignItems: "center",
+      marginBottom: 2,
+      transition: "transform 0.2s ease",
+      "&:hover": {
+        transform: "translateX(5px)",
+      },
+    }}
+  >
     <Box
       sx={{
-        width: 20,
-        height: 20,
+        width: 24,
+        height: 24,
         backgroundColor: color,
-        borderRadius: "4px",
-        marginRight: 1.5,
-        border: color === "transparent" ? "1px solid #d1d5db" : "none",
+        borderRadius: "6px",
+        marginRight: 2,
+        border: color === "transparent" ? "2px solid #d1d5db" : "none",
+        boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
       }}
     />
     <Typography
       sx={{
-        fontFamily: '"Montserrat", sans-serif',
+        fontFamily: '"Lora", serif',
         fontWeight: 500,
-        color: "#666666",
+        color: "#2B2A4C",
+        fontSize: "1rem",
       }}
     >
       {label}
@@ -293,10 +348,12 @@ const SalleCortotBooking: React.FC = () => {
   });
   const [searchIds, setSearchIds] = useState<string>("");
   const [lockedSeatIds, setLockedSeatIds] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // Fetch locked seats from JSON
+  // Fetch locked seats
   useEffect(() => {
     const fetchLockedSeats = async () => {
+      setIsLoading(true);
       try {
         const response = await fetch("/lockedseats.json");
         if (!response.ok) {
@@ -307,6 +364,8 @@ const SalleCortotBooking: React.FC = () => {
       } catch (error) {
         console.error("Error fetching locked seats:", error);
         alert("Erreur lors du chargement des sièges réservés.");
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -335,8 +394,53 @@ const SalleCortotBooking: React.FC = () => {
   }, [searchIds]);
 
   const handleCopySelectedIds = () => {
-    navigator.clipboard.writeText(selectedSeatIds.join(", "));
-    alert("IDs des sièges copiés dans le presse-papiers !");
+    const textToCopy = selectedSeatIds.join(", ");
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard
+        .writeText(textToCopy)
+        .then(() => {
+          alert("IDs des sièges copiés dans le presse-papiers !");
+        })
+        .catch((err) => {
+          console.error("Clipboard copy failed:", err);
+          fallbackCopyTextToClipboard(textToCopy);
+        });
+    } else {
+      fallbackCopyTextToClipboard(textToCopy);
+    }
+  };
+
+  const fallbackCopyTextToClipboard = (text: string) => {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";
+    textArea.style.top = "0";
+    textArea.style.left = "0";
+    textArea.style.width = "2em";
+    textArea.style.height = "2em";
+    textArea.style.padding = "0";
+    textArea.style.border = "none";
+    textArea.style.outline = "none";
+    textArea.style.boxShadow = "none";
+    textArea.style.background = "transparent";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+      const successful = document.execCommand("copy");
+      if (successful) {
+        alert("IDs des sièges copiés dans le presse-papiers !");
+      } else {
+        alert("Échec de la copie dans le presse-papiers.");
+      }
+    } catch (err) {
+      console.error("Fallback: Oops, unable to copy", err);
+      alert("Erreur lors de la copie.");
+    }
+
+    document.body.removeChild(textArea);
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -395,13 +499,11 @@ const SalleCortotBooking: React.FC = () => {
         });
       });
 
-      // Calculate chart dimensions
-      const chartWidth = maxX - minX + 100; // Add padding
-      const chartHeight = maxY - minY + 100; // Add space for title, subtitle, piano
+      const chartWidth = maxX - minX + 100;
+      const chartHeight = maxY - minY + 100;
 
-      // Center seats
       const offsetX = (chartWidth - (maxX - minX)) / 2 - minX;
-      const offsetY = (chartHeight - (maxY - minY)) / 2 - minY + 5; // Shift down for title/subtitle
+      const offsetY = (chartHeight - (maxY - minY)) / 2 - minY + 5;
 
       const centeredSeats = processedSeats.map((seat) => ({
         ...seat,
@@ -418,7 +520,7 @@ const SalleCortotBooking: React.FC = () => {
       );
       setDimensions({ width: chartWidth, height: chartHeight });
     }
-  }, [lockedSeatIds]); // Re-run when lockedSeatIds changes
+  }, [lockedSeatIds]);
 
   const handleSeatClick = (id: string) => {
     if (lockedSeatIds.includes(id)) return;
@@ -441,30 +543,65 @@ const SalleCortotBooking: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      {isLoading && (
+        <Box
+          sx={{
+            position: "fixed",
+            top: 10,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "rgba(0,0,0,0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 1000,
+          }}
+        >
+          <CircularProgress sx={{ color: "#C19A6B" }} />
+        </Box>
+      )}
       <Paper
         elevation={3}
         sx={{
-          p: 5,
-          maxWidth: "100%",
+          p: { xs: 3, md: 6 },
+          maxWidth: "1200px",
           mx: "auto",
-          "@media (max-width: 600px)": {
-            p: 3,
-            mt: 8,
+          background: "linear-gradient(180deg, #FFFFFF 0%, #F9F6F2 100%)",
+          borderRadius: "24px",
+          position: "relative",
+          overflow: "hidden",
+          "&:before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundImage: "url('/concert-hall-bg.jpg')",
+            backgroundSize: "cover",
+            opacity: 0.05,
+            zIndex: 0,
           },
         }}
       >
-        <Box sx={{ textAlign: "center" }}>
-          <Typography variant="h4" align="center" color="black">
+        <Box sx={{ position: "relative", zIndex: 1, textAlign: "center" }}>
+          <Typography
+            variant="h3"
+            sx={{
+              mb: 2,
+            }}
+          >
             {chartName}
           </Typography>
           <Typography
             variant="subtitle1"
             sx={{
-              maxWidth: "32rem",
+              maxWidth: "40rem",
               mx: "auto",
-              mt: 3,
-              mb: 2,
-              textAlign: "center",
+              mb: 4,
+              mt: 2,
+              fontStyle: "italic",
             }}
           >
             Choisissez votre place pour le grand concert de Sarah Coponat à la
@@ -476,110 +613,128 @@ const SalleCortotBooking: React.FC = () => {
             position: "relative",
             width: `${dimensions.width}px`,
             height: `${dimensions.height}px`,
+
             maxWidth: "100%",
-            backgroundColor: "#F7F7F7",
-            borderRadius: "16px",
+            background: "radial-gradient(circle, #FFFFFF 0%, #F9F6F2 100%)",
+            borderRadius: "20px",
             overflow: "auto",
-            boxShadow: "0 6px 24px rgba(0,0,0,0.1)",
-            margin: "auto auto",
-            "@media (max-width: 600px)": {
-              width: "100%",
-              pt: 1,
+            boxShadow: "0 10px 40px rgba(0,0,0,0.15)",
+            margin: "auto",
+            animation: "fadeIn 1s ease-in",
+            "@keyframes fadeIn": {
+              "0%": { opacity: 0, transform: "scale(0.95)" },
+              "100%": { opacity: 1, transform: "scale(1)" },
             },
           }}
         >
-          {seats.map((seat) => {
-            const isLocked = lockedSeatIds.includes(seat.id);
-            const isHighlighted = parsedSearchIds.includes(seat.id);
-            return (
-              <Seat
-                key={seat.id}
-                seat={seat}
-                onClick={() => handleSeatClick(seat.id)}
-                venueCategoriesMap={venueCategoriesMap}
-                isLocked={isLocked}
-                isHighlighted={isHighlighted}
-              />
-            );
-          })}
-          <Typography
-            variant="h4"
+          <Grid
+            justifyContent="center"
+            alignItems="center"
+            display="flex"
             sx={{
-              position: "absolute",
-              bottom: 0,
-              left: "52%",
-              transform: "translateX(-50%)",
-              color: "#333333",
-              fontWeight: 900,
+              position: "relative",
+              width: `${dimensions.width}px`,
+              minHeight: "100%",
+              margin: "0 auto",
             }}
           >
-            PIANO
-          </Typography>
-        </Box>
-
-        <Box sx={{ mb: 8, maxWidth: "600px", mx: "auto" }}>
-          <Box sx={{ mb: 8, maxWidth: 600, mx: "auto" }}>
-            <Typography variant="h5" sx={{ mb: 3, mt: 4, fontWeight: 600 }}>
-              Places Sélectionnées
-            </Typography>
-
-            {selectedSeatIds.length > 0 ? (
-              <Box>
-                <Box
-                  sx={{
-                    overflowX: "auto",
-                    whiteSpace: "nowrap",
-                    pb: 1,
-                    mb: 3,
-                    mt: 2,
-                    border: "1px solid #e0e0e0",
-                    borderRadius: 1,
-                    px: 2,
-                    py: 1,
-                    backgroundColor: "#f9f9f9",
-                  }}
-                >
-                  <Typography variant="body2" sx={{ color: "text.primary" }}>
-                    {selectedSeatIds.join(", ")}
-                  </Typography>
-                </Box>
-
-                <Button
-                  variant="contained"
-                  onClick={handleCopySelectedIds}
-                  sx={{
-                    backgroundColor: "#D4A017",
-                    color: "white",
-                    textTransform: "none",
-                    fontWeight: 500,
-                    "&:hover": {
-                      backgroundColor: "#B88E14",
-                    },
-                  }}
-                >
-                  Copier les IDs des places
-                </Button>
-              </Box>
-            ) : (
+            {seats.map((seat) => {
+              const isLocked = lockedSeatIds.includes(seat.id);
+              const isHighlighted = parsedSearchIds.includes(seat.id);
+              return (
+                <Seat
+                  key={seat.id}
+                  seat={seat}
+                  onClick={() => handleSeatClick(seat.id)}
+                  venueCategoriesMap={venueCategoriesMap}
+                  isLocked={isLocked}
+                  isHighlighted={isHighlighted}
+                />
+              );
+            })}
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: 10,
+                left: "50%",
+                transform: "translateX(-50%)",
+                color: "#FFFFFF",
+                px: 3,
+                borderRadius: "12px",
+              }}
+            >
               <Typography
-                variant="body2"
-                sx={{ color: "text.secondary", mt: 1 }}
+                variant="h6"
+                sx={{
+                  fontWeight: 700,
+                }}
               >
-                Aucune place sélectionnée.
+                PIANO
               </Typography>
-            )}
-          </Box>
-
-          <Typography variant="h6" sx={{ mb: 3, mt: 2 }}>
+            </Box>
+          </Grid>
+        </Box>
+        <Box sx={{ maxWidth: "600px", mx: "auto", mt: 6, textAlign: "center" }}>
+          <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
+            Places Sélectionnées
+          </Typography>
+          {selectedSeatIds.length > 0 ? (
+            <Box>
+              <Box
+                sx={{
+                  overflowX: "auto",
+                  whiteSpace: "nowrap",
+                  mb: 3,
+                  mt: 2,
+                  border: "2px solid #C19A6B",
+                  borderRadius: "12px",
+                  px: 3,
+                  py: 2,
+                  background: "rgba(255, 255, 255, 0.9)",
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#2B2A4C", fontWeight: 500 }}
+                >
+                  {selectedSeatIds.join(", ")}
+                </Typography>
+              </Box>
+              <Button
+                variant="contained"
+                onClick={handleCopySelectedIds}
+                sx={{ fontSize: "1rem", px: 4 }}
+              >
+                Copier les IDs des places
+              </Button>
+            </Box>
+          ) : (
+            <Typography
+              variant="body2"
+              sx={{ color: "#5A5A5A", mt: 1, fontStyle: "italic" }}
+            >
+              Aucune place sélectionnée.
+            </Typography>
+          )}
+          <Typography variant="h6" sx={{ mb: 3, mt: 6, fontWeight: 600 }}>
             Catégories
           </Typography>
-          <Box sx={{ mb: 5 }}>
+          <Box
+            sx={{
+              mb: 5,
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              gap: 2,
+            }}
+          >
             {venueCategories.map((cat) => (
               <LegendItem key={cat.name} color={cat.color} label={cat.name} />
             ))}
             <LegendItem color="#ef4444" label="Réservé" />
           </Box>
-          <Typography variant="h6" sx={{ mb: 4 }}>
+          <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
             Rechercher des places
           </Typography>
           <Box sx={{ mb: 4, maxWidth: "400px", mx: "auto" }}>
@@ -589,6 +744,13 @@ const SalleCortotBooking: React.FC = () => {
               onChange={handleSearchChange}
               fullWidth
               variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <Box sx={{ display: "flex", alignItems: "center", pr: 1 }}>
+                    <SearchIcon sx={{ color: "#C19A6B" }} />
+                  </Box>
+                ),
+              }}
             />
           </Box>
         </Box>

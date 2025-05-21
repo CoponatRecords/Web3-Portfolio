@@ -15,6 +15,7 @@ import { store } from "./redux/store";
 import { SnackbarProvider } from "notistack";
 import Home from "./Home";
 import SalleCortotBooking from "./components/Cortot/cortot";
+import SeatPlan from "./components/Cortot/seatplan";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/cortot" element={<SalleCortotBooking />} />
+                  <Route path="/seatplancortot" element={<SeatPlan />} />
                 </Routes>
               </ThemeProvider>
             </RainbowKitProvider>
