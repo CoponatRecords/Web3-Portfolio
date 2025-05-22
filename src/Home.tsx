@@ -16,6 +16,7 @@ import ButtonAppBar from "./components/AppBar";
 import Squares from "./animations/Squares";
 import StudioSite from "./components/StudioSite";
 import AtemMini from "./components/AtemMini";
+import SeatBooking from "./components/SeatBooking";
 
 // Lazy load components for better performance
 const SendUSDC = lazy(() => import("./components/SendUSDCProps"));
@@ -424,6 +425,12 @@ const Home = () => {
               </motion.div>
               <motion.div variants={itemVariants}>
                 <AtemMini
+                  expandedTool={expandedTool}
+                  handleToolClick={handleToolClick}
+                />
+              </motion.div>
+              <motion.div variants={itemVariants}>
+                <SeatBooking
                   expandedTool={expandedTool}
                   handleToolClick={handleToolClick}
                 />

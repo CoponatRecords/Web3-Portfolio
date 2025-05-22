@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import plan from "./plan"; // Placeholder for your plan data
+import salleCortot from "./salle-cortot.jpg";
 
 // Define MUI theme for a luxurious, concert-themed aesthetic
 const theme = createTheme({
@@ -251,10 +252,10 @@ const Seat: React.FC<SeatProps> = ({
         left: seat.absoluteX,
         transform: "translate(-50%, -50%)",
         border: isHighlighted
-          ? "3px solid #C19A6B"
+          ? "3px solid #07d5f0"
           : "2px solid rgba(255,255,255,0.9)",
         boxShadow: isHighlighted
-          ? "0 0 15px rgba(193, 154, 107, 0.8)"
+          ? "0 0 15px #07d5f0"
           : "0 3px 10px rgba(0,0,0,0.2)",
         display: "flex",
         alignItems: "center",
@@ -547,7 +548,7 @@ const SalleCortotBooking: React.FC = () => {
         <Box
           sx={{
             position: "fixed",
-            top: 10,
+            top: 0,
             left: 0,
             width: "100%",
             height: "100%",
@@ -594,12 +595,13 @@ const SalleCortotBooking: React.FC = () => {
           >
             {chartName}
           </Typography>
+
           <Typography
             variant="subtitle1"
             sx={{
               maxWidth: "40rem",
               mx: "auto",
-              mb: 4,
+              mb: 2,
               mt: 2,
               fontStyle: "italic",
             }}
@@ -607,6 +609,25 @@ const SalleCortotBooking: React.FC = () => {
             Choisissez votre place pour le grand concert de Sarah Coponat à la
             Salle Cortot, le 4 octobre 2025 !
           </Typography>
+
+          <Box
+            component="img"
+            src={salleCortot}
+            alt="Salle Cortot"
+            sx={{
+              width: {
+                xs: "100%", // Full width on small screens
+                sm: "100%",
+                md: `${dimensions.width}px`, // Full width on tablets
+                lg: `${dimensions.width}px`,
+              },
+              maxWidth: "100%",
+              height: "auto",
+              borderRadius: "16px",
+              my: 3,
+              boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
+            }}
+          />
         </Box>
         <Box
           sx={{
@@ -747,7 +768,7 @@ const SalleCortotBooking: React.FC = () => {
               InputProps={{
                 endAdornment: (
                   <Box sx={{ display: "flex", alignItems: "center", pr: 1 }}>
-                    <SearchIcon sx={{ color: "#C19A6B" }} />
+                    <SearchIcon sx={{ color: "#6bb7c1" }} />
                   </Box>
                 ),
               }}
