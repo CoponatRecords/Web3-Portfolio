@@ -13,6 +13,12 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import plan from "./plan"; // Placeholder for your plan data
 import salleCortot from "./salle-cortot.jpg";
+import { addDoc, collection, doc, onSnapshot } from "firebase/firestore";
+import { db } from "./firebasedb";
+// Hardcoded password
+const PASSWORD = import.meta.env.VITE_CORTOTPASSWORD;
+
+// Incorporer Postgress SQL
 
 // Define MUI theme for a luxurious, concert-themed aesthetic
 const theme = createTheme({
@@ -233,7 +239,7 @@ const Seat: React.FC<SeatProps> = ({
     isLocked
   );
   const seatSize = seat.radius * 3.5;
-  const [, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <Box
@@ -260,16 +266,28 @@ const Seat: React.FC<SeatProps> = ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        transition: "transform 0.3s ease, box-shadow 0.3s, border 0.3s",
-        zIndex: 1, // Ensure seat is above background but below tooltip
+        transition:
+          "transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease",
+        animation:
+          seat.status === "selected" && !isLocked
+            ? "pulse 1.5s infinite ease-in-out"
+            : "none",
+        zIndex: isHovered || isHighlighted ? 10 : 1,
         "&:hover": {
-          zIndex: 10,
-          transform: !isLocked
-            ? "translate(-50%, -50%) scale(2  )"
-            : "translate(-50%, -50%)",
-          boxShadow: !isLocked
-            ? "0 6px 20px rgba(0,0,0,0.3)"
-            : "0 3px 10px rgba(0,0,0,0.2)",
+          transform: isLocked
+            ? "translate(-50%, -50%)"
+            : "translate(-50%, -50%) scale(1.2)",
+          boxShadow: isLocked
+            ? "0 3px 10px rgba(0,0,0,0.2)"
+            : "0 6px 20px rgba(0,0,0,0.3)",
+        },
+        "@keyframes pulse": {
+          "0%": { transform: "translate(-50%, -50%) scale(1)", opacity: 1 },
+          "50%": {
+            transform: "translate(-50%, -50%) scale(1.1)",
+            opacity: 0.85,
+          },
+          "100%": { transform: "translate(-50%, -50%) scale(1)", opacity: 1 },
         },
       }}
       role="button"
@@ -285,6 +303,8 @@ const Seat: React.FC<SeatProps> = ({
               ? "none"
               : "0 1px 3px rgba(0,0,0,0.6)",
           fontFamily: '"Lora", serif',
+          transform: isHovered ? "scale(1.1)" : "scale(1)",
+          transition: "transform 0.2s ease",
         }}
       >
         {seat.seatNumber}
@@ -337,6 +357,37 @@ const LegendItem: React.FC<LegendItemProps> = ({ color, label }) => (
 
 // Main component
 const SalleCortotBooking: React.FC = () => {
+  // Inside SalleCortotBooking component
+  useEffect(() => {
+    const fetchLockedSeats = async () => {
+      setIsLoading(true);
+      try {
+        const eventDocRef = doc(db, "events", "sarah-coponat-2025");
+        const unsubscribe = onSnapshot(eventDocRef, (doc) => {
+          if (doc.exists()) {
+            const data = doc.data();
+            const lockedIds = data.lockedSeatIds || [];
+            setLockedSeatIds(lockedIds);
+            setJsonInput(JSON.stringify(lockedIds, null, 2));
+          } else {
+            console.warn("Document does not exist");
+            setLockedSeatIds([]);
+            setJsonInput(JSON.stringify([], null, 2));
+          }
+          setIsLoading(false);
+        });
+
+        return () => unsubscribe(); // Cleanup listener on unmount
+      } catch (error) {
+        console.error("Error fetching locked seats:", error);
+        alert("Erreur lors du chargement des sièges réservés.");
+        setIsLoading(false);
+      }
+    };
+
+    fetchLockedSeats();
+  }, []);
+
   const [seats, setSeats] = useState<SeatData[]>([]);
   const [venueCategories, setVenueCategories] = useState<Category[]>([]);
   const [chartName] = useState<string>("Sarah Coponat: Le Grand Concert");
@@ -350,6 +401,11 @@ const SalleCortotBooking: React.FC = () => {
   const [searchIds, setSearchIds] = useState<string>("");
   const [lockedSeatIds, setLockedSeatIds] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [password, setPassword] = useState("");
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [jsonInput, setJsonInput] = useState(JSON.stringify([], null, 2));
+  const [jsonError, setJsonError] = useState<string | null>(null);
 
   // Fetch locked seats
   useEffect(() => {
@@ -362,6 +418,7 @@ const SalleCortotBooking: React.FC = () => {
         }
         const data: string[] = await response.json();
         setLockedSeatIds(data);
+        setJsonInput(JSON.stringify(data, null, 2)); // Initialize JSON editor with fetched data
       } catch (error) {
         console.error("Error fetching locked seats:", error);
         alert("Erreur lors du chargement des sièges réservés.");
@@ -372,6 +429,51 @@ const SalleCortotBooking: React.FC = () => {
 
     fetchLockedSeats();
   }, []);
+
+  // Handle password input and validation
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value;
+    setPassword(input);
+    if (input === PASSWORD) {
+      setIsUnlocked(true);
+      setPasswordError(null);
+    } else {
+      setIsUnlocked(false);
+      setPasswordError("Incorrect password");
+    }
+  };
+
+  // Handle JSON input change and validation
+  const handleJsonChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (!isUnlocked) return; // Prevent changes if not unlocked
+
+    const input = e.target.value;
+    setJsonInput(input);
+
+    try {
+      const parsed = JSON.parse(input);
+      if (
+        Array.isArray(parsed) &&
+        parsed.every((id) => typeof id === "string")
+      ) {
+        setLockedSeatIds(parsed);
+        setJsonError(null);
+      } else {
+        setJsonError("Invalid JSON: Must be an array of strings.");
+      }
+    } catch (err) {
+      setJsonError("Invalid JSON: " + err.message);
+    }
+
+    try {
+      const docRef = addDoc(collection(db, "cortot"), {
+        seat: seats,
+      });
+      console.log(docRef);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
 
   const venueCategoriesMap = useMemo(() => {
     const map: { [key: string]: Category } = {};
@@ -616,9 +718,9 @@ const SalleCortotBooking: React.FC = () => {
             alt="Salle Cortot"
             sx={{
               width: {
-                xs: "100%", // Full width on small screens
+                xs: "100%",
                 sm: "100%",
-                md: `${dimensions.width}px`, // Full width on tablets
+                md: `${dimensions.width}px`,
                 lg: `${dimensions.width}px`,
               },
               maxWidth: "100%",
@@ -634,7 +736,6 @@ const SalleCortotBooking: React.FC = () => {
             position: "relative",
             width: `${dimensions.width}px`,
             height: `${dimensions.height}px`,
-
             maxWidth: "100%",
             background: "radial-gradient(circle, #FFFFFF 0%, #F9F6F2 100%)",
             borderRadius: "20px",
@@ -681,7 +782,8 @@ const SalleCortotBooking: React.FC = () => {
                 transform: "translateX(-50%)",
                 color: "#FFFFFF",
                 px: 3,
-                borderRadius: "12px",
+                borderRadius: "3px",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
               }}
             >
               <Typography
@@ -696,6 +798,36 @@ const SalleCortotBooking: React.FC = () => {
           </Grid>
         </Box>
         <Box sx={{ maxWidth: "600px", mx: "auto", mt: 6, textAlign: "center" }}>
+          <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
+            Gérer les places réservées
+          </Typography>
+          <TextField
+            label="Mot de passe"
+            type="password"
+            value={password}
+            onChange={handlePasswordChange}
+            fullWidth
+            variant="outlined"
+            error={!!passwordError}
+            helperText={passwordError}
+            sx={{ mb: 3 }}
+          />
+          <TextField
+            label="JSON des places réservées"
+            value={jsonInput}
+            onChange={handleJsonChange}
+            fullWidth
+            variant="outlined"
+            multiline
+            rows={4}
+            disabled={!isUnlocked}
+            error={!!jsonError}
+            helperText={
+              jsonError ||
+              'Entrez un tableau JSON d\'IDs de sièges, ex: ["seat1", "seat2"]'
+            }
+            sx={{ mb: 3 }}
+          />
           <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
             Places Sélectionnées
           </Typography>
@@ -713,6 +845,10 @@ const SalleCortotBooking: React.FC = () => {
                   py: 2,
                   background: "rgba(255, 255, 255, 0.9)",
                   boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    boxShadow: "0 6px 16px rgba(0,0,0,0.2)",
+                  },
                 }}
               >
                 <Typography

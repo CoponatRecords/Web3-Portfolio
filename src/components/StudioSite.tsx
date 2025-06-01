@@ -9,9 +9,10 @@ type TokenSwapProps = {
     | "swap"
     | "balance"
     | "studio"
+    | "docker"
     | null;
   handleToolClick: (
-    tool: "send" | "read" | "graph" | "swap" | "studio" | "balance"
+    tool: "send" | "read" | "graph" | "swap" | "studio" | "balance" | "docker"
   ) => void;
 };
 

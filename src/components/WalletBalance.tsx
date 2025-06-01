@@ -30,9 +30,16 @@ const ALCHEMY_CONFIG = {
 
 // Types
 type TokenBalanceProps = {
-  expandedTool: "send" | "read" | "graph" | "swap" | "balance" | null;
+  expandedTool:
+    | "send"
+    | "read"
+    | "graph"
+    | "swap"
+    | "balance"
+    | "docker"
+    | null;
   handleToolClick: (
-    tool: "send" | "read" | "graph" | "swap" | "balance"
+    tool: "send" | "read" | "graph" | "swap" | "balance" | "docker"
   ) => void;
 };
 

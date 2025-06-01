@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, lazy, Suspense } from "react";
+import { useState, useRef, useEffect, Suspense } from "react";
 import {
   Box,
   Container,
@@ -17,14 +17,13 @@ import Squares from "./animations/Squares";
 import StudioSite from "./components/StudioSite";
 import AtemMini from "./components/AtemMini";
 import SeatBooking from "./components/SeatBooking";
-
-// Lazy load components for better performance
-const SendUSDC = lazy(() => import("./components/SendUSDCProps"));
-const InfoSection = lazy(() => import("./components/InfoSection"));
-const ReadATransaction = lazy(() => import("./components/ReadATransaction"));
-const TokenSwap = lazy(() => import("./components/TokenSwap"));
-const WalletBalance = lazy(() => import("./components/WalletBalance"));
-const GraphACoin = lazy(() => import("./components/GraphACoin"));
+import DockerErigonStatus from "./components/DockerErigonStatus";
+import GraphACoin from "./components/GraphACoin";
+import InfoSection from "./components/InfoSection";
+import ReadATransaction from "./components/ReadATransaction";
+import SendUSDC from "./components/SendUSDCProps";
+import TokenSwap from "./components/TokenSwap";
+import WalletBalance from "./components/WalletBalance";
 
 // Styled Container with minimal glassmorphism
 const GlassContainer = styled(Container)(({ theme }) => ({
@@ -47,7 +46,7 @@ const GlassContainer = styled(Container)(({ theme }) => ({
 const Home = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [expandedTool, setExpandedTool] = useState<
-    "send" | "read" | "graph" | "swap" | "balance" | null
+    "send" | "read" | "graph" | "swap" | "balance" | "docker" | null
   >(null);
   const popoverRef = useRef<HTMLDivElement>(null);
 
@@ -59,6 +58,7 @@ const Home = () => {
     SWAP = "swap",
     READ = "read",
     BALANCE = "balance",
+    DOCKER = "docker",
   }
 
   const handleToolClick = (tool: Tool) => {
@@ -359,45 +359,50 @@ const Home = () => {
             >
               My Web3 Tools Developed for My Portfolio
             </Typography>
-            <Suspense fallback={<CircularProgress />}>
-              <motion.div variants={itemVariants}>
-                <TokenSwap
-                  expandedTool={expandedTool}
-                  handleToolClick={handleToolClick}
-                />
-              </motion.div>
-              <motion.div variants={itemVariants}>
-                <WalletBalance
-                  expandedTool={expandedTool}
-                  handleToolClick={handleToolClick}
-                />
-              </motion.div>
-              <motion.div variants={itemVariants}>
-                <SendUSDC
-                  expandedTool={expandedTool}
-                  handleToolClick={handleToolClick}
-                  setAnchorEl={setAnchorEl}
-                />
-              </motion.div>
-              <motion.div variants={itemVariants}>
-                <ReadATransaction
-                  expandedTool={expandedTool}
-                  handleToolClick={handleToolClick}
-                  setAnchorEl={setAnchorEl}
-                />
-              </motion.div>
-              <motion.div
-                variants={itemVariants}
-                style={{
-                  width: expandedTool === Tool.GRAPH ? "100%" : "",
-                }}
-              >
-                <GraphACoin
-                  expandedTool={expandedTool}
-                  handleToolClick={handleToolClick}
-                />
-              </motion.div>
-            </Suspense>
+            <motion.div variants={itemVariants}>
+              <TokenSwap
+                expandedTool={expandedTool}
+                handleToolClick={handleToolClick}
+              />
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <DockerErigonStatus
+                expandedTool={expandedTool}
+                handleToolClick={handleToolClick}
+              />
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <WalletBalance
+                expandedTool={expandedTool}
+                handleToolClick={handleToolClick}
+              />
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <SendUSDC
+                expandedTool={expandedTool}
+                handleToolClick={handleToolClick}
+                setAnchorEl={setAnchorEl}
+              />
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <ReadATransaction
+                expandedTool={expandedTool}
+                handleToolClick={handleToolClick}
+                setAnchorEl={setAnchorEl}
+              />
+            </motion.div>
+            <motion.div
+              variants={itemVariants}
+              style={{
+                width: expandedTool === Tool.GRAPH ? "100%" : "",
+              }}
+            >
+              <GraphACoin
+                expandedTool={expandedTool}
+                handleToolClick={handleToolClick}
+              />
+            </motion.div>
 
             {/* Category 2: Other Works I've Made for Other Projects */}
             <Typography

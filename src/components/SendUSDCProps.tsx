@@ -15,9 +15,16 @@ import InfoIcon from "@mui/icons-material/Info";
 import { SendTransaction } from "./wagmiTransaction";
 
 type SendUSDCProps = {
-  expandedTool: "send" | "read" | "graph" | "swap" | "balance" | null;
+  expandedTool:
+    | "send"
+    | "read"
+    | "graph"
+    | "swap"
+    | "balance"
+    | "docker"
+    | null;
   handleToolClick: (
-    tool: "send" | "read" | "graph" | "swap" | "balance"
+    tool: "send" | "read" | "graph" | "swap" | "balance" | "docker"
   ) => void;
   setAnchorEl: (el: HTMLElement | null) => void;
 };

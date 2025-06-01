@@ -16,6 +16,7 @@ import { SnackbarProvider } from "notistack";
 import Home from "./Home";
 import SalleCortotBooking from "./components/Cortot/cortot";
 import SeatPlan from "./components/Cortot/seatplan";
+import YouTubeComment from "./components/YouTubeComments";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => {
                   <Route path="/" element={<Home />} />
                   <Route path="/cortot" element={<SalleCortotBooking />} />
                   <Route path="/seatplancortot" element={<SeatPlan />} />
+                  <Route path="/YouTubeComment" element={<YouTubeComment />} />
                 </Routes>
               </ThemeProvider>
             </RainbowKitProvider>

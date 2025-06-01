@@ -13,9 +13,16 @@ import theme from "../theme";
 import { memo } from "react";
 
 type GraphACoinProps = {
-  expandedTool: "send" | "read" | "graph" | "swap" | "balance" | null; // null indicates no tool is expanded
+  expandedTool:
+    | "send"
+    | "read"
+    | "graph"
+    | "swap"
+    | "balance"
+    | "docker"
+    | null; // null indicates no tool is expanded
   handleToolClick: (
-    tool: "send" | "read" | "graph" | "swap" | "balance"
+    tool: "send" | "read" | "graph" | "swap" | "balance" | "docker"
   ) => void;
 };
 

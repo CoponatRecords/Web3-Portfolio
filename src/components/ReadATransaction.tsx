@@ -28,9 +28,16 @@ type RootState = {
 };
 
 type ReadATransactionProps = {
-  expandedTool: "send" | "read" | "graph" | "swap" | "balance" | null;
+  expandedTool:
+    | "send"
+    | "read"
+    | "graph"
+    | "swap"
+    | "balance"
+    | "docker"
+    | null;
   handleToolClick: (
-    tool: "send" | "read" | "graph" | "swap" | "balance"
+    tool: "send" | "read" | "graph" | "swap" | "balance" | "docker"
   ) => void;
   setAnchorEl: (el: HTMLElement | null) => void;
 };

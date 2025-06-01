@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 
 type TokenSwapProps = {
   expandedTool:
+    | "docker"
     | "send"
     | "read"
     | "graph"
@@ -12,7 +13,15 @@ type TokenSwapProps = {
     | "atemmini"
     | null;
   handleToolClick: (
-    tool: "send" | "read" | "graph" | "swap" | "studio" | "balance" | "atemmini"
+    tool:
+      | "send"
+      | "read"
+      | "graph"
+      | "swap"
+      | "studio"
+      | "balance"
+      | "atemmini"
+      | "docker"
   ) => void;
 };
 

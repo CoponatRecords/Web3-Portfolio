@@ -59,16 +59,14 @@ const getSeatDisplayColor = (
   venueCategoriesMap: { [key: string]: Category },
   isLocked: boolean
 ): string => {
-  if (isLocked) return "#ef4444"; // Red for locked
+  if (isLocked) return "#ef4444"; // Red for locked seats
+  if (status === "reserved") return "#ef4444"; // Red for booked (reserved) seats
   if (status === "available") {
-    const categoryDetails = venueCategoriesMap[seatCategoryKey];
-    return categoryDetails ? categoryDetails.color : "#22c55e"; // Green as default
+    return "white";
   }
   switch (status) {
     case "selected":
-      return "#f97316"; // Orange
-    case "reserved":
-      return "#ef4444"; // Red
+      return "white"; // Orange
     case "sold":
       return "#991b1b"; // Dark red
     default:
@@ -106,7 +104,6 @@ const Seat: React.FC<SeatProps> = ({
       sx={{
         width: seatSize,
         height: seatSize,
-        backgroundColor,
         margin: 0.5,
         borderRadius: "50%",
         cursor: isLocked ? "not-allowed" : "pointer",
@@ -130,26 +127,12 @@ const Seat: React.FC<SeatProps> = ({
             ? "0 4px 12px rgba(0,0,0,0.3)"
             : "0 2px 8px rgba(0,0,0,0.15)",
         },
+        backgroundColor, // Apply the computed background color
       }}
       title={`Siège: ${seat.seatNumber}\nCatégorie: ${
         seat.categoryKey || "N/A"
       }\nStatut: ${seat.status}`}
-    >
-      <Typography
-        sx={{
-          color: backgroundColor === "#DAA520" ? "#333333" : "#FFFFFF",
-          fontSize: `${seatSize * 0.4}px`,
-          fontWeight: 600,
-          textShadow:
-            backgroundColor === "#DAA520"
-              ? "none"
-              : "0 1px 2px rgba(0,0,0,0.5)",
-          fontFamily: '"Montserrat", sans-serif',
-        }}
-      >
-        {seat.seatNumber}
-      </Typography>
-    </Box>
+    ></Box>
   );
 };
 
@@ -301,10 +284,9 @@ const SeatPlan: React.FC = () => {
     <Paper
       elevation={3}
       sx={{
-        backgroundColor: "white",
-
         maxWidth: "100%",
         mx: "auto",
+        backgroundColor: "#000000", // Black background
         "@media (max-width: 600px)": {
           mt: 8,
         },
@@ -316,10 +298,10 @@ const SeatPlan: React.FC = () => {
           width: `${dimensions.width}px`,
           height: `${dimensions.height}px`,
           maxWidth: "100%",
-          backgroundColor: "white",
           borderRadius: "16px",
           overflow: "auto",
           margin: "auto auto",
+          backgroundColor: "#000000", // Black background
           "@media (max-width: 600px)": {
             width: "100%",
             pt: 1,
@@ -347,12 +329,10 @@ const SeatPlan: React.FC = () => {
             bottom: 0,
             left: "52%",
             transform: "translateX(-50%)",
-            color: "#333333",
+            color: "#FFFFFF", // White text for contrast
             fontWeight: 900,
           }}
-        >
-          PIANO
-        </Typography>
+        ></Typography>
       </Box>
     </Paper>
   );

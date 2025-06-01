@@ -75,9 +75,16 @@ const ERC20_ABI = [
 ];
 
 type TokenSwapProps = {
-  expandedTool: "send" | "read" | "graph" | "swap" | "balance" | null;
+  expandedTool:
+    | "send"
+    | "read"
+    | "graph"
+    | "swap"
+    | "balance"
+    | "docker"
+    | null;
   handleToolClick: (
-    tool: "send" | "read" | "graph" | "swap" | "balance"
+    tool: "send" | "read" | "graph" | "swap" | "docker" | "balance"
   ) => void;
 };
 

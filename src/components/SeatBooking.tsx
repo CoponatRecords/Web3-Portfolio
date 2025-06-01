@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 
 type TokenSwapProps = {
   expandedTool:
+    | "docker"
     | "send"
     | "read"
     | "graph"
@@ -14,6 +15,7 @@ type TokenSwapProps = {
     | null;
   handleToolClick: (
     tool:
+      | "docker"
       | "send"
       | "read"
       | "graph"
