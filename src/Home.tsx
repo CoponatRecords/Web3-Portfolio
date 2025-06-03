@@ -11,13 +11,15 @@ import {
 
 import { motion } from "framer-motion";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import TelegramIcon from "@mui/icons-material/Telegram";
+
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import ButtonAppBar from "./components/AppBar";
 import Squares from "./animations/Squares";
 import StudioSite from "./components/StudioSite";
 import AtemMini from "./components/AtemMini";
 import SeatBooking from "./components/SeatBooking";
-import DockerErigonStatus from "./components/DockerErigonStatus";
+// import DockerErigonStatus from "./components/DockerErigonStatus";
 import GraphACoin from "./components/GraphACoin";
 import InfoSection from "./components/InfoSection";
 import ReadATransaction from "./components/ReadATransaction";
@@ -236,6 +238,23 @@ const Home = () => {
               }}
             >
               <Button
+                href="https://t.me/Sebcoponat"
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<TelegramIcon />}
+                sx={{
+                  color: "#00f7ff",
+                  textTransform: "none",
+                  "&:hover": {
+                    color: "#1acccc",
+                    textShadow: "0 0 6px rgba(0, 247, 255, 0.4)",
+                  },
+                  "&:active": {
+                    color: "#1acccc",
+                  },
+                }}
+              />
+              <Button
                 href="https://www.linkedin.com/in/vacher-coponat/?locale=en_US"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -365,13 +384,13 @@ const Home = () => {
                 handleToolClick={handleToolClick}
               />
             </motion.div>
-
+            {/* 
             <motion.div variants={itemVariants}>
               <DockerErigonStatus
                 expandedTool={expandedTool}
                 handleToolClick={handleToolClick}
               />
-            </motion.div>
+            </motion.div> */}
             <motion.div variants={itemVariants}>
               <WalletBalance
                 expandedTool={expandedTool}
@@ -465,7 +484,7 @@ const Home = () => {
               >
                 <Button
                   variant="contained"
-                  href="https://github.com/CoponatRecords/TestProject-1"
+                  href="https://github.com/CoponatRecords/Web3-Portfolio"
                   target="_blank"
                   rel="noopener noreferrer"
                   startIcon={<GitHubIcon sx={{ fontSize: "1.25rem" }} />}

@@ -1,0 +1,64 @@
+# version: "3.8"
+
+# services:
+#   erigon:
+#     image: erigontech/erigon
+#     container_name: erigon
+#     environment:
+#       - XDG_DATA_HOME=/home/erigon/.local/share
+#     volumes:
+#       #
+#       # Use APFS partition : Erigon’s database (MDBX) requires a filesystem that
+#       # supports advanced features like efficient file locking, memory mapping (mmap),
+#       # and ioctl system calls—capabilities that APFS provides but older filesystems like HFS+
+#       # (Mac OS Extended) don’t fully support, especially on external drives. Without APFS, you
+#       # get errors like the mdbx_env_open: inappropriate ioctl for device and Erigon won’t start properly.
+#       #
+#       - /Volumes/T7/erigon:/home/erigon/.local/share/erigon
+#     ports:
+#       - "8545:8545"
+#       - "8546:8546"
+#       - "30303:30303"
+#     restart: unless-stopped
+#     command: >
+#       --datadir=/home/erigon/.local/share/erigon
+#       --http
+#       --http.api=eth,web3,net,debug,trace,erigon
+#       --http.addr=0.0.0.0
+#       --chain=mainnet
+
+#       --torrent.download.rate=512mb
+#       --ws=true
+#       --ws.port=8546
+#       --http.corsdomain="*"
+
+version: "3.8"
+
+services:
+  erigon_second:
+    image: erigontech/erigon
+    container_name: erigon_prunned_10
+    environment:
+      - XDG_DATA_HOME=/home/erigon/.local/share
+    volumes:
+      - /Volumes/T7/erigon_prunned_10:/home/erigon/.local/share/erigon
+    ports:
+      - "8547:8547" # HTTP JSON-RPC
+      - "8548:8548" # WebSocket
+      - "30304:30304" # P2P
+    restart: unless-stopped
+    command: >
+      --datadir=/home/erigon/.local/share/erigon
+      --http
+      --http.api=eth,web3,net,debug,trace,erigon
+      --http.addr=0.0.0.0
+      --http.port=8547
+      --chain=mainnet
+      --prune.distance=10
+      --prune.distance.blocks=10
+      --prune.mode="archive"
+      --torrent.download.rate=512mb
+      --ws=true
+      --ws.port=8548
+      --http.corsdomain="*"
+      --nat extip:83.195.85.8
