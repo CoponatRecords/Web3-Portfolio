@@ -10,27 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setHash } from "../redux/slices/hashReducer";
 import { useState } from "react";
 import { RootState } from "../redux/store";
-
-// ERC20 ABI
-const abi = [
-  {
-    type: "function",
-    name: "transfer",
-    stateMutability: "nonpayable",
-    inputs: [
-      { name: "to", type: "address" },
-      { name: "value", type: "uint256" },
-    ],
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
-  },
-  {
-    type: "function",
-    name: "balanceOf",
-    stateMutability: "view",
-    inputs: [{ name: "account", type: "address" }],
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-  },
-];
+import { abi } from "./TokenSwap/abi";
 
 // Proxy contract address
 const mycontract = "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238";

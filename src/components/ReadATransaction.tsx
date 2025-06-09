@@ -27,21 +27,6 @@ type RootState = {
   };
 };
 
-type ReadATransactionProps = {
-  expandedTool:
-    | "send"
-    | "read"
-    | "graph"
-    | "swap"
-    | "balance"
-    | "docker"
-    | null;
-  handleToolClick: (
-    tool: "send" | "read" | "graph" | "swap" | "balance" | "docker"
-  ) => void;
-  setAnchorEl: (el: HTMLElement | null) => void;
-};
-
 interface ReadTransactionProps {
   myhash: `0x${string}` | null;
 }
@@ -69,11 +54,7 @@ function ReadTransaction({ myhash }: ReadTransactionProps) {
   );
 }
 
-const ReadATransaction = ({
-  expandedTool,
-  handleToolClick,
-  setAnchorEl,
-}: ReadATransactionProps) => {
+const ReadATransaction = ({ expandedTool, handleToolClick, setAnchorEl }) => {
   const hash = useSelector((state: RootState) => state.hash.myhash);
   const dispatch = useDispatch();
   const [showDiv, setShowDiv] = useState(false);

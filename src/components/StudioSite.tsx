@@ -1,25 +1,7 @@
 import { Card, CardHeader, Typography, Box } from "@mui/material";
 import { motion } from "framer-motion";
 
-type TokenSwapProps = {
-  expandedTool:
-    | "send"
-    | "read"
-    | "graph"
-    | "swap"
-    | "balance"
-    | "studio"
-    | "docker"
-    | null;
-  handleToolClick: (
-    tool: "send" | "read" | "graph" | "swap" | "studio" | "balance" | "docker"
-  ) => void;
-};
-
-const StudioSite: React.FC<TokenSwapProps> = ({
-  expandedTool,
-  handleToolClick,
-}) => {
+const StudioSite = ({ expandedTool, handleToolClick }) => {
   return (
     <motion.a
       href="https://www.coponatrecords.com"

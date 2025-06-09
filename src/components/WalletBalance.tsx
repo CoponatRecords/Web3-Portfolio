@@ -29,19 +29,6 @@ const ALCHEMY_CONFIG = {
 };
 
 // Types
-type TokenBalanceProps = {
-  expandedTool:
-    | "send"
-    | "read"
-    | "graph"
-    | "swap"
-    | "balance"
-    | "docker"
-    | null;
-  handleToolClick: (
-    tool: "send" | "read" | "graph" | "swap" | "balance" | "docker"
-  ) => void;
-};
 
 type TokenAsset = {
   metadata: { name: string; symbol: string; logo?: string };
@@ -65,22 +52,20 @@ const commonTextFieldSx = {
 };
 
 // Main Component
-const WalletBalance: React.FC<TokenBalanceProps> = ({
-  expandedTool,
-  handleToolClick,
-}) => {
+const WalletBalance = ({ expandedTool, handleToolClick }) => {
   const { address } = useAccount();
   const [walletAddress, setWalletAddress] = useState<string>("");
   const [walletContent, setWalletContent] = useState<TokenAsset[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+
   const alchemy = new Alchemy(ALCHEMY_CONFIG);
 
   useEffect(() => {
     if (address && address !== walletAddress) {
       setWalletAddress(address);
     }
-  }, [address]);
+  }, [address, walletAddress]);
 
   useEffect(() => {
     if (!walletAddress) {
@@ -129,7 +114,7 @@ const WalletBalance: React.FC<TokenBalanceProps> = ({
     };
 
     fetchTokenBalances();
-  }, [walletAddress]);
+  }, [alchemy.core, walletAddress]);
 
   return (
     <Card

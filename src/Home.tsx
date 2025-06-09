@@ -24,7 +24,7 @@ import GraphACoin from "./components/GraphACoin";
 import InfoSection from "./components/InfoSection";
 import ReadATransaction from "./components/ReadATransaction";
 import SendUSDC from "./components/SendUSDCProps";
-import TokenSwap from "./components/TokenSwap";
+import TokenSwap from "./components/TokenSwap/TokenSwap";
 import WalletBalance from "./components/WalletBalance";
 
 // Styled Container with minimal glassmorphism

@@ -32,7 +32,7 @@
 #       --ws.port=8546
 #       --http.corsdomain="*"
 
-version: "3.8"
+version: "3.9"
 
 services:
   erigon_second:

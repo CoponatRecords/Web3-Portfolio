@@ -31,62 +31,13 @@ import {
 import { sendTransaction } from "@wagmi/core";
 import { parseUnits, isAddress, formatUnits } from "ethers";
 import { arbitrum } from "wagmi/chains";
-import { useGetSwapQuoteQuery } from "../redux/slices/swapSlice";
-import { wagmiconfig } from "../wagmiConfig";
+import { useGetSwapQuoteQuery } from "../../redux/slices/swapSlice";
+import { wagmiconfig } from "../../wagmiConfig";
 import { concat, Hex, numberToHex, size } from "viem";
 import { Alchemy, Network } from "alchemy-sdk";
 import TokenIcon from "@mui/icons-material/Token";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-
-const ERC20_ABI = [
-  {
-    constant: true,
-    inputs: [
-      { name: "_owner", type: "address" },
-      { name: "_spender", type: "address" },
-    ],
-    name: "allowance",
-    outputs: [{ name: "", type: "uint256" }],
-    payable: false,
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    constant: false,
-    inputs: [
-      { name: "_spender", type: "address" },
-      { name: "_value", type: "uint256" },
-    ],
-    name: "approve",
-    outputs: [{ name: "", type: "bool" }],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    constant: true,
-    inputs: [],
-    name: "decimals",
-    outputs: [{ name: "", type: "uint8" }],
-    payable: false,
-    stateMutability: "view",
-    type: "function",
-  },
-];
-
-type TokenSwapProps = {
-  expandedTool:
-    | "send"
-    | "read"
-    | "graph"
-    | "swap"
-    | "balance"
-    | "docker"
-    | null;
-  handleToolClick: (
-    tool: "send" | "read" | "graph" | "swap" | "docker" | "balance"
-  ) => void;
-};
+import { ERC20_ABI } from "./abi";
 
 interface TokenMetadata {
   name: string;
@@ -103,10 +54,7 @@ const config = {
 
 const alchemy = new Alchemy(config);
 
-const TokenSwap: React.FC<TokenSwapProps> = ({
-  expandedTool,
-  handleToolClick,
-}) => {
+const TokenSwap = ({ expandedTool, handleToolClick }) => {
   const { address } = useAccount();
   const { writeContract } = useWriteContract();
   const { signTypedDataAsync } = useSignTypedData();

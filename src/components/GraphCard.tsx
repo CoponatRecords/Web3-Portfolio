@@ -10,12 +10,7 @@ import {
 import { motion } from "framer-motion";
 import CointousdChartContainer from "./CointousdChartContainer";
 
-type Props = {
-  expanded: boolean;
-  onClick: () => void;
-};
-
-const GraphCard: React.FC<Props> = ({ expanded, onClick }) => (
+const GraphCard = ({ expanded, onClick }) => (
   <Card
     sx={{
       background: "linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%)",

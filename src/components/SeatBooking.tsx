@@ -1,36 +1,7 @@
 import { Card, CardHeader, Typography, Box } from "@mui/material";
 import { motion } from "framer-motion";
 
-type TokenSwapProps = {
-  expandedTool:
-    | "docker"
-    | "send"
-    | "read"
-    | "graph"
-    | "swap"
-    | "balance"
-    | "studio"
-    | "atemmini"
-    | "seatbooking"
-    | null;
-  handleToolClick: (
-    tool:
-      | "docker"
-      | "send"
-      | "read"
-      | "graph"
-      | "swap"
-      | "studio"
-      | "balance"
-      | "atemmini"
-      | "seatbooking"
-  ) => void;
-};
-
-const SeatBooking: React.FC<TokenSwapProps> = ({
-  expandedTool,
-  handleToolClick,
-}) => {
+const SeatBooking = ({ expandedTool, handleToolClick }) => {
   return (
     <motion.a
       href="https://ddfujb3ypq6p7.cloudfront.net/cortot"

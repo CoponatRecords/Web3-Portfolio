@@ -14,26 +14,7 @@ import { motion } from "framer-motion";
 import InfoIcon from "@mui/icons-material/Info";
 import { SendTransaction } from "./wagmiTransaction";
 
-type SendUSDCProps = {
-  expandedTool:
-    | "send"
-    | "read"
-    | "graph"
-    | "swap"
-    | "balance"
-    | "docker"
-    | null;
-  handleToolClick: (
-    tool: "send" | "read" | "graph" | "swap" | "balance" | "docker"
-  ) => void;
-  setAnchorEl: (el: HTMLElement | null) => void;
-};
-
-const SendUSDC = ({
-  expandedTool,
-  handleToolClick,
-  setAnchorEl,
-}: SendUSDCProps) => {
+const SendUSDC = ({ expandedTool, handleToolClick, setAnchorEl }) => {
   const [receiverAddress, setReceiverAddress] = useState(
     "0x92FcD9d0424E3D3F3bB5a503a59A507F9A4607ee"
   );

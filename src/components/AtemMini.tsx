@@ -1,34 +1,7 @@
 import { Card, CardHeader, Typography, Box } from "@mui/material";
 import { motion } from "framer-motion";
 
-type TokenSwapProps = {
-  expandedTool:
-    | "docker"
-    | "send"
-    | "read"
-    | "graph"
-    | "swap"
-    | "balance"
-    | "studio"
-    | "atemmini"
-    | null;
-  handleToolClick: (
-    tool:
-      | "send"
-      | "read"
-      | "graph"
-      | "swap"
-      | "studio"
-      | "balance"
-      | "atemmini"
-      | "docker"
-  ) => void;
-};
-
-const AtemMini: React.FC<TokenSwapProps> = ({
-  expandedTool,
-  handleToolClick,
-}) => {
+const AtemMini = ({ expandedTool, handleToolClick }) => {
   return (
     <motion.a
       href="https://github.com/CoponatRecords/AtemMini"

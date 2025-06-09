@@ -12,21 +12,7 @@ import CointousdChartContainer from "./CointousdChartContainer";
 import theme from "../theme";
 import { memo } from "react";
 
-type GraphACoinProps = {
-  expandedTool:
-    | "send"
-    | "read"
-    | "graph"
-    | "swap"
-    | "balance"
-    | "docker"
-    | null; // null indicates no tool is expanded
-  handleToolClick: (
-    tool: "send" | "read" | "graph" | "swap" | "balance" | "docker"
-  ) => void;
-};
-
-const GraphACoin = ({ expandedTool, handleToolClick }: GraphACoinProps) => {
+const GraphACoin = ({ expandedTool, handleToolClick }) => {
   const isExpanded = expandedTool === "graph";
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm")); // Check if screen is xs or sm
 
