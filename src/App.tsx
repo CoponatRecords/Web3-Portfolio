@@ -17,6 +17,8 @@ import Home from "./Home";
 import SalleCortotBooking from "./components/Cortot/cortot";
 import SeatPlan from "./components/Cortot/seatplan";
 import YouTubeComment from "./components/YouTubeComments";
+import MyWallet from "./components/MyWallet";
+import Header from "./components/AppBar";
 
 const queryClient = new QueryClient();
 
@@ -29,8 +31,11 @@ const App = () => {
             <RainbowKitProvider>
               <ThemeProvider theme={theme}>
                 <CssBaseline />
+                <Header />
+
                 <Routes>
                   <Route path="/" element={<Home />} />
+                  <Route path="/wallet" element={<MyWallet />} />
                   <Route path="/cortot" element={<SalleCortotBooking />} />
                   <Route path="/seatplancortot" element={<SeatPlan />} />
                   <Route path="/YouTubeComment" element={<YouTubeComment />} />

@@ -114,7 +114,7 @@ const WalletBalance = ({ expandedTool, handleToolClick }) => {
     };
 
     fetchTokenBalances();
-  }, [alchemy.core, walletAddress]);
+  }, [walletAddress]);
 
   return (
     <Card

@@ -1,17 +1,19 @@
 import { Card, CardHeader, Typography, Box } from "@mui/material";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
+
+const MotionLink = motion(Link);
 
 const SeatBooking = ({ expandedTool, handleToolClick }) => {
   return (
-    <motion.a
-      href="https://ddfujb3ypq6p7.cloudfront.net/cortot"
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{ textDecoration: "none" }}
+    <MotionLink
+      to="/cortot" // Changed from href to 'to' for internal routing
+      style={{ textDecoration: "none" }} // Keeps the link from being underlined
+      // You can add framer-motion props directly to MotionLink if you want
+      // e.g., whileHover, whileTap, etc.
     >
       <Card
         sx={{
-          background: "linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%)",
           borderRadius: 1,
           boxShadow:
             expandedTool === "seatbooking"
@@ -21,13 +23,6 @@ const SeatBooking = ({ expandedTool, handleToolClick }) => {
             expandedTool === "seatbooking" ? "scale(1.02)" : "scale(1)",
           transition: "transform 0.3s ease, box-shadow 0.3s ease",
           zIndex: expandedTool === "seatbooking" ? 2 : 1,
-          width: { xs: "100%", sm: "400px" },
-          "&:hover": {
-            transform:
-              expandedTool !== "seatbooking" ? "scale(1.05)" : "scale(1.02)",
-            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
-            cursor: "pointer",
-          },
         }}
         onClick={(e) => {
           e.stopPropagation();
@@ -52,7 +47,7 @@ const SeatBooking = ({ expandedTool, handleToolClick }) => {
           }
         />
       </Card>
-    </motion.a>
+    </MotionLink>
   );
 };
 

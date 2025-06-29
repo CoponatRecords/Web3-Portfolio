@@ -5,22 +5,18 @@ import {
   Collapse,
   CardContent,
   Box,
-  useMediaQuery,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import CointousdChartContainer from "./CointousdChartContainer";
-import theme from "../theme";
 import { memo } from "react";
 
 const GraphACoin = ({ expandedTool, handleToolClick }) => {
   const isExpanded = expandedTool === "graph";
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm")); // Check if screen is xs or sm
 
   return (
     <motion.div
       layout
       animate={{
-        width: isExpanded ? "100%" : isSmallScreen ? "100%" : "400px",
         marginLeft: isExpanded ? 0 : "auto",
         marginRight: isExpanded ? 0 : "auto",
       }}

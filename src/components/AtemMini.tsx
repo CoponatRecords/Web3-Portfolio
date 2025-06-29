@@ -20,13 +20,6 @@ const AtemMini = ({ expandedTool, handleToolClick }) => {
           transform: expandedTool === "atemmini" ? "scale(1.02)" : "scale(1)",
           transition: "transform 0.3s ease, box-shadow 0.3s ease",
           zIndex: expandedTool === "atemmini" ? 2 : 1,
-          width: { xs: "100%", sm: "400px" },
-          "&:hover": {
-            transform:
-              expandedTool !== "atemmini" ? "scale(1.05)" : "scale(1.02)",
-            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
-            cursor: "pointer",
-          },
         }}
         onClick={(e) => {
           e.stopPropagation();

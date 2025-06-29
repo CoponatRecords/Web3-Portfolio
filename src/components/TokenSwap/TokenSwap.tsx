@@ -421,7 +421,7 @@ const TokenSwap = ({ expandedTool, handleToolClick }) => {
         transform: expandedTool === "swap" ? "scale(1.02)" : "scale(1)",
         transition: "transform 0.3s ease, box-shadow 0.3s ease",
         zIndex: expandedTool === "swap" ? 2 : 1,
-        width: { xs: "100%", sm: "400px" },
+        width: "100%",
         "&:hover": {
           transform: expandedTool !== "swap" ? "scale(1.05)" : "scale(1.02)",
           boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",

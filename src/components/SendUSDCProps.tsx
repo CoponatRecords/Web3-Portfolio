@@ -29,7 +29,6 @@ const SendUSDC = ({ expandedTool, handleToolClick, setAnchorEl }) => {
     <Card
       sx={{
         background: "linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%)",
-        borderRadius: 4,
         boxShadow:
           expandedTool === "send"
             ? "0 8px 32px rgba(0, 0, 0, 0.3)"
@@ -142,8 +141,7 @@ const SendUSDC = ({ expandedTool, handleToolClick, setAnchorEl }) => {
                   "& .MuiInputLabel-root": {
                     color: "rgba(255, 255, 255, 0.7)",
                   },
-                  background: "rgba(255, 255, 255, 0.1)",
-                  borderRadius: 2,
+                  background: "rgba(6, 5, 5, 0.1)",
                 }}
               />
               <TextField
@@ -167,7 +165,6 @@ const SendUSDC = ({ expandedTool, handleToolClick, setAnchorEl }) => {
                     color: "rgba(255, 255, 255, 0.7)",
                   },
                   background: "rgba(255, 255, 255, 0.1)",
-                  borderRadius: 2,
                 }}
               />
               <SendTransaction to={receiverAddress} myvalue={amountToSend} />

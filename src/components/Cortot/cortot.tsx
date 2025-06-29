@@ -12,9 +12,10 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import plan from "./plan"; // Placeholder for your plan data
-import salleCortot from "./salle-cortot.jpg";
+import salleCortot from "./assets/salle-cortot.jpg";
 import { addDoc, collection, doc, onSnapshot } from "firebase/firestore";
 import { db } from "./firebasedb";
+
 // Hardcoded password
 const PASSWORD = import.meta.env.VITE_CORTOTPASSWORD;
 
