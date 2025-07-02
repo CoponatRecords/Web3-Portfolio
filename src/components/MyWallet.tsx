@@ -82,18 +82,11 @@ const listItemVariants = {
 
 // Main Component
 const MyWallet = () => {
-  const { address, isConnected } = useAccount();
-
-  // --- MODIFICATION HERE ---
-  // Set the initial state of walletAddress to your desired default address
-  const [walletAddress, setWalletAddress] = useState<string>(
-    "0x06ED8b392a914Ea025ce4C59c7B407eC73b50D42"
-  );
-  // --- END MODIFICATION ---
-
+  const { address, isConnected } = useAccount(); // Get isConnected status
+  const [walletAddress, setWalletAddress] = useState<string>("");
   const [lastConnectedAddress, setLastConnectedAddress] = useState<
     string | undefined
-  >(undefined);
+  >(undefined); // New state to track the last connected address
   const [walletContent, setWalletContent] = useState<TokenAsset[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -103,7 +96,7 @@ const MyWallet = () => {
 
   // LOGIC REVISION: Sync connected wallet address with input field more intelligently
   useEffect(() => {
-    // If a wallet is connected and it's a new address, set it
+    // If a wallet is connected and it's a new address or the input is empty, set it
     if (isConnected && address && address !== lastConnectedAddress) {
       setWalletAddress(address);
       setLastConnectedAddress(address); // Store the newly connected address
@@ -119,7 +112,7 @@ const MyWallet = () => {
       setWalletContent([]);
       setError(null);
     }
-  }, [address, isConnected, lastConnectedAddress, walletAddress]);
+  }, [address, isConnected, lastConnectedAddress, walletAddress]); // Add isConnected and lastConnectedAddress to dependencies
 
   // Logic: Fetch token balances when walletAddress changes (unchanged)
   useEffect(() => {
