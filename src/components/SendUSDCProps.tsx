@@ -37,7 +37,7 @@ const SendUSDC = ({ expandedTool, handleToolClick, setAnchorEl }) => {
         transition: "transform 0.3s ease, box-shadow 0.3s ease",
         zIndex: expandedTool === "send" ? 2 : 1,
         cursor: "pointer",
-        width: { xs: "100%", sm: "400px" },
+        width: { xs: "100%", sm: "100%" },
         "&:hover": {
           transform: expandedTool !== "send" ? "scale(1.05)" : "scale(1.02)",
           boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",

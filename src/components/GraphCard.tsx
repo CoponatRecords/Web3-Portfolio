@@ -22,7 +22,7 @@ const GraphCard = ({ expanded, onClick }) => (
       transition: "transform 0.3s ease, box-shadow 0.3s ease",
       zIndex: expanded ? 2 : 1,
       cursor: "pointer",
-      width: { xs: "100%", sm: "400px" },
+      width: { xs: "100%", sm: "100%" },
       "&:hover": {
         transform: expanded ? "scale(1.02)" : "scale(1.05)",
         boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",

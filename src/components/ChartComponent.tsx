@@ -104,7 +104,7 @@ const ChartComponent = ({ coin }: ChartComponentProps) => {
         options={{
           plugins: {
             legend: {
-              display: false, // 👈 removes the square and label above the chart
+              display: false,
             },
           },
         }}

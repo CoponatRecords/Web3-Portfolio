@@ -1,4 +1,5 @@
-"use client"; // Important for Next.js App Router
+// src/Header.tsx
+"use client";
 
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
@@ -10,59 +11,98 @@ import HomeIcon from "@mui/icons-material/Home";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Link as RouterLink, useLocation } from "react-router-dom";
-import { ThemeProvider } from "@mui/material";
-import theme from "../theme"; // Ensure this path is correct
+import {
+  ThemeProvider,
+  useTheme as useMuiTheme,
+  styled,
+  useMediaQuery,
+} from "@mui/material"; // Ensure useMediaQuery is imported
 
+import theme from "../theme"; // Assuming your theme is correctly imported
+
+// --- Styled AppBar for consistent background and effects ---
+const StyledAppBar = styled(AppBar)(({ theme: muiTheme }) => ({
+  top: 0,
+  backgroundColor: "rgba(10, 10, 20, 0.9)", // Fallback
+  background: `linear-gradient(90deg, ${muiTheme.palette.background.paper} 0%, ${muiTheme.palette.background.default} 100%)`,
+  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.5)",
+  backdropFilter: "blur(12px)",
+  width: "100vw",
+  overflowX: "hidden", // Important for mobile to prevent horizontal scroll
+  left: 0,
+  right: 0,
+  zIndex: muiTheme.zIndex.appBar,
+}));
+
+// --- Main Header Component ---
 export default function Header() {
   const location = useLocation();
+  const muiTheme = useMuiTheme();
 
-  // Define reusable styles for consistent buttons
-  const buttonBaseSx = {
-    fontWeight: 600,
-    borderRadius: 1, // Slight rounding for buttons
-    px: { xs: 1.5, sm: 2 }, // Responsive padding
-    py: { xs: 0.8, sm: 1 }, // Responsive padding
-    minWidth: { xs: "auto", sm: 80 }, // Ensure buttons don't get too small
-    transition: "all 0.3s ease-in-out", // Smooth transitions
-    whiteSpace: "nowrap", // Prevent text wrap
-    textTransform: "none", // Prevent ALL CAPS
-  };
+  // Optimized breakpoint check: Only one useMediaQuery call
+  const isXs = useMediaQuery(muiTheme.breakpoints.down("sm")); // Directly use the media query
 
-  // Style for all inactive/default contained buttons (Connect Wallet, Account, Home, Balance when not active)
-  const inactiveContainedButtonSx = {
-    background: "linear-gradient(90deg, #200040 0%, #000000 100%)", // Very dark gradient
-    color: theme.palette.text.primary, // Bright text
-    boxShadow: "0 2px 8px rgba(0,0,0,0.6)", // Deeper shadow
-    "&:hover": {
-      background: "linear-gradient(90deg, #300050 0%, #050010 100%)", // Slightly lighter on hover
-      boxShadow: `0 0 15px ${theme.palette.secondary.light}, inset 0 0 8px ${theme.palette.secondary.main}`,
-    },
-  };
+  // Memoize button base styles
+  const buttonBaseSx = React.useMemo(
+    () => ({
+      fontWeight: 600,
+      borderRadius: 1,
+      transition: "all 0.3s ease-in-out",
+      textTransform: "none",
+      flexShrink: 0,
+      minWidth: 0, // Allow buttons to shrink on small screens
+      px: { xs: 0.5, sm: 1, md: 2 }, // Reduced padding for xs
+      py: { xs: 0.4, sm: 0.6, md: 1 }, // Reduced padding for xs
+      fontSize: { xs: "0.6rem", sm: "0.75rem", md: "0.875rem" }, // Smaller font for xs
+    }),
+    []
+  );
 
-  // Style for active navigation buttons (Home, Balance when active)
-  const activeButtonSx = {
-    background: "linear-gradient(90deg, #200040 0%, #000000 100%)", // Very dark gradient
-    color: theme.palette.text.primary, // Keep text bright
-    boxShadow: `0 0 15px ${theme.palette.secondary.light}, inset 0 0 8px ${theme.palette.secondary.main}`,
-    "&:hover": {
-      background: `linear-gradient(90deg, ${theme.palette.secondary.main} 0%, ${theme.palette.secondary.dark} 100%)`, // Reverse gradient on hover
-    },
-  };
+  // Memoize inactive/default contained button styles
+  const inactiveContainedButtonSx = React.useMemo(
+    () => ({
+      background: "linear-gradient(90deg, #200040 0%, #000000 100%)",
+      color: muiTheme.palette.text.primary,
+      boxShadow: "0 2px 8px rgba(0,0,0,0.6)",
+      "&:hover": {
+        background: "linear-gradient(90deg, #300050 0%, #050010 100%)",
+        boxShadow: `0 0 15px ${muiTheme.palette.secondary.light}, inset 0 0 8px ${muiTheme.palette.secondary.main}`,
+      },
+    }),
+    [
+      muiTheme.palette.text.primary,
+      muiTheme.palette.secondary.light,
+      muiTheme.palette.secondary.main,
+    ] // Explicit dependencies
+  );
+
+  // Memoize active navigation button styles (depends on theme for hover effect)
+  const activeButtonSx = React.useMemo(
+    () => ({
+      background: "linear-gradient(90deg, #00F7FF 0%, #00BFFF 100%)",
+      color: "#111", // Dark text for active bright background
+      boxShadow:
+        "0 0 15px rgba(0, 247, 255, 0.8), inset 0 0 8px rgba(0, 247, 255, 0.5)",
+      "&:hover": {
+        background: "linear-gradient(90deg, #00DDEE 0%, #00AACC 100%)",
+      },
+    }),
+    []
+  );
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar
-        position="sticky"
-        sx={{
-          backgroundColor: "rgba(10, 10, 20, 0.9)", // Darker base for the glass effect
-          background: `linear-gradient(90deg, ${theme.palette.background.paper} 0%, ${theme.palette.background.default} 100%)`, // Use theme palette for consistency
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.5)", // Stronger, darker shadow for depth
-          backdropFilter: "blur(12px)", // Slightly more blur for a smoother glass effect
-        }}
-      >
-        <Toolbar sx={{ justifyContent: "space-between", gap: 1 }}>
-          {" "}
-          {/* Added gap for spacing between buttons */}
+      <StyledAppBar position="fixed">
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: { xs: 0.5, sm: 1, md: 2 },
+            px: { xs: 1, sm: 1.5, md: 2 },
+            minHeight: { xs: 48, sm: 56, md: 64 },
+            // Removed: overflowX: "hidden", (already on StyledAppBar)
+          }}
+        >
           {/* App Title/Logo (left-aligned) */}
           <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}>
             <Typography
@@ -71,43 +111,52 @@ export default function Header() {
               sx={{
                 fontWeight: "bold",
                 letterSpacing: "0.5px",
-                color: theme.palette.text.primary,
+                color: muiTheme.palette.text.primary,
                 textShadow: "0 1px 2px rgba(0,0,0,0.5)",
-                display: { xs: "none", sm: "block" },
+                whiteSpace: "nowrap",
+                fontSize: { xs: "0.8rem", sm: "1rem", md: "1.25rem" },
               }}
             >
-              Sébastien Coponat{" "}
+              Sébastien Coponat
             </Typography>
           </Box>
-          {/* Navigation Buttons (Home & Balance) - Now styled like connect button */}
+
+          {/* Navigation Buttons */}
           <Button
-            component={RouterLink} // Use RouterLink for navigation
+            component={RouterLink}
             to="/"
-            startIcon={<HomeIcon />}
+            startIcon={
+              <HomeIcon
+                sx={{ fontSize: { xs: "0.9rem", sm: "1.1rem", md: "1.25rem" } }}
+              />
+            }
             sx={{
-              ...buttonBaseSx, // Apply base styles
+              ...buttonBaseSx,
               ...(location.pathname === "/"
                 ? activeButtonSx
-                : inactiveContainedButtonSx), // Apply active/inactive styles
-              // No mr: 2 here, let Toolbar gap handle spacing
+                : inactiveContainedButtonSx),
             }}
           >
-            Home
+            {isXs ? "" : "Home"}
           </Button>
           <Button
             component={RouterLink}
             to="/wallet"
-            startIcon={<AccountBalanceWalletIcon />}
+            startIcon={
+              <AccountBalanceWalletIcon
+                sx={{ fontSize: { xs: "0.9rem", sm: "1.1rem", md: "1.25rem" } }}
+              />
+            }
             sx={{
-              ...buttonBaseSx, // Apply base styles
+              ...buttonBaseSx,
               ...(location.pathname === "/wallet"
                 ? activeButtonSx
-                : inactiveContainedButtonSx), // Apply active/inactive styles
-              // No mr: 2 here, let Toolbar gap handle spacing
+                : inactiveContainedButtonSx),
             }}
           >
-            Balance
+            {isXs ? "" : "Balance"}
           </Button>
+
           {/* Custom RainbowKit Connect Button */}
           <ConnectButton.Custom>
             {({
@@ -145,7 +194,8 @@ export default function Header() {
                           onClick={openConnectModal}
                           sx={{
                             ...buttonBaseSx,
-                            ...inactiveContainedButtonSx, // Apply the general inactive style
+                            ...inactiveContainedButtonSx,
+                            whiteSpace: "nowrap",
                           }}
                         >
                           Connect Wallet
@@ -159,13 +209,14 @@ export default function Header() {
                           onClick={openChainModal}
                           sx={{
                             ...buttonBaseSx,
-                            background: `linear-gradient(90deg, ${theme.palette.error.dark} 0%, ${theme.palette.error.main} 100%)`,
-                            color: theme.palette.error.contrastText,
+                            background: `linear-gradient(90deg, ${muiTheme.palette.error.dark} 0%, ${muiTheme.palette.error.main} 100%)`,
+                            color: muiTheme.palette.error.contrastText,
                             boxShadow: "0 2px 8px rgba(0,0,0,0.6)",
                             "&:hover": {
-                              background: `linear-gradient(90deg, ${theme.palette.error.main} 0%, ${theme.palette.error.dark} 100%)`,
+                              background: `linear-gradient(90deg, ${muiTheme.palette.error.main} 0%, ${muiTheme.palette.error.dark} 100%)`,
                               boxShadow: "0 4px 12px rgba(0,0,0,0.8)",
                             },
+                            whiteSpace: "nowrap",
                           }}
                         >
                           Wrong network
@@ -174,21 +225,33 @@ export default function Header() {
                     }
 
                     return (
-                      <Box sx={{ display: "flex", gap: 1 }}>
-                        {/* Chain Button (still has its unique outlined style) */}
+                      <Box
+                        sx={{
+                          display: "flex",
+                          gap: { xs: 0.5, sm: 0.8, md: 1 },
+                          flexShrink: 0,
+                          whiteSpace: "nowrap",
+                        }}
+                      >
                         <Button
                           onClick={openChainModal}
                           sx={{
                             ...buttonBaseSx,
-                            borderColor: theme.palette.secondary.dark,
-                            color: theme.palette.secondary.main,
+                            borderColor: muiTheme.palette.secondary.dark,
+                            color: muiTheme.palette.secondary.main,
                             background: "rgba(0, 247, 255, 0.05)",
                             "&:hover": {
                               backgroundColor: "rgba(0, 247, 255, 0.15)",
-                              borderColor: theme.palette.secondary.main,
-                              color: theme.palette.secondary.light,
+                              borderColor: muiTheme.palette.secondary.main,
+                              color: muiTheme.palette.secondary.light,
                             },
-                            boxShadow: "none", // Outlined style typically doesn't have strong box-shadow
+                            boxShadow: "none",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            "& .MuiButton-startIcon": {
+                              marginRight: isXs ? 0 : 6,
+                            },
                           }}
                         >
                           {chain.hasIcon && (
@@ -199,7 +262,9 @@ export default function Header() {
                                 height: 14,
                                 borderRadius: 999,
                                 overflow: "hidden",
-                                marginRight: 6,
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
                               }}
                             >
                               {chain.iconUrl && (
@@ -211,21 +276,27 @@ export default function Header() {
                               )}
                             </div>
                           )}
-                          {chain.name}
+                          {isXs ? "" : chain.name}
                         </Button>
 
-                        {/* Account Button */}
                         <Button
                           onClick={openAccountModal}
                           sx={{
                             ...buttonBaseSx,
-                            ...inactiveContainedButtonSx, // Apply the general inactive style
+                            ...inactiveContainedButtonSx,
+                            maxWidth: { xs: 80, sm: 110, md: "unset" },
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            whiteSpace: "nowrap",
+                            display: "block",
                           }}
                         >
-                          {account.displayName}
-                          {account.displayBalance
-                            ? ` (${account.displayBalance})`
-                            : ""}
+                          {isXs
+                            ? account.displayName?.slice(0, 4) + "..."
+                            : account.displayName +
+                              (account.displayBalance
+                                ? ` (${account.displayBalance})`
+                                : "")}
                         </Button>
                       </Box>
                     );
@@ -235,7 +306,7 @@ export default function Header() {
             }}
           </ConnectButton.Custom>
         </Toolbar>
-      </AppBar>
+      </StyledAppBar>
     </ThemeProvider>
   );
 }

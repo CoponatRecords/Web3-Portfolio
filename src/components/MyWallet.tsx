@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import {
   Stack,
@@ -14,36 +12,36 @@ import {
   ListItemAvatar,
   Avatar,
   Box,
-  Skeleton, // Added for loading states
+  Skeleton,
 } from "@mui/material";
-import { motion, AnimatePresence } from "framer-motion"; // AnimatePresence for exit animations
+import { motion, AnimatePresence } from "framer-motion";
 import { useAccount } from "wagmi";
 import { Alchemy, Network } from "alchemy-sdk";
-import TokenIcon from "@mui/icons-material/Token"; // Default icon for unknown tokens
-import ContentCopyIcon from "@mui/icons-material/ContentCopy"; // For copy button
-import Tooltip from "@mui/material/Tooltip"; // For copy button tooltip
-import IconButton from "@mui/material/IconButton"; // For copy button
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"; // For copy success icon
+import TokenIcon from "@mui/icons-material/Token";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from "@mui/material/IconButton";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
-// Constants
+// Constants (unchanged)
 const ALCHEMY_CONFIG = {
   apiKey: import.meta.env.VITE_ALCHEMY_API_KEY,
   network: Network.ARB_MAINNET,
 };
 
-// Types
+// Types (unchanged)
 type TokenAsset = {
-  contractAddress: string; // Added to enable copying, no logic change
+  contractAddress: string;
   metadata: { name: string; symbol: string; logo?: string };
   balance: number;
 };
 
-// Styles for the Text Field (visually enhanced, logic remains same)
+// Styles for the Text Field (unchanged)
 const WalletAddressInputSx = {
   "& .MuiInputBase-input": {
     fontSize: { xs: "0.875rem", sm: "1rem" },
     color: "#ffffff",
-    paddingRight: "40px", // Make space for the copy icon
+    paddingRight: "40px",
   },
   "& .MuiOutlinedInput-notchedOutline": {
     borderColor: "rgba(255, 255, 255, 0.3)",
@@ -53,7 +51,7 @@ const WalletAddressInputSx = {
   },
   background: "rgba(255, 255, 255, 0.1)",
   borderRadius: 1,
-  boxShadow: "0 2px 8px rgba(0,0,0,0.2)", // Subtle shadow
+  boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
   "&:hover": {
     background: "rgba(255, 255, 255, 0.15)",
   },
@@ -62,7 +60,7 @@ const WalletAddressInputSx = {
   },
 };
 
-// Animation variants for Framer Motion (visual only)
+// Animation variants for Framer Motion (unchanged)
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
@@ -74,38 +72,56 @@ const listItemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: i * 0.05, // Stagger effect
+      delay: i * 0.05,
       duration: 0.3,
       ease: "easeOut",
     },
   }),
-  exit: { opacity: 0, height: 0, transition: { duration: 0.2 } }, // For AnimatePresence
+  exit: { opacity: 0, height: 0, transition: { duration: 0.2 } },
 };
 
 // Main Component
 const MyWallet = () => {
-  const { address } = useAccount();
-  const [walletAddress, setWalletAddress] = useState<string>("");
+  const { address, isConnected } = useAccount();
+
+  // --- MODIFICATION HERE ---
+  // Set the initial state of walletAddress to your desired default address
+  const [walletAddress, setWalletAddress] = useState<string>(
+    "0x06ED8b392a914Ea025ce4C59c7B407eC73b50D42"
+  );
+  // --- END MODIFICATION ---
+
+  const [lastConnectedAddress, setLastConnectedAddress] = useState<
+    string | undefined
+  >(undefined);
   const [walletContent, setWalletContent] = useState<TokenAsset[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [copySuccess, setCopySuccess] = useState<boolean>(false); // State for copy feedback
+  const [copySuccess, setCopySuccess] = useState<boolean>(false);
 
   const alchemy = new Alchemy(ALCHEMY_CONFIG);
 
-  // Logic: Sync connected wallet address with input field
+  // LOGIC REVISION: Sync connected wallet address with input field more intelligently
   useEffect(() => {
-    if (address && address !== walletAddress) {
+    // If a wallet is connected and it's a new address, set it
+    if (isConnected && address && address !== lastConnectedAddress) {
       setWalletAddress(address);
-    } else if (!address && walletAddress) {
-      // Logic: Clear address if wallet disconnects
+      setLastConnectedAddress(address); // Store the newly connected address
+    } else if (
+      !isConnected &&
+      lastConnectedAddress &&
+      walletAddress === lastConnectedAddress
+    ) {
+      // If wallet disconnects AND the current input field *still holds* the disconnected address, clear it.
+      // This prevents clearing if the user has manually typed a different address.
       setWalletAddress("");
+      setLastConnectedAddress(undefined); // Clear last connected address
       setWalletContent([]);
       setError(null);
     }
-  }, [address, walletAddress]);
+  }, [address, isConnected, lastConnectedAddress, walletAddress]);
 
-  // Logic: Fetch token balances when walletAddress changes
+  // Logic: Fetch token balances when walletAddress changes (unchanged)
   useEffect(() => {
     if (!walletAddress) {
       setWalletContent([]);
@@ -124,36 +140,34 @@ const MyWallet = () => {
 
     const fetchTokenBalances = async () => {
       setLoading(true);
-      setError(null); // Logic: Clear previous errors
-      setWalletContent([]); // Logic: Clear previous content
+      setError(null);
+      setWalletContent([]);
 
       try {
         const response = await alchemy.core.getTokenBalances(walletAddress);
         const walletContentList: TokenAsset[] = [];
 
-        // Logic: Fetch metadata for each token and filter out zero balances
         for (const token of response.tokenBalances) {
           const balanceWei = parseInt(token.tokenBalance as string, 16);
-          if (balanceWei === 0) continue; // Logic: Skip zero balance tokens
+          if (balanceWei === 0) continue;
 
           const metadata = await alchemy.core.getTokenMetadata(
             token.contractAddress
           );
 
-          const decimals = metadata.decimals || 18; // Logic: Default to 18 if not found
+          const decimals = metadata.decimals || 18;
           const formattedBalance = balanceWei / Math.pow(10, decimals);
           const symbol =
             metadata.symbol || `UNK-${token.contractAddress.slice(-4)}`;
           const name = metadata.name || "Unknown Token";
 
           walletContentList.push({
-            contractAddress: token.contractAddress, // Logic: Store full address
+            contractAddress: token.contractAddress,
             metadata: { name, symbol, logo: metadata.logo },
             balance: formattedBalance,
           });
         }
 
-        // Logic: Sort tokens alphabetically by symbol
         walletContentList.sort((a, b) =>
           a.metadata.symbol.localeCompare(b.metadata.symbol)
         );
@@ -170,14 +184,14 @@ const MyWallet = () => {
     };
 
     fetchTokenBalances();
-  }, [walletAddress]); // Logic: Dependencies for useEffect
+  }, [walletAddress]);
 
-  // Logic: Handle copying wallet address to clipboard
+  // Logic: Handle copying wallet address to clipboard (unchanged)
   const handleCopyAddress = async () => {
     try {
       await navigator.clipboard.writeText(walletAddress);
       setCopySuccess(true);
-      setTimeout(() => setCopySuccess(false), 2000); // Reset after 2 seconds
+      setTimeout(() => setCopySuccess(false), 2000);
     } catch (err) {
       console.error("Failed to copy address: ", err);
     }
@@ -187,30 +201,30 @@ const MyWallet = () => {
     <motion.div variants={cardVariants} initial="hidden" animate="visible">
       <Card
         sx={{
-          borderRadius: 3, // Visual: More rounded corners
-          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.6)", // Visual: Deeper shadow for pop
-          background: "rgba(30, 30, 40, 0.9)", // Visual: Slightly darker, semi-transparent background
-          border: "1px solid rgba(255, 255, 255, 0.1)", // Visual: Subtle border
-          overflow: "hidden", // Visual: Ensures inner elements respect border-radius
+          borderRadius: 3,
+          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.6)",
+          background: "rgba(30, 30, 40, 0.9)",
+          border: "1px solid rgba(255, 255, 255, 0.1)",
+          overflow: "hidden",
         }}
       >
         <CardHeader
           title={
             <Box width="100%" textAlign="center">
               <Typography
-                variant="h5" // Visual: Slightly larger title
+                variant="h5"
                 sx={{
                   fontSize: { xs: "1.25rem", sm: "1.5rem" },
                   fontWeight: "bold",
-                  color: "#e0e0e0", // Visual: Lighter white
+                  color: "#e0e0e0",
                   textShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
-                  pb: 0.5, // Visual: Padding below title
+                  pb: 0.5,
                 }}
               >
                 Arbitrum Wallet Balance
               </Typography>
               <Typography
-                variant="body2" // Visual: Changed to body2 for better readability
+                variant="body2"
                 sx={{
                   color: "rgba(255, 255, 255, 0.6)",
                   fontStyle: "italic",
@@ -222,22 +236,20 @@ const MyWallet = () => {
             </Box>
           }
           sx={{
-            background: "linear-gradient(45deg, #0f3460 30%, #1a1a2e 90%)", // Visual: Gradient header
+            background: "linear-gradient(45deg, #0f3460 30%, #1a1a2e 90%)",
             borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-            pb: 2, // Visual: More padding below header text
+            pb: 2,
           }}
         />
 
         <CardContent
           sx={{
             p: { xs: 2, sm: 3 },
-            pt: 2, // Visual: Adjust top padding
-            background: "rgba(30, 30, 40, 0.8)", // Visual: Match card background
+            pt: 2,
+            background: "rgba(30, 30, 40, 0.8)",
           }}
         >
           <Stack spacing={3}>
-            {" "}
-            {/* Visual: Increased spacing between elements */}
             <Box sx={{ position: "relative" }}>
               <TextField
                 label="Wallet Address"
@@ -287,49 +299,44 @@ const MyWallet = () => {
                   height={30}
                   sx={{ bgcolor: "rgba(255,255,255,0.1)" }}
                 />
-                {[...Array(5)].map(
-                  (
-                    _,
-                    i // Visual: Show 5 skeleton items
-                  ) => (
-                    <ListItem
-                      key={i}
-                      sx={{
-                        py: 1,
-                        px: 2,
-                        bgcolor: "rgba(255,255,255,0.05)",
-                        borderRadius: 1,
-                      }}
-                    >
-                      <ListItemAvatar>
-                        <Skeleton
-                          variant="circular"
-                          width={32}
-                          height={32}
-                          sx={{ bgcolor: "rgba(255,255,255,0.15)" }}
-                        />
-                      </ListItemAvatar>
-                      <ListItemText
-                        primary={
-                          <Skeleton
-                            variant="text"
-                            width="40%"
-                            height={20}
-                            sx={{ bgcolor: "rgba(255,255,255,0.1)" }}
-                          />
-                        }
-                        secondary={
-                          <Skeleton
-                            variant="text"
-                            width="25%"
-                            height={15}
-                            sx={{ bgcolor: "rgba(255,255,255,0.1)" }}
-                          />
-                        }
+                {[...Array(5)].map((_, i) => (
+                  <ListItem
+                    key={i}
+                    sx={{
+                      py: 1,
+                      px: 2,
+                      bgcolor: "rgba(255,255,255,0.05)",
+                      borderRadius: 1,
+                    }}
+                  >
+                    <ListItemAvatar>
+                      <Skeleton
+                        variant="circular"
+                        width={32}
+                        height={32}
+                        sx={{ bgcolor: "rgba(255,255,255,0.15)" }}
                       />
-                    </ListItem>
-                  )
-                )}
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={
+                        <Skeleton
+                          variant="text"
+                          width="40%"
+                          height={20}
+                          sx={{ bgcolor: "rgba(255,255,255,0.1)" }}
+                        />
+                      }
+                      secondary={
+                        <Skeleton
+                          variant="text"
+                          width="25%"
+                          height={15}
+                          sx={{ bgcolor: "rgba(255,255,255,0.1)" }}
+                        />
+                      }
+                    />
+                  </ListItem>
+                ))}
               </Stack>
             ) : error ? (
               <motion.div
@@ -372,10 +379,10 @@ const MyWallet = () => {
                 sx={{
                   p: 0,
                   bgcolor: "rgba(255, 255, 255, 0.05)",
-                  borderRadius: 2, // Visual: Slightly more rounded list
-                  maxHeight: walletContent.length > 5 ? "350px" : "auto", // Visual: Taller scroll area
+                  borderRadius: 2,
+                  maxHeight: walletContent.length > 5 ? "100%" : "auto",
                   overflowY: walletContent.length > 5 ? "auto" : "visible",
-                  boxShadow: "inset 0 0 10px rgba(0,0,0,0.2)", // Visual: Inner shadow for depth
+                  boxShadow: "inset 0 0 10px rgba(0,0,0,0.2)",
                   "&::-webkit-scrollbar": {
                     width: "8px",
                   },
@@ -394,42 +401,38 @@ const MyWallet = () => {
                 }}
               >
                 <AnimatePresence>
-                  {" "}
-                  {/* Visual: Enables exit animations for list items */}
                   {walletContent.map((asset, index) => (
                     <motion.div
-                      key={asset.contractAddress} // Visual: Use unique key for animations
+                      key={asset.contractAddress}
                       variants={listItemVariants}
                       initial="hidden"
                       animate="visible"
-                      exit="exit" // Visual: For when items are removed (e.g., filtering)
+                      exit="exit"
                       custom={index}
                     >
                       <ListItem
                         sx={{
-                          py: 1.5, // Visual: Increased vertical padding for more air
+                          py: 1.5,
                           px: 2,
                           borderBottom:
                             index < walletContent.length - 1
                               ? "1px solid"
                               : "none",
-                          borderColor: "rgba(255, 255, 255, 0.1)", // Visual: Softer border
+                          borderColor: "rgba(255, 255, 255, 0.1)",
                           "&:hover": {
-                            bgcolor: "rgba(255, 255, 255, 0.08)", // Visual: More subtle hover
+                            bgcolor: "rgba(255, 255, 255, 0.08)",
                           },
-                          transition: "background-color 0.2s ease-in-out", // Visual: Smooth hover transition
+                          transition: "background-color 0.2s ease-in-out",
                         }}
                       >
                         <ListItemAvatar sx={{ minWidth: "48px" }}>
-                          {" "}
-                          {/* Visual: Ensure consistent spacing */}
                           <Avatar
                             sx={{
                               bgcolor: asset.metadata.logo
                                 ? "transparent"
-                                : "rgba(98, 0, 234, 0.7)", // Visual: More vibrant default avatar background
+                                : "rgba(98, 0, 234, 0.7)",
                               color: "#ffffff",
-                              width: 40, // Visual: Slightly larger avatar
+                              width: 40,
                               height: 40,
                               boxShadow: "0 2px 5px rgba(0,0,0,0.2)",
                             }}
@@ -441,8 +444,8 @@ const MyWallet = () => {
                                 style={{
                                   width: "100%",
                                   height: "100%",
-                                  objectFit: "contain", // Visual: Use contain to prevent cropping
-                                  borderRadius: "50%", // Visual: Make logo avatar truly circular
+                                  objectFit: "contain",
+                                  borderRadius: "50%",
                                 }}
                               />
                             ) : (
@@ -453,7 +456,7 @@ const MyWallet = () => {
                         <ListItemText
                           primary={
                             <Typography
-                              variant="subtitle1" // Visual: More prominent primary text
+                              variant="subtitle1"
                               sx={{
                                 fontWeight: "bold",
                                 color: "#ffffff",
@@ -472,11 +475,10 @@ const MyWallet = () => {
                               }}
                             >
                               {asset.balance.toFixed(6)}{" "}
-                              {/* Visual: More decimal places for precision */}
                               <Typography
                                 component="span"
                                 variant="body2"
-                                sx={{ fontWeight: "bold", color: "#03dac6" }} // Visual: Highlight symbol with secondary color
+                                sx={{ fontWeight: "bold", color: "#03dac6" }}
                               >
                                 {asset.metadata.symbol}
                               </Typography>
@@ -492,9 +494,9 @@ const MyWallet = () => {
             <Typography
               variant="caption"
               sx={{
-                mt: 2, // Visual: More space from the list
+                mt: 2,
                 textAlign: "center",
-                color: "rgba(255, 255, 255, 0.5)", // Visual: Softer color for attribution
+                color: "rgba(255, 255, 255, 0.5)",
                 fontStyle: "italic",
                 fontSize: "0.75rem",
               }}

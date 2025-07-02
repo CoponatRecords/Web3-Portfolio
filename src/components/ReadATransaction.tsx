@@ -157,7 +157,7 @@ const ReadATransaction = ({ expandedTool, handleToolClick, setAnchorEl }) => {
         transition: "transform 0.3s ease, box-shadow 0.3s ease",
         zIndex: expandedTool === "read" ? 2 : 1,
         cursor: "pointer",
-        width: { xs: "100%", sm: "400px" },
+        width: { xs: "100%", sm: "100%" },
         maxWidth: "100%",
         "&:hover": {
           transform: expandedTool !== "read" ? "scale(1.05)" : "scale(1.02)",
